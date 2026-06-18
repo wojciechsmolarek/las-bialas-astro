@@ -1,7 +1,0 @@
-
-User-agent: *
-Allow: /
-
-Sitemap: https://lasbialas.pl/sitemap.xml
-Sitemap: https://lasbialas.pl/en/sitemap.xml
-Sitemap: https://lasbialas.pl/de/sitemap.xml
