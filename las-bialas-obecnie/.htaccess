@@ -1,0 +1,71 @@
+RewriteEngine On
+
+# Pozwala Let's Encrypt pobierać pliki challenge
+RewriteCond %{REQUEST_URI} ^/.well-known/acme-challenge/ [NC]
+RewriteRule ^ - [L]
+
+# Wymuszenie HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Przekierowanie /index.html na /
+RewriteCond %{THE_REQUEST} /index\.html [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Przekierowanie /pl na /
+RewriteRule ^pl$ / [R=301,L]
+
+# Ustawienie strony głównej
+DirectoryIndex index.html
+
+# Wyjątki dla robots.txt i sitemap.xml (zapobiega przekierowaniom tych plików)
+RewriteCond %{REQUEST_URI} ^/robots\.txt$ [NC]
+RewriteRule .* - [L]
+
+RewriteCond %{REQUEST_URI} ^/sitemap\.xml$ [OR]
+RewriteCond %{REQUEST_URI} ^/de/sitemap\.xml$ [NC]
+RewriteRule .* - [L]
+
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .txt
+
+# Obsługa błędu 404 dla EN
+RewriteCond %{REQUEST_URI} ^/en
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* /en/404.html [L]
+
+# Obsługa błędu 404 dla DE
+RewriteCond %{REQUEST_URI} ^/de
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* /de/404.html [L]
+
+# Obsługa błędu 404 w katalogu głównym (PL)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* /404.html [L]
+
+
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Obrazy
+    ExpiresByType image/webp  "access plus 1 month"
+    ExpiresByType image/png   "access plus 1 month"
+    ExpiresByType image/jpeg  "access plus 1 month"
+    ExpiresByType image/jpg   "access plus 1 month"
+    ExpiresByType image/gif   "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+
+    # Fonty
+    ExpiresByType font/woff2  "access plus 1 month"
+    ExpiresByType font/woff   "access plus 1 month"
+    ExpiresByType font/ttf    "access plus 1 month"
+    ExpiresByType font/otf    "access plus 1 month"
+
+    # Style i skrypty
+    ExpiresByType text/css    "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>

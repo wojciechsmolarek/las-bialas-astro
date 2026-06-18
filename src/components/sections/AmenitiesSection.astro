@@ -1,0 +1,76 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const amenities = [
+  {
+    icon: '/foto/domki-4-osobowe.png',
+    alt: lang === 'pl' ? 'ikona domki' : lang === 'en' ? 'cottages icon' : 'Ferienhäuser Symbol',
+    text: t('amenity.cottages')
+  },
+  {
+    icon: '/foto/domek-w-lesie.png',
+    alt: lang === 'pl' ? 'ikona domek w lesie' : lang === 'en' ? 'cabin in forest icon' : 'Haus im Wald Symbol',
+    text: t('amenity.location')
+  },
+  {
+    icon: '/foto/domek-z-2-sypialniami.png',
+    alt: lang === 'pl' ? 'domek z dwoma sypialniami' : lang === 'en' ? 'cabin with 2 bedrooms' : 'Haus mit 2 Schlafzimmern',
+    text: t('amenity.bedrooms')
+  },
+  {
+    icon: '/foto/adults.png',
+    alt: lang === 'pl' ? 'Domki dla dorosłych, Adults only' : lang === 'en' ? 'Adults only cottages' : 'Nur für Erwachsene',
+    text: t('amenity.adults_only')
+  },
+  {
+    icon: '/foto/sauna-w-lesie.png',
+    alt: lang === 'pl' ? 'Sauna do dyspozycji Gości' : lang === 'en' ? 'Sauna for guests' : 'Sauna für Gäste',
+    text: t('amenity.sauna')
+  },
+  {
+    icon: '/foto/prywatne-jacuzzi.png',
+    alt: lang === 'pl' ? 'Prywatne jacuzzi' : lang === 'en' ? 'Private jacuzzi' : 'Privates Jacuzzi',
+    text: t('amenity.jacuzzi')
+  },
+  {
+    icon: '/foto/sport.png',
+    alt: lang === 'pl' ? 'ikona aktywność' : lang === 'en' ? 'activity icon' : 'Aktivitätssymbol',
+    text: t('amenity.bikes')
+  },
+  {
+    icon: '/foto/bezplatne-wifi.png',
+    alt: lang === 'pl' ? 'ikona Wi-Fi' : lang === 'en' ? 'Wi-Fi icon' : 'WLAN-Symbol',
+    text: t('amenity.wifi')
+  },
+  {
+    icon: '/foto/netflix.png',
+    alt: lang === 'pl' ? 'ikona Netflix' : lang === 'en' ? 'Netflix icon' : 'Netflix-Symbol',
+    text: t('amenity.netflix')
+  }
+];
+---
+
+<div>
+  <section class="amenities-section" style="padding: 10px; background-color: #f2f2f2;">
+    <div class="amenities-grid">
+      {
+        amenities.map((amenity) => (
+          <div style="text-align: center;">
+            <img
+              alt={amenity.alt}
+              src={amenity.icon}
+              style="width: 45px; height: 45px; margin-top: 10px;"
+            />
+            <p style="margin-top: 5px;" set:html={amenity.text.replace(/\n/g, '<br/>')} />
+          </div>
+        ))
+      }
+    </div>
+  </section>

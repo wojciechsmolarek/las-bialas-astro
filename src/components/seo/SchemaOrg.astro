@@ -1,0 +1,165 @@
+---
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+
+const schemaNames = {
+  pl: "Las Biala's - Domki z sauną i jacuzzi na wynajem w Puszczy Noteckiej",
+  en: "Las Biala's – Cottages with sauna and jacuzzi for rent in the Noteć Forest",
+  de: "Las Biala's – Ferienhäuser mit Sauna und Jacuzzi zur Miete im Noteć-Wald"
+};
+
+const offerNames = {
+  pl: {
+    main: "Domki dla 2 osób – cena za dobę",
+    jacuzzi: "Opcja dodatkowa: Jacuzzi"
+  },
+  en: {
+    main: "Cottages for 2 guests – price per night",
+    jacuzzi: "Optional extra: Jacuzzi"
+  },
+  de: {
+    main: "Ferienhäuser für 2 Personen – Preis pro Nacht",
+    jacuzzi: "Optionale Zusatzleistung: Jacuzzi"
+  }
+};
+
+const offerDescriptions = {
+  pl: {
+    main: "Cena obejmuje nocleg dla 2 osób, dostęp do sauny i rowerów. Minimalny pobyt: 2 doby.",
+    jacuzzi: "Prywatne jacuzzi dostępne przy domku. Cena zależna od długości pobytu."
+  },
+  en: {
+    main: "Price includes accommodation for 2 guests, access to sauna and bikes. Minimum stay: 2 nights.",
+    jacuzzi: "Private jacuzzi available at the cottage. Price depends on length of stay."
+  },
+  de: {
+    main: "Preis beinhaltet Unterkunft für 2 Personen, Zugang zur Sauna und Fahrrädern. Mindestaufenthalt: 2 Nächte.",
+    jacuzzi: "Privates Jacuzzi am Ferienhaus verfügbar. Preis abhängig von der Aufenthaltsdauer."
+  }
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LodgingBusiness",
+      "@id": "https://lasbialas.pl#lodging",
+      "name": [
+        {
+          "@value": schemaNames.pl,
+          "@language": "pl"
+        },
+        {
+          "@value": schemaNames.en,
+          "@language": "en"
+        },
+        {
+          "@value": schemaNames.de,
+          "@language": "de"
+        }
+      ],
+      "url": "https://lasbialas.pl",
+      "image": "https://lasbialas.pl/foto/lasbialas8.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Biała 32/32",
+        "addressLocality": "Powiat czarnkowsko-trzcianecki",
+        "addressRegion": "Wielkopolskie",
+        "postalCode": "64-730",
+        "addressCountry": "PL"
+      },
+      "telephone": "+48789773285",
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": [
+            {
+              "@value": offerNames.pl.main,
+              "@language": "pl"
+            },
+            {
+              "@value": offerNames.en.main,
+              "@language": "en"
+            },
+            {
+              "@value": offerNames.de.main,
+              "@language": "de"
+            }
+          ],
+          "description": [
+            {
+              "@value": offerDescriptions.pl.main,
+              "@language": "pl"
+            },
+            {
+              "@value": offerDescriptions.en.main,
+              "@language": "en"
+            },
+            {
+              "@value": offerDescriptions.de.main,
+              "@language": "de"
+            }
+          ],
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "490",
+            "priceCurrency": "PLN",
+            "unitText": "PER_NIGHT"
+          },
+          "availability": "https://schema.org/InStock",
+          "eligibleQuantity": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "unitCode": "DAY"
+          },
+          "url": "https://lasbialas.pl"
+        },
+        {
+          "@type": "Offer",
+          "name": [
+            {
+              "@value": offerNames.pl.jacuzzi,
+              "@language": "pl"
+            },
+            {
+              "@value": offerNames.en.jacuzzi,
+              "@language": "en"
+            },
+            {
+              "@value": offerNames.de.jacuzzi,
+              "@language": "de"
+            }
+          ],
+          "description": [
+            {
+              "@value": offerDescriptions.pl.jacuzzi,
+              "@language": "pl"
+            },
+            {
+              "@value": offerDescriptions.en.jacuzzi,
+              "@language": "en"
+            },
+            {
+              "@value": offerDescriptions.de.jacuzzi,
+              "@language": "de"
+            }
+          ],
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "350",
+            "priceCurrency": "PLN",
+            "unitText": "2 nights"
+          },
+          "availability": "https://schema.org/InStock",
+          "url": "https://lasbialas.pl#jacuzzi"
+        }
+      ]
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,23 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+const lang = 'pl';
+---
+
+<PageLayout
+  title="RODO - Ochrona danych osobowych | Las Biala's"
+  description="Informacje o ochronie danych osobowych zgodnie z RODO."
+  lang={lang}
+>
+  <div class="container mx-auto max-w-3xl px-4 py-12">
+    <h1 class="mb-8 text-4xl font-semibold">RODO</h1>
+    <div class="prose prose-lg">
+      <h2>Klauzula informacyjna RODO</h2>
+      <p>Zgodnie z art. 13 RODO informujemy, że:</p>
+      <ul>
+        <li>Administratorem danych osobowych jest Las Biala's</li>
+        <li>Dane przetwarzane są w celu realizacji rezerwacji i kontaktu</li>
+        <li>Przysługuje Państwu prawo dostępu, sprostowania, usunięcia danych</li>
+      </ul>
+    </div>
+  </div>
+</PageLayout>

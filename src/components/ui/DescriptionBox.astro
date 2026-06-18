@@ -1,0 +1,24 @@
+---
+interface Props {
+  variant?: 'default' | 'promo' | 'lato';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variantStyles = {
+  default: 'border-2 border-neutral-dark',
+  promo: 'border-2 border-primary-green bg-green-50',
+  lato: 'border-2 border-primary-orange bg-orange-50'
+};
+
+const boxClass = `
+  rounded-lg p-6 md:p-8
+  ${variantStyles[variant]}
+  ${className}
+`.trim();
+---
+
+<div class={boxClass}>
+  <slot />
+</div>

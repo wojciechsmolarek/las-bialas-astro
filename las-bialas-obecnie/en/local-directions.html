@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access map to Las Biala's cottages in the village of Biała in the Noteć Forest ✅" />
+    <title>Location & Directions to Las Biala's Cottages</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Oxanium', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #41A55B;
+            color: white;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            padding: 0 10px;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            font-weight: 400;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            position: absolute;
+            right: 10px;
+            display: flex;
+            gap: 20px;
+            font-weight: 400;
+            font-size: 20px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-links {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+            align-items: center;
+        }
+
+        .language-links .lang-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.85rem;
+            text-decoration: none;
+            width: 30px;
+            height: 30px;
+            border: 1px solid white;
+            border-radius: 50%;
+        }
+
+        .footer {
+            background-color: #737373;
+            color: white;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+                position: absolute;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Access map to Las Biala's cottages</h1><div style="text-align: center;">
+        <a href="/en/" style="display: inline-flex; font-weight: 400; font-size: 20px; align-items: center; margin-left: 30px; color: #ffffff; text-decoration: none;">HOME</span></a>
+        </div>
+        <div class="contact-info">
+            <a href="tel:+48789773285">
+                <img src="/images/telefon.png" alt="Telefon" style="width: 30px; height: 30px;">+48 789 773 285 
+            </a>
+            <div class="language-links">
+                <a href="/en/" class="lang-link">EN</a>
+            </div>
+        </div>
+    </div>
+
+    <img src="/en/foto/local-directions.webp" alt="Location & Directions to Las Biala's Cottages" class="main-image" width="1920" height="1125">
+
+    <div class="footer">
+        <p>&copy; <span id="year"></span> Las Biala's</p>
+    </div>
+
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>

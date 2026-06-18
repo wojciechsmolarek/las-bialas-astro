@@ -1,0 +1,41 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<!-- Pasek z informacją o cookies -->
+<div id="cookieBanner">
+  {t('cookies.message')}
+  <a href="#" onclick="showCookiePolicy()">{t('cookies.learn_more')}</a>
+  <button onclick="acceptCookies()">{t('cookies.accept')}</button>
+</div>
+
+<script is:inline>
+  function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+
+  function showCookiePolicy() {
+    const lang = document.documentElement.lang || 'pl';
+    const path =
+      lang === 'pl'
+        ? '/polityka-prywatnosci'
+        : lang === 'en'
+          ? '/en/privacy-policy'
+          : '/de/datenschutzerklarung';
+    window.location.href = path;
+  }
+
+  // Check if cookies were already accepted
+  const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+  if (!cookiesAccepted) {
+    document.getElementById('cookieBanner').style.display = 'block';
+  }
+</script>

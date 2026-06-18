@@ -1,0 +1,155 @@
+---
+import { useTranslations, getEntry } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const homeUrl = lang === 'pl' ? '/' : `/${lang}/`;
+const enUrl = lang === 'de' ? '/en/' : lang === 'pl' ? '/en/' : '/';
+const deUrl = lang === 'en' ? '/de/' : lang === 'pl' ? '/de/' : '/';
+---
+
+<div class="top-bar">
+  <a href={homeUrl}>
+    <img alt="Logo Las Biala's" class="logo" src="/images/lasbialas.png" />
+  </a>
+
+  <div style="text-align: left;">
+    <h1 class="header-h1">
+      <span class="bold-text">{t('header.title.main')}</span>
+    </h1>
+    <span class="light-text">{t('header.subtitle')}</span>
+  </div>
+
+  <div>
+    <div class="contact-info">
+      <a href="tel:+48789773285">
+        <img
+          alt="Telefon"
+          src="/images/telefon-g.png"
+          style="width: 24px; height: 24px; vertical-align: middle;"
+        />+48 789 773 285
+      </a>
+
+      <a href="https://wa.me/48660194187">
+        <img
+          alt="WhatsApp"
+          src="/images/whatsapp-green.png"
+          style="width: 24px; height: 24px; vertical-align: middle; margin-right: 10px;"
+        />660 194 187
+      </a>
+
+      <a href="mailto:domki@lasbialas.pl">
+        <img
+          alt="Mail"
+          src="/images/mail-g.png"
+          style="width: 24px; height: 24px; vertical-align: middle;"
+        />domki@lasbialas.pl
+      </a>
+
+      <a
+        href="https://www.instagram.com/lasbialas"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Instagram Las Biala's"
+          src="/images/instagram.png"
+          style="width: 24px; height: 24px; vertical-align: middle;"
+        />/lasbialas
+      </a>
+
+      <div class="language-links">
+        {lang !== 'en' && <a href={enUrl} class="lang-link">EN</a>}
+        {lang !== 'de' && <a href={deUrl} class="lang-link">DE</a>}
+      </div>
+
+      <div>
+        <a
+          aria-label={t('nav.reservation')}
+          class="cart-link"
+          href="#"
+          onclick="openReservation(); return false;"
+        >
+          <img alt="Rezerwacja" src="/images/cart.png" />
+        </a>
+      </div>
+    </div>
+
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <img alt="Menu" src="/images/menu-b.png" />
+    </div>
+  </div>
+</div>
+
+<!-- Menu mobilne -->
+<div class="mobile-contact-menu" id="mobileContactMenu">
+  <div class="language-links">
+    {lang !== 'en' && <a href={enUrl} class="lang-link">EN</a>}
+    {lang !== 'de' && <a href={deUrl} class="lang-link">DE</a>}
+  </div>
+
+  <a href="tel:+48789773285">
+    <img
+      alt="Telefon"
+      src="/images/telefon-g.png"
+      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+    />+48 789 773 285
+  </a>
+
+  <a href="https://wa.me/48660194187">
+    <img
+      alt="WhatsApp"
+      src="/images/whatsapp-green.png"
+      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+    />660 194 187
+  </a>
+
+  <a href="mailto:domki@lasbialas.pl">
+    <img
+      alt="Mail"
+      src="/images/mail-g.png"
+      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+    />domki@lasbialas.pl
+  </a>
+
+  <a
+    href="https://www.instagram.com/lasbialas"
+    rel="nofollow noopener noreferrer"
+    target="_blank"
+  >
+    <img
+      alt="Instagram Las Biala's"
+      src="/images/instagram.png"
+      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+    />/lasbialas
+  </a>
+</div>
+
+<script is:inline>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileContactMenu');
+    if (menu) {
+      menu.classList.toggle('active');
+    }
+  }
+
+  function openReservation() {
+    if (typeof window.bookero_open !== 'undefined') {
+      window.bookero_open();
+    }
+  }
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function (event) {
+    const menu = document.getElementById('mobileContactMenu');
+    const hamburger = document.querySelector('.hamburger-menu');
+    if (menu && hamburger && !menu.contains(event.target) && !hamburger.contains(event.target)) {
+      menu.classList.remove('active');
+    }
+  });
+</script>

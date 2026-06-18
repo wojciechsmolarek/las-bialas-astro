@@ -1,0 +1,2 @@
+# .htaccess w katalogu głównym
+RedirectMatch 301 ^/przewodnik/?$ https://alohacamp.com/pl/guide/las-bialaand-39-s-kameralny-domek-w-puszczy-noteckiej-1/

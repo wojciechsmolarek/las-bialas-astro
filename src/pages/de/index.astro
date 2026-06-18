@@ -1,0 +1,30 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Gallery from '../../components/sections/Gallery.astro';
+import AmenitiesSection from '../../components/sections/AmenitiesSection.astro';
+import AvailabilityBox from '../../components/sections/AvailabilityBox.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'de';
+const t = useTranslations(lang);
+---
+
+<PageLayout
+  title="Ferienhäuser mit Sauna & Jacuzzi - Miete in der Puszcza Notecka | Las Biala's"
+  description="Ferienhäuser zur Miete mit Sauna und Jacuzzi, im Herzen der Puszcza Notecka in Biała am See Białe. Reservierungen und Verfügbarkeit ☎ +48 789 773 285"
+  lang={lang}
+  canonical="https://lasbialas.pl/de/"
+>
+  <Gallery lang={lang} />
+  <AmenitiesSection lang={lang} />
+  <AvailabilityBox lang={lang} />
+
+  <div class="container mx-auto max-w-screen-xl px-4 py-12">
+    <h2 class="my-8 text-center text-3xl font-semibold">
+      {t('section.year_round_cottages')}
+    </h2>
+    <p class="text-center text-lg leading-relaxed">
+      {t('section.year_round_desc')}
+    </p>
+  </div>
+</PageLayout>

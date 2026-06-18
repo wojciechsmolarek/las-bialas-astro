@@ -1,0 +1,31 @@
+{
+  "promoBar": {
+    "enabled": true,
+    "messages": {
+      "pl": "<b>Rezerwacje </b><span class=\"promo-code\">LIPIEC</span><span class=\"promo-code\">SIERPIEŃ</span> <b> tylko na telefon</b>",
+      "en": "<b>Reservations for </b><span class=\"promo-code\">JULY</span><span class=\"promo-code\">AUGUST</span> <b> by phone only</b>",
+      "de": "<b>Reservierungen für </b><span class=\"promo-code\">JULI</span><span class=\"promo-code\">AUGUST</span> <b> nur telefonisch</b>"
+    }
+  },
+  "availability": {
+    "nextAvailable": {
+      "dates": "22-25 cze",
+      "cabin": {
+        "pl": "domek D2",
+        "en": "cabin D2",
+        "de": "Ferienhaus D2"
+      },
+      "discountCode": "LB22CZE"
+    },
+    "summerSlots": {
+      "july": ["3-9 lip", "26 lip - 1 sie"],
+      "august": ["3-9 sie", "17-23 sie"]
+    }
+  },
+  "contact": {
+    "phone": "+48 789 773 285",
+    "whatsapp": "660 194 187",
+    "email": "domki@lasbialas.pl",
+    "instagram": "/lasbialas"
+  }
+}

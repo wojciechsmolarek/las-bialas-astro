@@ -1,0 +1,39 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PromoBar from '../components/layout/PromoBar.astro';
+import TopBar from '../components/layout/TopBar.astro';
+import Footer from '../components/layout/Footer.astro';
+import CookieBanner from '../components/layout/CookieBanner.astro';
+import GalleryOverlay from '../components/sections/GalleryOverlay.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'pl' | 'en' | 'de';
+  canonical?: string;
+  ogImage?: string;
+}
+
+const { title, description, lang = 'pl', canonical, ogImage } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  canonical={canonical}
+  ogImage={ogImage}
+>
+  <slot name="head" slot="head" />
+
+  <PromoBar lang={lang} />
+  <TopBar lang={lang} />
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer lang={lang} />
+  <CookieBanner lang={lang} />
+  <GalleryOverlay />
+</BaseLayout>

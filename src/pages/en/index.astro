@@ -1,0 +1,30 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Gallery from '../../components/sections/Gallery.astro';
+import AmenitiesSection from '../../components/sections/AmenitiesSection.astro';
+import AvailabilityBox from '../../components/sections/AvailabilityBox.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<PageLayout
+  title="Cottages with Sauna & Jacuzzi - Rent in Noteć Forest | Las Biala's"
+  description="Cottages for rent with sauna and jacuzzi, in the heart of the Noteć Forest in Biała by Lake Białe. Reservations and availability ☎ +48 789 773 285"
+  lang={lang}
+  canonical="https://lasbialas.pl/en/"
+>
+  <Gallery lang={lang} />
+  <AmenitiesSection lang={lang} />
+  <AvailabilityBox lang={lang} />
+
+  <div class="container mx-auto max-w-screen-xl px-4 py-12">
+    <h2 class="my-8 text-center text-3xl font-semibold">
+      {t('section.year_round_cottages')}
+    </h2>
+    <p class="text-center text-lg leading-relaxed">
+      {t('section.year_round_desc')}
+    </p>
+  </div>
+</PageLayout>

@@ -1,0 +1,73 @@
+---
+import { getEntry } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
+import type { languages } from '../../i18n/ui';
+import DescriptionBox from '../ui/DescriptionBox.astro';
+import PromoCode from '../ui/PromoCode.astro';
+import Button from '../ui/Button.astro';
+
+interface Props {
+  lang: keyof typeof languages;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Fetch data from Content Collections
+const siteConfig = await getEntry('site', 'config');
+const { availability } = siteConfig.data;
+---
+
+<div class="mx-auto max-w-screen-xl px-4 py-8">
+  <DescriptionBox variant="promo" class="text-center">
+    <h2 class="mb-4 text-2xl font-semibold text-neutral-dark">
+      {t('section.available_dates')}
+    </h2>
+
+    <img
+      alt="kalendarz"
+      src="/images/kalendarz.png"
+      width="55"
+      height="55"
+      class="mx-auto mb-4"
+    />
+
+    <p class="mb-4">
+      <b>{t('availability.june')}</b><br />
+      <b>{availability.nextAvailable.dates}</b> | {availability.nextAvailable.cabin[lang]}<br />
+      -10% z kodem
+      <PromoCode code={availability.nextAvailable.discountCode || 'LB22CZE'} id="code1" />
+    </p>
+
+    <div class="my-6 flex justify-center">
+      <Button
+        variant="info"
+        onclick="openReservation(); return false;"
+        ariaLabel={lang === 'pl' ? 'Otwórz panel rezerwacji' : lang === 'en' ? 'Open reservation panel' : 'Reservierungspanel öffnen'}
+      >
+        {t('button.reserve')}
+      </Button>
+    </div>
+
+    <p class="text-sm">
+      {lang === 'pl' ? 'lub sprawdź inne' : lang === 'en' ? 'or check other' : 'oder prüfen Sie andere'}
+      <a
+        href="#"
+        onclick="openReservation(); return false;"
+        class="font-semibold text-primary-green no-underline hover:underline"
+        aria-label={lang === 'pl' ? 'Otwórz panel rezerwacji' : lang === 'en' ? 'Open reservation panel' : 'Reservierungspanel öffnen'}
+      >
+        {t('button.availability')}
+      </a>
+      {lang === 'pl' ? '(wybierając domek D1 lub D2)' : lang === 'en' ? '(select cabin D1 or D2)' : '(wählen Sie Ferienhaus D1 oder D2)'}.
+    </p>
+  </DescriptionBox>
+</div>
+
+<script is:inline>
+  function openReservation() {
+    if (typeof window.bookero_open !== 'undefined') {
+      window.bookero_open();
+    }
+  }
+</script>

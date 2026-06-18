@@ -1,0 +1,23 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+const lang = 'en';
+---
+
+<PageLayout
+  title="GDPR - Personal Data Protection | Las Biala's"
+  description="Information on personal data protection in accordance with GDPR."
+  lang={lang}
+>
+  <div class="container mx-auto max-w-3xl px-4 py-12">
+    <h1 class="mb-8 text-4xl font-semibold">GDPR</h1>
+    <div class="prose prose-lg">
+      <h2>GDPR Information Clause</h2>
+      <p>In accordance with Art. 13 GDPR, we inform that:</p>
+      <ul>
+        <li>The data controller is Las Biala's</li>
+        <li>Data is processed for reservation and contact purposes</li>
+        <li>You have the right to access, rectify, and delete data</li>
+      </ul>
+    </div>
+  </div>
+</PageLayout>

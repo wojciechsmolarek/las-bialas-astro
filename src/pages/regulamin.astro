@@ -1,0 +1,22 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+const lang = 'pl';
+---
+
+<PageLayout
+  title="Regulamin domków Las Biala's | Warunki wynajmu"
+  description="Regulamin wynajmu domków Las Biala's w Białej. Zasady pobytu, check-in, check-out."
+  lang={lang}
+>
+  <div class="container mx-auto max-w-3xl px-4 py-12">
+    <h1 class="mb-8 text-4xl font-semibold">Regulamin</h1>
+    <div class="prose prose-lg">
+      <h2>1. Postanowienia ogólne</h2>
+      <p>Regulamin określa zasady wynajmu i pobytu w domkach Las Biala's.</p>
+      <h2>2. Rezerwacja</h2>
+      <p>Minimalny pobyt: 2 doby. Check-in: 16:00, Check-out: 12:00.</p>
+      <h2>3. Zasady pobytu</h2>
+      <p>Domki przeznaczone są wyłącznie dla osób dorosłych (18+).</p>
+    </div>
+  </div>
+</PageLayout>

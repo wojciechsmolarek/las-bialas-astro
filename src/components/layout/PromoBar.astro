@@ -1,0 +1,21 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+
+// Fetch data from Content Collections
+const siteConfig = await getEntry('site', 'config');
+const { promoBar } = siteConfig.data;
+---
+
+{
+  promoBar.enabled && (
+    <div class="promo-bar">
+      <Fragment set:html={promoBar.messages[lang]} />
+    </div>
+  )
+}

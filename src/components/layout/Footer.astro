@@ -1,0 +1,51 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// URLs for different pages
+const blogUrl = 'https://lasbialas.pl/blog/';
+const guideUrl = 'https://lasbialas.pl/info/';
+
+// Localized internal links
+const termsPath = lang === 'pl' ? '/regulamin' : lang === 'en' ? '/en/terms-and-conditions' : '/de/hausordnung';
+const privacyPath = lang === 'pl' ? '/polityka-prywatnosci' : lang === 'en' ? '/en/privacy-policy' : '/de/datenschutzerklarung';
+const gdprPath = lang === 'pl' ? '/rodo' : lang === 'en' ? '/en/rodo' : '/de/rodo';
+---
+
+<div class="footer">
+  <div class="footer-content">
+    <p class="footer-copy">© <span id="year"></span> Las Biala's</p>
+
+    <!-- Widoczny tylko na desktopie -->
+    <div class="footer-inline-links">
+      <a href={blogUrl} target="_blank" rel="noopener noreferrer">{t('nav.blog')}</a>
+      <a href={guideUrl} target="_blank" rel="noopener noreferrer">{t('nav.guide')}</a>
+      <a href={termsPath}>{t('nav.terms')}</a>
+      <a href={privacyPath}>{t('nav.privacy')}</a>
+      <a href={gdprPath}>{t('nav.gdpr')}</a>
+    </div>
+
+    <!-- Widoczny tylko na mobile -->
+    <div class="footer-links-mobile">
+      <details>
+        <summary>{lang === 'pl' ? 'Informacje' : lang === 'en' ? 'Information' : 'Informationen'}</summary>
+        <a href={blogUrl} target="_blank" rel="noopener noreferrer">{t('nav.blog')}</a>
+        <a href={guideUrl} target="_blank" rel="noopener noreferrer">{t('nav.guide')}</a>
+        <a href={termsPath}>{t('nav.terms')}</a>
+        <a href={privacyPath}>{t('nav.privacy')}</a>
+        <a href={gdprPath}>{t('nav.gdpr')}</a>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // Skrypt do dynamicznego ustawienia roku
+  document.getElementById('year').innerText = new Date().getFullYear();
+</script>

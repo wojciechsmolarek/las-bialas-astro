@@ -1,0 +1,23 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+const lang = 'de';
+---
+
+<PageLayout
+  title="DSGVO - Datenschutz | Las Biala's"
+  description="Informationen zum Datenschutz gemäß DSGVO."
+  lang={lang}
+>
+  <div class="container mx-auto max-w-3xl px-4 py-12">
+    <h1 class="mb-8 text-4xl font-semibold">DSGVO</h1>
+    <div class="prose prose-lg">
+      <h2>DSGVO-Informationsklausel</h2>
+      <p>Gemäß Art. 13 DSGVO informieren wir, dass:</p>
+      <ul>
+        <li>Der Datenverantwortliche ist Las Biala's</li>
+        <li>Daten werden für Reservierungs- und Kontaktzwecke verarbeitet</li>
+        <li>Sie haben das Recht auf Zugang, Berichtigung und Löschung</li>
+      </ul>
+    </div>
+  </div>
+</PageLayout>

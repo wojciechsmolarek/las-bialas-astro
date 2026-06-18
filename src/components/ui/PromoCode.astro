@@ -1,0 +1,67 @@
+---
+interface Props {
+  code: string;
+  id: string;
+}
+
+const { code, id } = Astro.props;
+---
+
+<span class="promo-wrapper inline-flex items-center gap-2">
+  <span
+    class="promo-code inline-block rounded-sm bg-white/20 px-2 py-0.5 font-semibold"
+    id={id}
+  >
+    {code}
+  </span>
+
+  <button
+    class="copy-btn cursor-pointer rounded border-0 bg-transparent p-1 text-neutral-dark transition-colors hover:text-primary-green"
+    onclick={`copyCode('${id}', this)`}
+    title="Kopiuj"
+  >
+    <svg width="26" height="26" viewBox="0 0 24 26" fill="none">
+      <rect
+        x="7"
+        y="15"
+        width="10"
+        height="10"
+        rx="2"
+        stroke="currentColor"
+        stroke-width="2"></rect>
+      <rect
+        x="3"
+        y="11"
+        width="10"
+        height="10"
+        rx="2"
+        stroke="currentColor"
+        stroke-width="2"></rect>
+    </svg>
+  </button>
+</span>
+
+<script is:inline>
+  function copyCode(elementId, button) {
+    const codeElement = document.getElementById(elementId);
+    if (codeElement) {
+      const code = codeElement.textContent;
+      navigator.clipboard.writeText(code).then(
+        function () {
+          // Visual feedback
+          const originalText = button.title;
+          button.title = 'Skopiowano!';
+          button.style.color = '#2F6940';
+
+          setTimeout(function () {
+            button.title = originalText;
+            button.style.color = '';
+          }, 2000);
+        },
+        function (err) {
+          console.error('Could not copy text: ', err);
+        }
+      );
+    }
+  }
+</script>

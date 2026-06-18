@@ -1,0 +1,19 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+const lang = 'pl';
+---
+
+<PageLayout
+  title="404 - Strona nie znaleziona | Las Biala's"
+  description="Strona, której szukasz nie została znaleziona."
+  lang={lang}
+>
+  <div class="container mx-auto max-w-3xl px-4 py-24 text-center">
+    <h1 class="mb-4 text-9xl font-bold text-primary-red">404</h1>
+    <h2 class="mb-8 text-3xl font-semibold">Strona nie znaleziona</h2>
+    <p class="mb-8 text-lg">Przepraszamy, strona której szukasz nie istnieje.</p>
+    <a href="/" class="inline-block rounded bg-primary-green px-6 py-3 text-white hover:bg-green-700">
+      Wróć na stronę główną
+    </a>
+  </div>
+</PageLayout>

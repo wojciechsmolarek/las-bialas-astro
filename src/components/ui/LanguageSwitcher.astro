@@ -1,0 +1,32 @@
+---
+import { getAlternateLanguages, getLocalizedPath } from '../../i18n/utils';
+import type { languages } from '../../i18n/ui';
+
+interface Props {
+  lang: keyof typeof languages;
+}
+
+const { lang } = Astro.props;
+const alternateLanguages = getAlternateLanguages(lang);
+const currentPath = Astro.url.pathname.replace(`/${lang}`, '').replace(/\/$/, '') || '/';
+
+// Generate localized paths
+const languagePaths = {
+  en: lang === 'pl' ? '/en' + currentPath : '/en/',
+  de: lang === 'pl' ? '/de' + currentPath : '/de/',
+  pl: currentPath === '/' ? '/' : currentPath
+};
+---
+
+<div class="language-links flex gap-3">
+  {
+    alternateLanguages.map((altLang) => (
+      <a
+        href={languagePaths[altLang as keyof typeof languagePaths]}
+        class="lang-link flex h-6 w-6 items-center justify-center rounded-full border border-neutral-dark text-[0.65rem] text-neutral-dark no-underline transition-colors hover:bg-green-200"
+      >
+        {altLang.toUpperCase()}
+      </a>
+    ))
+  }
+</div>

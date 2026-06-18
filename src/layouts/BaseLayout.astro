@@ -1,0 +1,188 @@
+---
+import { SEO } from 'astro-seo';
+import SchemaOrg from '../components/seo/SchemaOrg.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'pl' | 'en' | 'de';
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'pl',
+  canonical,
+  ogImage = '/foto/lasbialas8.webp'
+} = Astro.props;
+
+const siteUrl = 'https://lasbialas.pl';
+
+// Generate hreflang links
+const hreflangs = [
+  { lang: 'pl', url: lang === 'pl' ? siteUrl : `${siteUrl}/` },
+  { lang: 'en', url: `${siteUrl}/en/` },
+  { lang: 'de', url: `${siteUrl}/de/` },
+  { lang: 'x-default', url: siteUrl }
+];
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical || `${siteUrl}${Astro.url.pathname}`}
+      openGraph={{
+        basic: {
+          title: title,
+          type: 'website',
+          image: `${siteUrl}${ogImage}`,
+          url: canonical || `${siteUrl}${Astro.url.pathname}`
+        },
+        image: {
+          width: 1200,
+          height: 1200
+        }
+      }}
+    />
+
+    <!-- Hreflang -->
+    {hreflangs.map(({ lang: hreflangLang, url }) => (
+      <link rel="alternate" hreflang={hreflangLang} href={url} />
+    ))}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Font Preloads -->
+    <link
+      rel="preload"
+      href="/fonts/Montserrat-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Montserrat-SemiBold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Montserrat-Light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- Critical Image Preloads (first 3 images) -->
+    <link rel="preload" href="/images/lasbialas.png" as="image" type="image/png" />
+    <link rel="preload" href="/foto/lasbialas1.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/foto/lasbialas2.webp" as="image" type="image/webp" />
+
+    <!-- Schema.org Structured Data -->
+    <SchemaOrg lang={lang} />
+
+    <!-- Yabrix Analytics -->
+    <script
+      src="https://collect.yabrix.com/js/yabrix.min.js"
+      data-yx="1f3667d27b92c8b9"
+      defer
+      is:inline
+    ></script>
+
+    <!-- Google Analytics (Lazy Load) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      function loadAnalytics() {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-R3P2XT4WY8';
+        script.defer = true;
+        document.head.appendChild(script);
+
+        gtag('js', new Date());
+        gtag('config', 'G-R3P2XT4WY8', { anonymize_ip: true });
+      }
+
+      window.addEventListener('scroll', loadAnalytics, { once: true });
+      window.addEventListener('mousemove', loadAnalytics, { once: true });
+      window.addEventListener('touchstart', loadAnalytics, { once: true });
+    </script>
+
+    <!-- Bookero Reservation System (Lazy Load) -->
+    <script is:inline define:vars={{ lang }}>
+      var bookero_config = {
+        id: 'WmRe79H4lKFz',
+        container: 'bookero',
+        type: 'sticky',
+        position: 'bottom-right',
+        plugin_css: true,
+        lang: lang
+      };
+
+      function loadBookero() {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.bookero.pl/plugin/v2/js/bookero-compiled.js';
+        document.body.appendChild(s);
+      }
+
+      window.addEventListener('scroll', loadBookero, { once: true });
+    </script>
+
+    <!-- Bookero Validation (Minimum 2 nights) -->
+    <script is:inline>
+      function enforceMinimumDays() {
+        var daysInput = document.getElementById('bookero-plugin-days-number');
+        if (daysInput) {
+          var days = parseInt(daysInput.value) || 10;
+          if (days < 2) {
+            setTimeout(function () {
+              daysInput.value = 2;
+              setTimeout(function () {
+                var event = new Event('input');
+                daysInput.dispatchEvent(event);
+              }, 100);
+            }, 100);
+          }
+        }
+      }
+
+      document.body.addEventListener('bookero-plugin:days-changed', function (e) {
+        enforceMinimumDays();
+      });
+
+      document.body.addEventListener('bookero-plugin:service-updated', function (e) {
+        enforceMinimumDays();
+      });
+
+      document.body.addEventListener('bookero-plugin:loaded', function (e) {
+        enforceMinimumDays();
+      });
+    </script>
+
+    <slot name="head" />
+  </head>
+  <body>
+    <div id="bookero"></div>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,5 @@
+/* Import Tailwind - only utilities, no base/components to avoid conflicts */
+@tailwind utilities;
+
+/* Import all original CSS from las-bialas-obecnie */
+@import './original.css';
