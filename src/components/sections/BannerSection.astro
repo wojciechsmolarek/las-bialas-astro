@@ -1,0 +1,16 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div style="display:flex; justify-content:center; align-items:center; width:100%; aspect-ratio: 1920 / 300; background:#ffffff; background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url('/images/background-image.webp'); background-size: 100% auto; background-position:center; background-repeat:no-repeat; margin-top: 10px; margin-bottom: 20px;">
+  <section style="text-align:center; color:#fff;">
+    <h2 class="image-text" set:html={t('banner.year_round_cottages')}></h2>
+  </section>
+</div>

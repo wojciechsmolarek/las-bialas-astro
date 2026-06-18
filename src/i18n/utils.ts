@@ -11,7 +11,7 @@ export function getLangFromUrl(url: URL): Lang {
 export function useTranslations(lang: Lang) {
   return function t(key: string): string {
     const translations = ui as any;
-    return translations[lang]?.[key] || translations['pl']?.[key] || key;
+    return translations[key]?.[lang] || translations[key]?.['pl'] || key;
   }
 }
 

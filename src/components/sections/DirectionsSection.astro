@@ -1,0 +1,63 @@
+---
+import type { Lang } from '../../i18n/home';
+import { directions } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = directions[lang];
+
+const carHref = 'https://www.google.com/maps/dir//52.8265399,16.3041079/@52.8200488,16.3011326,2526m/data=!3m1!1e3!4m2!4m1!3e0?hl=pl&entry=ttu';
+const trainHref = 'https://www.google.pl/maps/place/Mia%C5%82y/@52.8296365,16.2440022,13.29z';
+---
+
+<div class="description-box">
+  {/* Car */}
+  <h2 class="h2">{t.carTitle}</h2>
+  <div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
+    <a href={carHref} rel="nofollow noopener noreferrer" style="display: inline-flex; align-items: center; font-size: 18px; color: #328247; text-decoration: none;" target="_blank">
+      <img alt="Car" height="45" src="/images/car.png" style="margin-right: 5px; vertical-align: middle;" width="45" />
+      <span style="line-height: 1;">{t.carBtn}</span>
+    </a>
+    <p set:html={t.carText}></p>
+  </div>
+
+  <br />
+
+  {/* Train */}
+  <h2 class="h2">{t.trainTitle}</h2>
+  <div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
+    <a href={trainHref} rel="nofollow noopener noreferrer" style="display: inline-flex; align-items: center; font-size: 18px; color: #328247; text-decoration: none;" target="_blank">
+      <img alt="Train" height="45" src="/images/train.png" style="margin-right: 5px; vertical-align: middle;" width="45" />
+      <span style="line-height: 1;">{t.trainBtn}</span>
+    </a>
+    <p set:html={t.trainText}></p>
+  </div>
+
+  <br />
+
+  {/* Location */}
+  <h2 class="h2">{t.locationTitle}</h2>
+  <p>{t.locationText}</p>
+  <div style="text-align: center; margin-top: 10px;">
+    <a href={t.mapHref} style="display: inline-flex; align-items: center; font-size: 18px; color: #328247; text-decoration: none;" target="_blank">
+      <img alt="Map" height="42" src="/foto/dojazd-lokalny.png" style="margin-right: 5px; vertical-align: middle;" width="42" />
+      <span style="line-height: 1;">{t.mapBtn}</span>
+    </a>
+  </div>
+
+  {/* Map iframe */}
+  <section class="map-section" style="background-color: #fff;">
+    <iframe
+      allowfullscreen=""
+      height="450"
+      loading="lazy"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9663.21760223439!2d16.3027!3d52.8263!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDQ5JzM0LjciNiAxNsKwMTgnMDkuNyJF!5e0!3m2!1spl!2spl!4v1682107501701!5m2!1spl!2spl"
+      style="border:0; width: 100%;"
+      title={t.locationTitle}
+      width="100%"
+    ></iframe>
+  </section>
+</div>

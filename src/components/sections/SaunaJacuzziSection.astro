@@ -1,0 +1,50 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const icons = {
+  sauna: '/foto/sauna-dla-gosci.png',
+  jacuzzi: '/foto/jacuzzi.png',
+};
+
+const guideHref = {
+  pl: 'https://lasbialas.pl/info/#/na-miejscu/32',
+  en: 'https://lasbialas.pl/info/en/#/on-site/32',
+  de: 'https://lasbialas.pl/info/de/#/vor-ort/32',
+}[lang];
+
+const jacuzziHref = {
+  pl: 'https://lasbialas.pl/info/#/na-miejscu/385',
+  en: 'https://lasbialas.pl/info/en/#/on-site/385',
+  de: 'https://lasbialas.pl/info/de/#/vor-ort/385',
+}[lang];
+---
+
+<div class="description-wrapper">
+  <div class="description-box2 gray">
+    <div style="text-align:center; margin-bottom:5px;">
+      <img alt="Sauna" height="60" src={icons.sauna} width="60" />
+    </div>
+    <h2 style="text-align:center; margin-top:5px; color:#fff;">{t('section.sauna_title')}</h2>
+    <p>{t('section.sauna_desc')}</p>
+    <div class="button-p-container">
+      <a class="button-dostep" href={guideHref} target="_blank">{t('button.rules')}</a>
+    </div>
+  </div>
+  <div class="description-box2 green">
+    <div style="text-align:center; margin-bottom:5px;">
+      <img alt="Jacuzzi" height="60" src={icons.jacuzzi} width="60" />
+    </div>
+    <h2 style="text-align:center; margin-top:5px; color:#fff;">{t('section.jacuzzi_title')}</h2>
+    <p>{t('section.jacuzzi_desc')}</p>
+    <div class="button-p-container">
+      <a class="button-dostep" href={jacuzziHref} target="_blank">{t('button.rules')}</a>
+    </div>
+  </div>
+</div>

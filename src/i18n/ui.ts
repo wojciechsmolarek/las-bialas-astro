@@ -6,57 +6,26 @@ export const languages = {
 
 export const defaultLang = 'pl';
 
+/**
+ * UI translations - only language-dependent text
+ * For constants (phones, emails, URLs), use src/config/site.ts
+ */
 export const ui = {
-  // ===== NAVIGATION / NAV =====
+  // ===== NAVIGATION =====
   'nav.home': {
     pl: 'Domki z sauną i jacuzzi',
     en: 'Cottages for Rent in the Noteć Forest',
     de: 'Ferienhäuser zur Miete in der Puszcza Notecka'
   },
-  'nav.language.en': {
-    pl: 'EN',
-    en: 'EN',
-    de: 'EN'
-  },
-  'nav.language.de': {
-    pl: 'DE',
-    en: 'DE',
-    de: 'DE'
-  },
   'nav.location': {
     pl: 'Biała, Puszcza Notecka',
-    en: 'Biała, Notecka Forest, Greater Poland',
+    en: 'Biała, Noteć Forest, Greater Poland',
     de: 'Biała, Puszcza Notecka, Großpolen'
-  },
-  'nav.contact.phone': {
-    pl: '+48 789 773 285',
-    en: '+48 789 773 285',
-    de: '+48 789 773 285'
-  },
-  'nav.contact.whatsapp': {
-    pl: '660 194 187',
-    en: '660 194 187',
-    de: '660 194 187'
-  },
-  'nav.contact.email': {
-    pl: 'domki@lasbialas.pl',
-    en: 'domki@lasbialas.pl',
-    de: 'domki@lasbialas.pl'
-  },
-  'nav.instagram': {
-    pl: '/lasbialas',
-    en: '/lasbialas',
-    de: '/lasbialas'
   },
   'nav.reservation': {
     pl: 'Otwórz panel rezerwacji',
     en: 'Open reservation panel',
     de: 'Reservierungspanel öffnen'
-  },
-  'nav.blog': {
-    pl: 'Blog',
-    en: 'Blog',
-    de: 'Blog'
   },
   'nav.guide': {
     pl: 'Przewodnik',
@@ -124,11 +93,6 @@ export const ui = {
     en: 'Guide',
     de: 'Reiseführer'
   },
-  'button.book': {
-    pl: 'Rezerwuj',
-    en: 'Book Now',
-    de: 'Reservierung'
-  },
   'button.availability': {
     pl: 'dostępne terminy',
     en: 'Check available dates',
@@ -154,12 +118,7 @@ export const ui = {
     en: 'Local access map',
     de: 'Karte - Anfahrt vor Ort'
   },
-  'button.rules_sauna': {
-    pl: 'Zasady korzystania',
-    en: 'Rules of use',
-    de: 'Nutzungsregeln'
-  },
-  'button.rules_jacuzzi': {
+  'button.rules': {
     pl: 'Zasady korzystania',
     en: 'Rules of use',
     de: 'Nutzungsregeln'
@@ -395,21 +354,41 @@ export const ui = {
     de: 'Las Biala\'s'
   },
 
-  // ===== COOKIES =====
-  'cookies.message': {
-    pl: 'Korzystamy z plików cookies do analizy danych oraz poprawy funkcjonalności strony.',
-    en: 'We use cookies to analyze data and improve the functionality of the website.',
-    de: 'Wir verwenden Cookies zur Analyse und Verbesserung der Funktionalität der Website.'
+  // ===== COOKIES (CookieConsent v3) =====
+  'cookies.title': {
+    pl: 'Używamy plików cookie',
+    en: 'We use cookies',
+    de: 'Wir verwenden Cookies'
   },
-  'cookies.learn_more': {
-    pl: 'Dowiedz się więcej',
-    en: 'Learn more',
-    de: 'Mehr erfahren'
+  'cookies.description': {
+    pl: 'Ta strona używa plików cookie do analizy ruchu oraz poprawy funkcjonalności.',
+    en: 'This website uses cookies to analyze traffic and improve functionality.',
+    de: 'Diese Website verwendet Cookies zur Analyse des Traffics und zur Verbesserung der Funktionalität.'
   },
-  'cookies.accept': {
-    pl: 'Akceptuję',
-    en: 'I accept',
-    de: 'Akzeptieren'
+  'cookies.accept_all': {
+    pl: 'Akceptuję wszystkie',
+    en: 'Accept all',
+    de: 'Alle akzeptieren'
+  },
+  'cookies.settings': {
+    pl: 'Ustawienia',
+    en: 'Settings',
+    de: 'Einstellungen'
+  },
+  'cookies.necessary': {
+    pl: 'Niezbędne',
+    en: 'Necessary',
+    de: 'Unbedingt erforderlich'
+  },
+  'cookies.analytics': {
+    pl: 'Analityka',
+    en: 'Analytics',
+    de: 'Analyse'
+  },
+  'cookies.marketing': {
+    pl: 'Marketing',
+    en: 'Marketing',
+    de: 'Marketing'
   },
 
   // ===== MISC / POZOSTAŁE =====
@@ -467,5 +446,165 @@ export const ui = {
     pl: '64-730 Biała, Puszcza Notecka, Wielkopolska',
     en: '64-730 Biała, Notecka Forest, Greater Poland',
     de: '64-730 Biała, Puszcza Notecka, Großpolen'
+  },
+
+  // ===== SURROUNDINGS =====
+  'surroundings.title': {
+    pl: 'Biała i okolice',
+    en: 'Biała and Surroundings',
+    de: 'Biała und Umgebung'
+  },
+  'surroundings.text': {
+    pl: 'Biała to niewielka wieś położona w gminie Wieleń, w zachodniej części Puszczy Noteckiej, tuż nad Jeziorem Białym. Otoczona lasami i oddalona od głównych szlaków komunikacyjnych, stanowi dobre miejsce dla osób szukających spokojnego wypoczynku w naturalnym otoczeniu.',
+    en: 'Biała is a small village located in the Wieleń commune, in the western part of the Noteć Forest, right by Lake Białe. Surrounded by forests and away from main roads, it is an ideal place for those seeking a peaceful stay in a natural environment.',
+    de: 'Biała ist ein kleines Dorf in der Gemeinde Wieleń, im westlichen Teil der Puszcza Notecka, direkt am See Białe. Umgeben von Wäldern, abseits der Hauptverkehrswege, ist es ein idealer Ort für alle, die Ruhe in natürlicher Umgebung suchen.'
+  },
+
+  // ===== BENEFITS =====
+  'benefits.direct_booking_title': {
+    pl: 'Rezerwując bezpośrednio przez stronę otrzymujesz',
+    en: 'By booking direct on our site you get',
+    de: 'Bei Direktbuchung über die Website erhältst du'
+  },
+  'benefits.best_prices': {
+    pl: 'najkorzystniejsze ceny',
+    en: 'best prices',
+    de: 'die besten Preise'
+  },
+  'benefits.from_2_nights': {
+    pl: 'pobyty już od 2 nocy',
+    en: 'stays from 2 nights',
+    de: 'Aufenthalte ab 2 Nächten'
+  },
+  'benefits.discounts': {
+    pl: 'rabaty na pobyty 3+ dobowe',
+    en: 'discount for 3+ night stays',
+    de: 'Rabatt für Aufenthalte ab 3 Nächten'
+  },
+  'benefits.flexible_checkin': {
+    pl: 'opcja innej pory (za/wy)meldowania',
+    en: 'flexible check-in/out times',
+    de: 'flexible Check-in/out-Zeiten'
+  },
+  'benefits.change_dates': {
+    pl: 'możliwość zmiany terminu',
+    en: 'option to change dates',
+    de: 'Möglichkeit zur Terminänderung'
+  },
+  'benefits.next_stay_discount': {
+    pl: '5% rabatu na kolejny pobyt',
+    en: '5% off your next stay',
+    de: '5% auf den nächsten Aufenthalt'
+  },
+
+  // ===== BANNER =====
+  'banner.year_round_cottages': {
+    pl: 'CAŁOROCZNE DOMKI LETNISKOWE<br>W PUSZCZY NOTECKIEJ',
+    en: 'YEAR-ROUND HOLIDAY COTTAGES<br>IN THE NOTEĆ FOREST',
+    de: 'GANZJÄHRIGE FERIENHÄUSER<br>IN DER PUSZCZA NOTECKA'
+  },
+
+  // ===== TOP BOXES =====
+  'topboxes.next_dates': {
+    pl: 'Najbliższe wolne terminy',
+    en: 'Next Available Dates',
+    de: 'Nächste verfügbare Termine'
+  },
+  'topboxes.discount_code': {
+    pl: '-10% z kodem',
+    en: 'with 10% discount code',
+    de: 'mit 10% Rabattcode'
+  },
+  'topboxes.or_check': {
+    pl: 'lub sprawdź inne',
+    en: 'or check other',
+    de: 'oder prüfen Sie andere'
+  },
+  'topboxes.available_dates': {
+    pl: 'dostępne terminy',
+    en: 'available dates',
+    de: 'verfügbare Termine'
+  },
+  'topboxes.select_cabin': {
+    pl: '(wybierając domek D1 lub D2).',
+    en: '(selecting cabin D1 or D2).',
+    de: '(Auswahl des Hauses D1 oder D2).'
+  },
+  'topboxes.summer_2026': {
+    pl: 'Urlopy lato 2026',
+    en: 'Summer 2026 Holidays',
+    de: 'Sommerurlaub 2026'
+  },
+  'topboxes.july_dates': {
+    pl: 'Wolne terminy <span class="promo-code">lipiec</span>',
+    en: 'Available dates <span class="promo-code">July</span>',
+    de: 'Verfügbare Termine <span class="promo-code">Juli</span>'
+  },
+  'topboxes.august_dates': {
+    pl: 'Wolne terminy <span class="promo-code">sierpień</span>',
+    en: 'Available dates <span class="promo-code">August</span>',
+    de: 'Verfügbare Termine <span class="promo-code">August</span>'
+  },
+  'topboxes.on_site': {
+    pl: 'Na miejscu',
+    en: 'On site',
+    de: 'Vor Ort'
+  },
+  'topboxes.contact_info': {
+    pl: 'Aby zarezerwować pobyt prosimy o kontakt telefoniczny albo WhatsApp.',
+    en: 'To make a reservation, please contact us by phone or WhatsApp.',
+    de: 'Um eine Reservierung vorzunehmen, kontaktieren Sie uns bitte telefonisch oder über WhatsApp.'
+  },
+  'topboxes.summer_bookings': {
+    pl: 'Rezerwacje na lato',
+    en: 'Summer Bookings',
+    de: 'Sommerreservierungen'
+  },
+
+  // ===== AMENITIES (for top boxes) =====
+  'amenities.private_jacuzzi': {
+    pl: 'prywatne jacuzzi',
+    en: 'private jacuzzi',
+    de: 'privates Jacuzzi'
+  },
+  'amenities.sauna': {
+    pl: 'sauna',
+    en: 'sauna',
+    de: 'Sauna'
+  },
+  'amenities.cooling_tub': {
+    pl: 'balia do schładzania',
+    en: 'cooling tub',
+    de: 'Abkühlbottich'
+  },
+  'amenities.grill': {
+    pl: 'grill + węgiel',
+    en: 'grill + charcoal',
+    de: 'Grill + Holzkohle'
+  },
+  'amenities.hammocks': {
+    pl: 'hamaki',
+    en: 'hammocks',
+    de: 'Hängematten'
+  },
+  'amenities.bikes': {
+    pl: 'rowery',
+    en: 'bikes',
+    de: 'Fahrräder'
+  },
+  'amenities.sup': {
+    pl: 'deski SUP',
+    en: 'SUP boards',
+    de: 'SUP-Boards'
+  },
+  'amenities.wifi': {
+    pl: 'Wi-Fi',
+    en: 'Wi-Fi',
+    de: 'WLAN'
+  },
+  'amenities.netflix': {
+    pl: 'Netflix',
+    en: 'Netflix',
+    de: 'Netflix'
   }
 };

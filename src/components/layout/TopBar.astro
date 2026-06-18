@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getEntry } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 
 interface Props {
   lang: 'pl' | 'en' | 'de';
@@ -9,8 +9,9 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const homeUrl = lang === 'pl' ? '/' : `/${lang}/`;
-const enUrl = lang === 'de' ? '/en/' : lang === 'pl' ? '/en/' : '/';
-const deUrl = lang === 'en' ? '/de/' : lang === 'pl' ? '/de/' : '/';
+const plUrl = '/';
+const enUrl = '/en/';
+const deUrl = '/de/';
 ---
 
 <div class="top-bar">
@@ -64,6 +65,7 @@ const deUrl = lang === 'en' ? '/de/' : lang === 'pl' ? '/de/' : '/';
       </a>
 
       <div class="language-links">
+        {lang !== 'pl' && <a href={plUrl} class="lang-link">PL</a>}
         {lang !== 'en' && <a href={enUrl} class="lang-link">EN</a>}
         {lang !== 'de' && <a href={deUrl} class="lang-link">DE</a>}
       </div>
@@ -89,6 +91,7 @@ const deUrl = lang === 'en' ? '/de/' : lang === 'pl' ? '/de/' : '/';
 <!-- Menu mobilne -->
 <div class="mobile-contact-menu" id="mobileContactMenu">
   <div class="language-links">
+    {lang !== 'pl' && <a href={plUrl} class="lang-link">PL</a>}
     {lang !== 'en' && <a href={enUrl} class="lang-link">EN</a>}
     {lang !== 'de' && <a href={deUrl} class="lang-link">DE</a>}
   </div>

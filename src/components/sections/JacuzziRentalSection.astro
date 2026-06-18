@@ -1,0 +1,60 @@
+---
+import type { Lang } from '../../i18n/home';
+import { jacuzziRental } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = jacuzziRental[lang];
+---
+
+<div class="description-box">
+  <h2 class="h2" id="cennik-jacuzzi" style="margin-top:30px;">{t.title}</h2>
+  <p set:html={t.intro}></p>
+
+  {/* Pricing table */}
+  <table class="cennik-tabela">
+    <thead>
+      <tr>
+        <th rowspan="2" style="color: #fff;">{t.colsHeader[0]}</th>
+        <th colspan="2" style="color: #fff;">{t.colsHeader[1]}</th>
+      </tr>
+      <tr>
+        <th style="color: #fff;">{t.colsSub[0]}</th>
+        <th style="color: #fff;">{t.colsSub[1]}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {t.rows.map((row: string[]) => (
+        <tr>
+          {row.map((cell: string) => <td set:html={cell}></td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  {/* Fees table */}
+  <table class="cennik-tabela">
+    <thead>
+      <tr>
+        {t.feesHeader.map((h: string) => <th style="color: #fff;">{h}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {t.feesRows.map((row: string[]) => (
+        <tr>
+          {row.map((cell: string) => <td>{cell}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="description-box-promo">
+    <p style="margin:5px 0;">{t.note}</p>
+  </div>
+
+  <h3 class="h3" style="margin-top:50px;">{t.petTitle}</h3>
+  <p set:html={t.petText}></p>
+</div>

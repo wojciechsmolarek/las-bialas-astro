@@ -1,0 +1,50 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Benefit keys per language
+const benefitKeysByLang = {
+  pl: [
+    'benefits.best_prices',
+    'benefits.from_2_nights',
+    'benefits.discounts',
+    'benefits.flexible_checkin',
+    'benefits.change_dates',
+  ],
+  en: [
+    'benefits.best_prices',
+    'benefits.from_2_nights',
+    'benefits.flexible_checkin',
+    'benefits.next_stay_discount',
+    'benefits.change_dates',
+    'benefits.discounts',
+  ],
+  de: [
+    'benefits.best_prices',
+    'benefits.from_2_nights',
+    'benefits.flexible_checkin',
+    'benefits.next_stay_discount',
+    'benefits.change_dates',
+    'benefits.discounts',
+  ],
+};
+
+const benefitKeys = benefitKeysByLang[lang];
+---
+
+<div class="description-wrapper">
+  <div class="description-box2 green">
+    <span style="display:block; text-align:center; margin-bottom:10px; font-size:1.2em; font-weight:bold; color:#ffffff;">
+      {t('benefits.direct_booking_title')}
+    </span>
+    <ul class="inline-bullets2">
+      {benefitKeys.map((key: string) => <li>{t(key)}</li>)}
+    </ul>
+  </div>
+</div>

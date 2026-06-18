@@ -1225,60 +1225,6 @@
             justify-content: center;
         }
 
-        #cookieBanner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(34, 34, 34, 0.6);
-            color: white;
-            padding: 14px;
-            font-size: 16px;
-            text-align: center;
-            z-index: 1000;
-        }
-
-
-        #cookieBanner a {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        #cookieBanner button {
-            background-color: #2F6940;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin-left: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        #cookieBanner button:hover {
-            background-color: #40a95c;
-        }
-
-        @media (max-width: 768px) {
-            #cookieBanner {
-                font-size: 16px;
-                padding: 15px;
-                z-index: 2147483647;
-            }
-
-            #cookieBanner button {
-                padding: 10px 15px;
-                font-size: 16px;
-                margin-top: 8px;
-                margin-bottom: 6px;
-            }
-        }
-
-        @media (orientation: landscape) {
-            #cookieBanner {
-                z-index: 2147483647 !important;
-            }
-        }
-
         /** BOOKERO OVERRIDE **/
         body #bookero-plugin[data-mode=sticky] .bookero-sticky-plugin-toggle {
             background: #2F6940;

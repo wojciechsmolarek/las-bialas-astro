@@ -8,21 +8,26 @@ interface Props {
 
 const { lang } = Astro.props;
 const alternateLanguages = getAlternateLanguages(lang);
-const currentPath = Astro.url.pathname.replace(`/${lang}`, '').replace(/\/$/, '') || '/';
 
-// Generate localized paths
-const languagePaths = {
-  en: lang === 'pl' ? '/en' + currentPath : '/en/',
-  de: lang === 'pl' ? '/de' + currentPath : '/de/',
-  pl: currentPath === '/' ? '/' : currentPath
-};
+// Remove language prefix from current path to get root path
+let rootPath = Astro.url.pathname;
+if (rootPath.startsWith('/en/') || rootPath.startsWith('/de/')) {
+  rootPath = rootPath.substring(3); // Remove /en or /de
+}
+if (rootPath === '') rootPath = '/';
+
+// Generate localized paths for each language
+const languagePaths: Record<string, string> = {};
+alternateLanguages.forEach((altLang) => {
+  languagePaths[altLang] = getLocalizedPath(rootPath, altLang as 'pl' | 'en' | 'de');
+});
 ---
 
 <div class="language-links flex gap-3">
   {
     alternateLanguages.map((altLang) => (
       <a
-        href={languagePaths[altLang as keyof typeof languagePaths]}
+        href={languagePaths[altLang]}
         class="lang-link flex h-6 w-6 items-center justify-center rounded-full border border-neutral-dark text-[0.65rem] text-neutral-dark no-underline transition-colors hover:bg-green-200"
       >
         {altLang.toUpperCase()}

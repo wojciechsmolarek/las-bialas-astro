@@ -3,7 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import PromoBar from '../components/layout/PromoBar.astro';
 import TopBar from '../components/layout/TopBar.astro';
 import Footer from '../components/layout/Footer.astro';
-import CookieBanner from '../components/layout/CookieBanner.astro';
+import CookieConsent from '../components/layout/CookieConsent.astro';
 import GalleryOverlay from '../components/sections/GalleryOverlay.astro';
 
 interface Props {
@@ -34,6 +34,6 @@ const { title, description, lang = 'pl', canonical, ogImage } = Astro.props;
   </main>
 
   <Footer lang={lang} />
-  <CookieBanner lang={lang} />
+  <CookieConsent lang={lang} />
   <GalleryOverlay />
 </BaseLayout>

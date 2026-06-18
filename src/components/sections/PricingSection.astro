@@ -1,0 +1,87 @@
+---
+import type { Lang } from '../../i18n/home';
+import { pricing } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = pricing[lang];
+
+const guideHref = {
+  pl: 'https://lasbialas.pl/info/',
+  en: '/przewodnik/',
+  de: 'https://info.lasbialas.pl/de/',
+}[lang];
+---
+
+<div class="description-box">
+  <h2 class="h2">{t.title}</h2>
+
+  {/* Main pricing table */}
+  <table class="cennik-tabela">
+    <thead>
+      <tr>
+        {t.cols.map((col: string) => (
+          <th style="color: #fff;" set:html={col}></th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {t.rows.map((row: string[]) => (
+        <tr>
+          {row.map((cell: string) => (
+            <td set:html={cell}></td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  {/* Notes */}
+  <div class="description-box-promo">
+    {t.notes.map((note: string) => (
+      <p style="margin:5px 0;" set:html={note}></p>
+    ))}
+  </div>
+
+  {/* Amenities table */}
+  <table class="cennik-tabela">
+    <thead>
+      <tr>
+        {t.amenitiesCols.map((col: string) => (
+          <th style="color: #fff;">{col}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {t.amenitiesRows.map((row: string[]) => (
+        <tr>
+          {row.map((cell: string) => (
+            <td set:html={cell}></td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  {/* Reserve button */}
+  <div class="button-p-container">
+    <a aria-label="Otwórz panel rezerwacji" class="button-info" href="#" onclick="openReservation(); return false;">{t.reserve}</a>
+  </div>
+
+  {/* Free items */}
+  <h3 class="h3">{t.freeTitle}</h3>
+  <div class="section-text">
+    <ul class="inline-bullets">
+      {t.freeItems.map((item: string) => <li>{item}</li>)}
+    </ul>
+  </div>
+
+  {/* Day info & footer */}
+  <p set:html={`${t.dayInfo}<br>${t.footerText.replace('{#guide}', guideHref)}`}></p>
+  <div class="button-p-container">
+    <a class="button-dostep" href={guideHref} target="_blank">{t.guideBtn}</a>
+  </div>
+</div>

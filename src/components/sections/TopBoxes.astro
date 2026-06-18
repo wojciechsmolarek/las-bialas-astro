@@ -1,0 +1,98 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: 'pl' | 'en' | 'de';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Dynamic data - should come from JSON/CMS in future
+const promoData = {
+  pl: {
+    month: 'Czerwiec 2026',
+    dates: '22-25 cze | domek D2',
+    code: 'LB22CZE',
+    julyDates: ['3 - 9 lip | (D1)', '26 lip - 1 sie | (D1)'],
+    augustDates: ['3 - 9 sie (D2)', '17 - 23 sie (D2)', '15 - 31 sie (D1)'],
+    phone1: '789 773 285',
+    phone2: '660 194 187',
+  },
+  en: {},
+  de: {},
+};
+const pd = promoData['pl'];
+---
+
+{lang === 'pl' ? (
+  <div class="description-box3">
+    {/* Left box - Availability */}
+    <div class="description-box">
+      <h2 class="h2">{t('topboxes.next_dates')}</h2>
+      <img alt="kalendarz" height="55" src="/images/kalendarz.png" width="55" />
+
+      <p><b>{pd.month}</b></p>
+      <b>{pd.dates}</b><br />
+      {t('topboxes.discount_code')}
+      <span class="promo-wrapper">
+        <span class="promo-code" id="code1">{pd.code}</span>
+        <button class="copy-btn" onclick="copyCode('code1', this)" title={t('misc.copy')}>
+          <svg width="26" height="26" viewBox="0 0 24 26" fill="none">
+            <rect x="7" y="15" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"></rect>
+            <rect x="3" y="11" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"></rect>
+          </svg>
+        </button>
+      </span>
+      <div class="button-p-container">
+        <a aria-label={t('nav.reservation')} class="button-info" href="#" onclick="openReservation(); return false;">{t('button.reserve')}</a>
+      </div>
+      <p>
+        {t('topboxes.or_check')}
+        <a aria-label={t('nav.reservation')} href="#" onclick="openReservation(); return false;" style="color:#328247; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><b>{t('topboxes.available_dates')}</b></a>
+        {t('topboxes.select_cabin')}
+      </p>
+    </div>
+
+    {/* Right box - Summer */}
+    <div class="description-box">
+      <h2 class="h2">{t('topboxes.summer_2026')}</h2>
+      <p><b set:html={t('topboxes.july_dates')}></b></p>
+      <ul class="inline-bullets">
+        {pd.julyDates.map((d: string) => <li>{d}</li>)}
+      </ul>
+      <p><b set:html={t('topboxes.august_dates')}></b></p>
+      <ul class="inline-bullets">
+        {pd.augustDates.map((d: string) => <li>{d}</li>)}
+      </ul>
+      <div style="width:80px;height:1px;background:#999;margin:8px auto;"></div>
+      <p>{t('topboxes.on_site')}</p>
+      <ul class="inline-bullets">
+        <li>{t('amenities.private_jacuzzi')}</li>
+        <li>{t('amenities.sauna')}</li>
+        <li>{t('amenities.cooling_tub')}</li>
+        <li>{t('amenities.grill')}</li>
+        <li>{t('amenities.hammocks')}</li>
+        <li>{t('amenities.bikes')}</li>
+        <li>{t('amenities.sup')}</li>
+        <li>{t('amenities.wifi')}</li>
+        <li>{t('amenities.netflix')}</li>
+      </ul>
+      <p>{t('topboxes.contact_info')}</p>
+      <ul class="contact-list">
+        <li>
+          <img src="/images/phone-green.png" class="icon-img" alt="Telefon">
+          <a href={`tel:+48${pd.phone1.replace(/\s/g, '')}`}>{pd.phone1}</a>
+          <img src="/images/whatsapp-green.png" class="icon-img" alt="WhatsApp">
+          <a href={`https://wa.me/48${pd.phone2.replace(/\s/g, '')}`}>{pd.phone2}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+) : (
+  /* EN/DE variant - single bookings box */
+  <div class="description-box">
+    <h2 class="h2">{t('topboxes.summer_bookings')}</h2>
+    <p set:html={t('section.summer_desc')}></p>
+  </div>
+)}

@@ -1,0 +1,317 @@
+---
+interface Props {
+  lang?: 'pl' | 'en' | 'de';
+}
+
+const { lang = 'pl' } = Astro.props;
+
+// Translations for CookieConsent
+const translations = {
+  pl: {
+    consent_modal: {
+      title: 'Używamy plików cookie',
+      description: 'Ta strona używa plików cookie do analizy ruchu oraz poprawy funkcjonalności. Kliknij „Akceptuję wszystkie", aby zaakceptować wszystkie pliki cookie, lub wybierz preferencje.',
+      primary_btn: {
+        text: 'Akceptuję wszystkie',
+        role: 'accept_all'
+      },
+      secondary_btn: {
+        text: 'Ustawienia',
+        role: 'settings'
+      },
+      revision_message: 'Nasza polityka plików cookie uległa zmianie. Prosimy o ponowną akceptację.'
+    },
+    settings_modal: {
+      title: 'Preferencje plików cookie',
+      save_settings_btn: 'Zapisz ustawienia',
+      accept_all_btn: 'Akceptuję wszystkie',
+      reject_all_btn: 'Odrzuć wszystkie',
+      close_btn_label: 'Zamknij',
+      cookie_table_headers: {
+        name: 'Nazwa',
+        domain: 'Domena',
+        expiration: 'Ważność',
+        description: 'Opis'
+      },
+      blocks: [
+        {
+          title: 'Wykorzystanie plików cookie',
+          description: 'Używamy plików cookie do poprawy Twojego doświadczenia na stronie. Możesz dostosować swoje preferencje poniżej.'
+        },
+        {
+          title: 'Niezbędne pliki cookie',
+          description: 'Te pliki cookie są wymagane do prawidłowego działania strony i nie mogą zostać wyłączone.',
+          toggle: {
+            value: 'necessary',
+            enabled: true,
+            readonly: true
+          }
+        },
+        {
+          title: 'Analityka i statystyki',
+          description: 'Te pliki cookie pozwalają nam zliczać wizyty i źródła ruchu, aby móc mierzyć i poprawiać wydajność naszej strony.',
+          toggle: {
+            value: 'analytics',
+            enabled: false,
+            readonly: false
+          },
+          cookie_table: [
+            {
+              name: '_ga',
+              domain: '.lasbialas.pl',
+              expiration: '2 lata',
+              description: 'Google Analytics - identyfikator użytkownika'
+            },
+            {
+              name: '_ga_*',
+              domain: '.lasbialas.pl',
+              expiration: '2 lata',
+              description: 'Google Analytics - identyfikator sesji'
+            }
+          ]
+        },
+        {
+          title: 'Marketing i reklamy',
+          description: 'Te pliki cookie mogą być ustawiane przez naszych partnerów reklamowych do wyświetlania spersonalizowanych reklam.',
+          toggle: {
+            value: 'marketing',
+            enabled: false,
+            readonly: false
+          }
+        }
+      ]
+    }
+  },
+  en: {
+    consent_modal: {
+      title: 'We use cookies',
+      description: 'This website uses cookies to analyze traffic and improve functionality. Click "Accept all" to accept all cookies, or customize your preferences.',
+      primary_btn: {
+        text: 'Accept all',
+        role: 'accept_all'
+      },
+      secondary_btn: {
+        text: 'Settings',
+        role: 'settings'
+      },
+      revision_message: 'Our cookie policy has changed. Please accept again.'
+    },
+    settings_modal: {
+      title: 'Cookie Preferences',
+      save_settings_btn: 'Save settings',
+      accept_all_btn: 'Accept all',
+      reject_all_btn: 'Reject all',
+      close_btn_label: 'Close',
+      cookie_table_headers: {
+        name: 'Name',
+        domain: 'Domain',
+        expiration: 'Expiration',
+        description: 'Description'
+      },
+      blocks: [
+        {
+          title: 'Cookie Usage',
+          description: 'We use cookies to enhance your browsing experience. You can customize your preferences below.'
+        },
+        {
+          title: 'Strictly Necessary Cookies',
+          description: 'These cookies are essential for the website to function properly and cannot be disabled.',
+          toggle: {
+            value: 'necessary',
+            enabled: true,
+            readonly: true
+          }
+        },
+        {
+          title: 'Analytics and Statistics',
+          description: 'These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site.',
+          toggle: {
+            value: 'analytics',
+            enabled: false,
+            readonly: false
+          },
+          cookie_table: [
+            {
+              name: '_ga',
+              domain: '.lasbialas.pl',
+              expiration: '2 years',
+              description: 'Google Analytics - user identifier'
+            },
+            {
+              name: '_ga_*',
+              domain: '.lasbialas.pl',
+              expiration: '2 years',
+              description: 'Google Analytics - session identifier'
+            }
+          ]
+        },
+        {
+          title: 'Marketing and Advertising',
+          description: 'These cookies may be set by our advertising partners to display personalized ads.',
+          toggle: {
+            value: 'marketing',
+            enabled: false,
+            readonly: false
+          }
+        }
+      ]
+    }
+  },
+  de: {
+    consent_modal: {
+      title: 'Wir verwenden Cookies',
+      description: 'Diese Website verwendet Cookies zur Analyse des Traffics und zur Verbesserung der Funktionalität. Klicken Sie auf „Alle akzeptieren", um alle Cookies zu akzeptieren, oder passen Sie Ihre Einstellungen an.',
+      primary_btn: {
+        text: 'Alle akzeptieren',
+        role: 'accept_all'
+      },
+      secondary_btn: {
+        text: 'Einstellungen',
+        role: 'settings'
+      },
+      revision_message: 'Unsere Cookie-Richtlinie hat sich geändert. Bitte akzeptieren Sie erneut.'
+    },
+    settings_modal: {
+      title: 'Cookie-Einstellungen',
+      save_settings_btn: 'Einstellungen speichern',
+      accept_all_btn: 'Alle akzeptieren',
+      reject_all_btn: 'Alle ablehnen',
+      close_btn_label: 'Schließen',
+      cookie_table_headers: {
+        name: 'Name',
+        domain: 'Domain',
+        expiration: 'Gültigkeit',
+        description: 'Beschreibung'
+      },
+      blocks: [
+        {
+          title: 'Verwendung von Cookies',
+          description: 'Wir verwenden Cookies, um Ihr Surferlebnis zu verbessern. Sie können Ihre Einstellungen unten anpassen.'
+        },
+        {
+          title: 'Unbedingt erforderliche Cookies',
+          description: 'Diese Cookies sind für die ordnungsgemäße Funktion der Website erforderlich und können nicht deaktiviert werden.',
+          toggle: {
+            value: 'necessary',
+            enabled: true,
+            readonly: true
+          }
+        },
+        {
+          title: 'Analyse und Statistiken',
+          description: 'Diese Cookies ermöglichen es uns, Besuche und Verkehrsquellen zu zählen, damit wir die Leistung unserer Website messen und verbessern können.',
+          toggle: {
+            value: 'analytics',
+            enabled: false,
+            readonly: false
+          },
+          cookie_table: [
+            {
+              name: '_ga',
+              domain: '.lasbialas.pl',
+              expiration: '2 Jahre',
+              description: 'Google Analytics - Benutzerkennung'
+            },
+            {
+              name: '_ga_*',
+              domain: '.lasbialas.pl',
+              expiration: '2 Jahre',
+              description: 'Google Analytics - Sitzungskennung'
+            }
+          ]
+        },
+        {
+          title: 'Marketing und Werbung',
+          description: 'Diese Cookies können von unseren Werbepartnern gesetzt werden, um personalisierte Werbung anzuzeigen.',
+          toggle: {
+            value: 'marketing',
+            enabled: false,
+            readonly: false
+          }
+        }
+      ]
+    }
+  }
+};
+
+const t = translations[lang];
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.css" />
+
+<script define:vars={{ lang, t }}>
+  // CookieConsent configuration
+  window.CookieConsentConfig = {
+    categories: {
+      necessary: {
+        enabled: true,
+        readOnly: true
+      },
+      analytics: {
+        enabled: false,
+        readOnly: false,
+        autoClear: {
+          cookies: [
+            {
+              name: /^_ga/
+            }
+          ]
+        },
+        services: {
+          ga: {
+            label: 'Google Analytics',
+            onAccept: () => {
+              // Initialize Google Analytics when accepted
+              if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                  analytics_storage: 'granted'
+                });
+              }
+            },
+            onReject: () => {
+              // Disable Google Analytics when rejected
+              if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                  analytics_storage: 'denied'
+                });
+              }
+            }
+          }
+        }
+      },
+      marketing: {
+        enabled: false,
+        readOnly: false
+      }
+    },
+    language: {
+      default: lang,
+      translations: {
+        [lang]: t
+      }
+    },
+    guiOptions: {
+      consentModal: {
+        layout: 'cloud',
+        position: 'bottom center',
+        flipButtons: false,
+        equalWeightButtons: true
+      },
+      preferencesModal: {
+        layout: 'box'
+      }
+    }
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.umd.js" defer></script>
+
+<script is:inline>
+  // Initialize CookieConsent when script loads
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CookieConsent !== 'undefined' && window.CookieConsentConfig) {
+      const cc = new CookieConsent(window.CookieConsentConfig);
+      cc.run(window.CookieConsentConfig);
+    }
+  });
+</script>

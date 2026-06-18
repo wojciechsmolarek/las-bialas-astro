@@ -1,0 +1,37 @@
+---
+import type { Lang } from '../../i18n/home';
+import { intro } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = intro[lang];
+---
+
+<div class="description-box">
+  <h2 class="h2">{t.title}</h2>
+  <p set:html={t.p1}></p>
+  <p set:html={t.p2}></p>
+
+  <img alt={t.title} src="/images/background-image.webp" style="max-width:100%; height:auto; margin-top:50px;" />
+
+  {t.guideBtn && (
+    <div class="button-p-container">
+      <a class="button-dostep" href={lang === 'de' ? 'https://lasbialas.pl/info/de/' : 'https://lasbialas.pl/info/'} target="_blank">{t.guideBtn}</a>
+    </div>
+  )}
+
+  <div style="margin-top:20px;">
+    <h2 class="h2">{t.adultTitle}</h2>
+    <p set:html={t.adultText}></p>
+  </div>
+
+  <div class="booking-badges">
+    {t.badges.booking && <img alt="Booking Awards" height="74" src={t.badges.booking} width="220" />}
+    <a href="https://search.google.com/local/reviews?placeid=ChIJgWF7dBWpBkcRjvTdTyqqcyg" rel="nofollow noopener noreferrer" target="_blank">
+      <img alt="Reviews" height="74" src={t.badges.reviews} width="220" />
+    </a>
+  </div>
+</div>

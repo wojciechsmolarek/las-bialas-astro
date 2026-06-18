@@ -1,12 +1,20 @@
----
+﻿---
 import PageLayout from '../layouts/PageLayout.astro';
 import Gallery from '../components/sections/Gallery.astro';
 import AmenitiesSection from '../components/sections/AmenitiesSection.astro';
-import AvailabilityBox from '../components/sections/AvailabilityBox.astro';
-import { useTranslations } from '../i18n/utils';
+import TopBoxes from '../components/sections/TopBoxes.astro';
+import IntroSection from '../components/sections/IntroSection.astro';
+import InteriorsSection from '../components/sections/InteriorsSection.astro';
+import SaunaJacuzziSection from '../components/sections/SaunaJacuzziSection.astro';
+import PricingSection from '../components/sections/PricingSection.astro';
+import BenefitsSection from '../components/sections/BenefitsSection.astro';
+import PartnerLogos from '../components/sections/PartnerLogos.astro';
+import JacuzziRentalSection from '../components/sections/JacuzziRentalSection.astro';
+import BannerSection from '../components/sections/BannerSection.astro';
+import DirectionsSection from '../components/sections/DirectionsSection.astro';
+import SurroundingsSection from '../components/sections/SurroundingsSection.astro';
 
 const lang = 'pl';
-const t = useTranslations(lang);
 ---
 
 <PageLayout
@@ -14,21 +22,45 @@ const t = useTranslations(lang);
   description="Domki na wynajem z sauną i jacuzzi, w samym sercu Puszczy Noteckiej w Białej nad jeziorem Białym. Rezerwacje i dostępność ☎ +48 789 773 285"
   lang={lang}
 >
-  <!-- Gallery Section -->
   <Gallery lang={lang} />
-
-  <!-- Amenities Section -->
   <AmenitiesSection lang={lang} />
+  <TopBoxes lang={lang} />
+  <IntroSection lang={lang} />
+  <InteriorsSection lang={lang} />
+  <SaunaJacuzziSection lang={lang} />
 
-  <!-- Availability Box -->
-  <AvailabilityBox lang={lang} />
-
-  <div class="container mx-auto max-w-screen-xl px-4">
-    <h2 class="my-8 text-center text-3xl font-semibold">
-      {t('section.year_round_cottages')}
-    </h2>
-    <p class="text-center text-lg">
-      {t('section.year_round_desc')}
-    </p>
+  <!-- Sauna & jacuzzi gallery -->
+  <div class="gallery">
+    {[8,9,10,11,12,13,14,15].map((i, idx) => {
+      const alt = ['Jacuzzi w lesie przy domku','Sauna przy domkach Las Bialas','Jacuzzi przy tarasie domku D2','Kolorowe oświetlenie w saunie','Sauna w lesie','Jacuzzi z LED','Podświetlenie LED w saunie','Jacuzzi w ogrodzie przy domku'][idx];
+      const tip = ['Jacuzzi przy domku D1','Sauna Las Bialas w Puszczy Noteckiej','Jacuzzi przy tarasie domku D2','Podświetlenie LED w saunie','Sauna w lesie','Jacuzzi z funkcją automatycznego podgrzewania wody, aeromasażem i wielokolorowym podświetleniem LED','Podświetlenie LED w saunie','Jacuzzi w ogrodzie przy domku'][idx];
+      const src = ['/foto/lasbialas-jacuzzi1.webp','/foto/sauna1.webp','/foto/lasbialas1.webp','/foto/sauna4.webp','/foto/sauna5.webp','/foto/lasbialas-jacuzzi2.webp','/foto/sauna7.webp','/foto/lasbialas-jacuzzi3.webp'][idx];
+      return (
+        <div class="tooltip">
+          <img alt={alt} height="470" loading="lazy" onclick={`openImage(${i})`} src={src} width="834" />
+          <span class="tooltiptext">{tip}</span>
+        </div>
+      );
+    })}
   </div>
+
+  <PricingSection lang={lang} />
+  <BenefitsSection lang={lang} />
+  <PartnerLogos lang={lang} />
+  <JacuzziRentalSection lang={lang} />
+  <BannerSection lang={lang} />
+  <DirectionsSection lang={lang} />
+  <SurroundingsSection lang={lang} />
+
+  <script is:inline>
+    function copyCode(id, btn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 12l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        setTimeout(() => { btn.innerHTML = original; }, 1200);
+      });
+    }
+  </script>
 </PageLayout>

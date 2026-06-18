@@ -1,0 +1,87 @@
+---
+import type { Lang } from '../../i18n/home';
+import { interiors } from '../../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = interiors[lang];
+
+const guideHref = {
+  pl: 'https://lasbialas.pl/info/#/na-miejscu/505',
+  en: 'https://lasbialas.pl/info/en/#/on-site/505',
+  de: 'https://lasbialas.pl/info/de/#/vor-ort/505',
+}[lang];
+---
+
+<div class="description-box">
+  <h2 class="h2">{t.title}</h2>
+  <p>{t.intro}</p>
+
+  {/* Bedrooms */}
+  <h3 class="h3">{t.bedrooms.title}</h3>
+  <div class="section-text">
+    <p>{t.bedrooms.intro}</p>
+    <ul class="inline-bullets">
+      {t.bedrooms.items.map((item: string) => <li>{item}</li>)}
+    </ul>
+  </div>
+  <div class="gallery-mini">
+    {t.bedrooms.images.map((img: any) => (
+      <div class="tooltip">
+        <img alt={img.alt} height="470" loading="lazy" src={img.src} style="cursor:default;" width="834" />
+        <span class="tooltiptext">{img.tip}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Living Room */}
+  <h3 class="h3">{t.living.title}</h3>
+  <div class="section-text">
+    <p set:html={t.living.intro.replace('{#guide}', guideHref)}></p>
+    <ul class="inline-bullets">
+      {t.living.items.map((item: string) => <li>{item}</li>)}
+    </ul>
+  </div>
+  <div class="gallery-mini">
+    {t.living.images.map((img: any) => (
+      <div class="tooltip">
+        <img alt={img.alt} height="470" loading="lazy" src={img.src} style="cursor:default;" width="834" />
+        <span class="tooltiptext">{img.tip}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Bathroom */}
+  <h3 class="h3">{t.bathroom.title}</h3>
+  <div class="section-text">
+    <p set:html={t.bathroom.intro}></p>
+    <ul class="inline-bullets">
+      {t.bathroom.items.map((item: string) => <li>{item}</li>)}
+    </ul>
+  </div>
+  <div class="gallery-mini">
+    {t.bathroom.images.map((img: any) => (
+      <div class="tooltip">
+        <img alt={img.alt} height="470" loading="lazy" src={img.src} style="cursor:default;" width="834" />
+        <span class="tooltiptext">{img.tip}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Parking */}
+  <h3 class="h3">{t.parking.title}</h3>
+  <div class="section-text">
+    <p>{t.parking.text}</p>
+  </div>
+
+  {/* Guide QR */}
+  <h3 class="h3">{t.guide.title}</h3>
+  <div class="section-text">
+    <a href={lang === 'de' ? 'https://lasbialas.pl/info/de/' : 'https://lasbialas.pl/info/'} target="_blank" rel="noopener noreferrer">
+      <img class="qr" src="/foto/lasbialasqrc.png" alt={t.guide.qrAlt} width="150" height="150" />
+    </a>
+  </div>
+</div>
