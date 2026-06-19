@@ -307,11 +307,26 @@ const t = translations[lang];
 <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0/dist/cookieconsent.umd.js" defer></script>
 
 <script is:inline>
-  // Initialize CookieConsent when script loads
-  document.addEventListener('DOMContentLoaded', function() {
+  // Initialize CookieConsent with retry
+  function initCookieConsent() {
     if (typeof CookieConsent !== 'undefined' && window.CookieConsentConfig) {
-      const cc = new CookieConsent(window.CookieConsentConfig);
-      cc.run(window.CookieConsentConfig);
+      try {
+        const cc = new CookieConsent(window.CookieConsentConfig);
+        cc.run(window.CookieConsentConfig);
+        console.log('[CookieConsent] Initialized successfully');
+      } catch (e) {
+        console.error('[CookieConsent] Initialization error:', e);
+      }
+    } else {
+      // Retry after 500ms if script not loaded yet
+      setTimeout(initCookieConsent, 500);
     }
-  });
+  }
+
+  // Start initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieConsent);
+  } else {
+    initCookieConsent();
+  }
 </script>

@@ -9,8 +9,14 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<div style="display:flex; justify-content:center; align-items:center; width:100%; aspect-ratio: 1920 / 300; background:#ffffff; background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url('/images/background-image.webp'); background-size: 100% auto; background-position:center; background-repeat:no-repeat; margin-top: 10px; margin-bottom: 20px;">
-  <section style="text-align:center; color:#fff;">
-    <h2 class="image-text" set:html={t('banner.year_round_cottages')}></h2>
+<div
+  class="flex justify-center items-center w-full aspect-[1920/300] bg-white bg-[length:100%_auto] bg-center bg-no-repeat mt-2.5 mb-5"
+  style="background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url('/images/background-image.webp');"
+>
+  <section class="text-center text-white">
+    <h2
+      class="text-center text-[2rem] font-semibold text-white mt-[30px] mb-[50px] max-[768px]:text-[1.1rem] max-[768px]:m-[10px] max-[768px]:leading-[1.4]"
+      set:html={t('banner.year_round_cottages')}
+    ></h2>
   </section>
 </div>

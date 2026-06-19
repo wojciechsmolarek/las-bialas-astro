@@ -23,12 +23,12 @@ alternateLanguages.forEach((altLang) => {
 });
 ---
 
-<div class="language-links flex gap-3">
+<div class="flex gap-3">
   {
     alternateLanguages.map((altLang) => (
       <a
         href={languagePaths[altLang]}
-        class="lang-link flex h-6 w-6 items-center justify-center rounded-full border border-neutral-dark text-[0.65rem] text-neutral-dark no-underline transition-colors hover:bg-green-200"
+        class="flex h-6 w-6 items-center justify-center rounded-full border border-neutral-dark text-[0.65rem] text-neutral-dark no-underline transition-colors hover:bg-green-200"
       >
         {altLang.toUpperCase()}
       </a>

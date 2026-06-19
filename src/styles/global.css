@@ -1,5 +1,8 @@
-/* Import all original CSS from las-bialas-obecnie (must precede @tailwind) */
+/* Google Fonts - Montserrat with all weights */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+
+/* Original CSS styles */
 @import './original.css';
 
-/* Import Tailwind - only utilities, no base/components to avoid conflicts */
+/* Tailwind utilities only */
 @tailwind utilities;

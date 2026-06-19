@@ -58,17 +58,17 @@ const amenities = [
 ---
 
 <div>
-  <section class="amenities-section" style="padding: 10px; background-color: #f2f2f2;">
-    <div class="amenities-grid">
+  <section class="w-full bg-[#f2f2f2] p-[10px] mb-5">
+    <div class="grid grid-cols-9 gap-[15px] max-w-[1280px] mx-auto text-[0.9rem] max-[1023px]:grid-cols-3 max-[600px]:grid-cols-2">
       {
         amenities.map((amenity) => (
-          <div style="text-align: center;">
+          <div class="text-center">
             <img
               alt={amenity.alt}
               src={amenity.icon}
-              style="width: 45px; height: 45px; margin-top: 10px;"
+              class="w-[45px] h-[45px] mt-2.5 inline-block"
             />
-            <p style="margin-top: 5px;" set:html={amenity.text.replace(/\n/g, '<br/>')} />
+            <p class="mt-[5px]" set:html={amenity.text.replace(/\n/g, '<br/>')} />
           </div>
         ))
       }

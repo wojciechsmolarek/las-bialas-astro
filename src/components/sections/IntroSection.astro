@@ -1,34 +1,69 @@
 ---
-import type { Lang } from '../../i18n/home';
-import { intro } from '../../i18n/home';
-
 interface Props {
-  lang: Lang;
+  lang: 'pl' | 'en' | 'de';
 }
 
 const { lang } = Astro.props;
-const t = intro[lang];
+
+const t = {
+  pl: {
+    title: 'Całoroczne domki na wynajem w Puszczy Noteckiej',
+    p1: 'Zapraszamy do Las Biala\'s - kameralnego zakątka Białej, wsi położonej nad malowniczym jeziorem, w samym sercu <b>Puszczy Noteckiej</b>. Z dala od miejskiego zgiełku, na dużej leśnej działce znajdują się dwa całoroczne, komfortowe domki oraz przestrzeń stworzona z myślą o dorosłych gościach, ceniących ciszę, wygodę i bliskość natury.',
+    p2: 'Zrelaksuj się w <b>prywatnym jacuzzi</b>, skorzystaj z <b>sauny</b> z balią do schładzania, wypocznij w hamaku i na leżakach wśród sosen. Udostępniamy Gościom także rowery i deski SUP - niezbędnik na urlopie nad jeziorem. Zaplanuj z nami swój pobyt!',
+    guideBtn: 'Przewodnik',
+    adultTitle: 'Domki tylko dla dorosłych (18+)',
+    adultText: 'Tworzymy miejsce, które sprzyja wyciszeniu, prywatności i swobodnemu odpoczynkowi. Dlatego nasza oferta skierowana jest do osób dorosłych szukających przestrzeni, miejsca, w którym można naprawdę odetchnąć, bez kompromisów, w harmonii z naturą i samym sobą. Formuła 18+ to świadomy wybór gwarantujący spokój, relaks i prawdziwą jakość wypoczynku. Jeśli szukasz ciszy, komfortu i autentycznego resetu - jesteś u siebie.',
+    badges: {
+      booking: '/images/booking-awards-blue.png',
+      reviews: '/images/lasbialas-opinie.png',
+    },
+  },
+  en: {
+    title: 'Cottages for Rent in the Noteć Forest',
+    p1: 'Welcome to Las Biala\'s - a cozy hideaway in the village of Biała, located by a picturesque lake in the very heart of the <b>Noteć Forest</b>. Far from the city noise, on a spacious forest property, you will find two year-round, comfortable cottages and a space created especially for adult guests who value peace, comfort, and closeness to nature.',
+    p2: 'Relax in your <b>private jacuzzi</b>, use the <b>sauna</b> with a cooling tub, rest in a hammock and on sunbeds among the pines. We also provide guests with bikes and SUP boards - essentials for a lakeside holiday. Plan your stay with us!',
+    guideBtn: '',
+    adultTitle: 'Adults-Only Cabins (18+)',
+    adultText: 'We have created a place that fosters tranquility, privacy, and carefree relaxation. That\'s why our offer is dedicated to adults - those looking for a space where you can truly breathe, without compromise, in harmony with nature and yourself. The 18+ formula is a conscious choice - guaranteeing peace, relaxation, and real quality rest. If you are searching for silence, comfort, and an authentic reset - this is your place.',
+    badges: {
+      booking: '',
+      reviews: '/images/lasbialas-reviews.png',
+    },
+  },
+  de: {
+    title: 'Ferienhäuser zur Miete in der Puszcza Notecka',
+    p1: 'Willkommen bei Las Biala\'s - einem idyllischen Ort im Dorf Biała, direkt am malerischen See im Herzen der <b>Puszcza Notecka</b>. Abseits vom Trubel der Stadt befinden sich auf einem großen Waldgrundstück zwei ganzjährig nutzbare, komfortable Ferienhäuser sowie ein Bereich, der speziell für erwachsene Gäste geschaffen wurde, die Ruhe, Komfort und die Nähe zur Natur schätzen.',
+    p2: 'Entspannen Sie sich in Ihrem <b>privaten Jacuzzi</b>, nutzen Sie die <b>Sauna</b> mit Abkühlbottich, ruhen Sie sich in einer Hängematte und auf Liegestühlen zwischen den Kiefern aus. Wir stellen unseren Gästen außerdem Fahrräder und SUP-Boards zur Verfügung - unverzichtbar für einen Urlaub am See. Planen Sie Ihren Aufenthalt mit uns!',
+    guideBtn: 'Reiseführer',
+    adultTitle: 'Nur für Erwachsene (18+)',
+    adultText: 'Wir schaffen einen Ort der Ruhe, Privatsphäre und Entspannung. Unser Angebot richtet sich daher ausschließlich an Erwachsene, die einen Platz suchen, um wirklich durchzuatmen - ohne Kompromisse, im Einklang mit der Natur und mit sich selbst. Das 18+ Konzept ist eine bewusste Entscheidung - es garantiert Stille, Entspannung und echte Qualität des Urlaubs. Wenn Sie Ruhe, Komfort und authentische Erholung suchen - sind Sie hier genau richtig.',
+    badges: {
+      booking: '',
+      reviews: '/images/lasbialas-bewertungen.png',
+    },
+  },
+}[lang];
 ---
 
-<div class="description-box">
-  <h2 class="h2">{t.title}</h2>
-  <p set:html={t.p1}></p>
-  <p set:html={t.p2}></p>
+<div class="max-w-[73%] border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mx-auto mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:mb-5 max-[768px]:text-[0.6rem]">
+  <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t.title}</h2>
+  <p class="text-base leading-[1.6]" set:html={t.p1}></p>
+  <p class="text-base leading-[1.6]" set:html={t.p2}></p>
 
-  <img alt={t.title} src="/images/background-image.webp" style="max-width:100%; height:auto; margin-top:50px;" />
+  <img alt={t.title} src="/images/background-image.webp" class="max-w-full h-auto mt-[50px]" />
 
   {t.guideBtn && (
-    <div class="button-p-container">
-      <a class="button-dostep" href={lang === 'de' ? 'https://lasbialas.pl/info/de/' : 'https://lasbialas.pl/info/'} target="_blank">{t.guideBtn}</a>
+    <div class="flex justify-center mt-[30px]">
+      <a class="inline-flex justify-center items-center w-auto h-[46px] text-base font-normal text-white bg-[#e97e2d] border-none text-center no-underline normal-case cursor-pointer mb-[30px] mt-[10px] px-[15px] hover:bg-[#f98847] transition-colors" href={lang === 'de' ? 'https://lasbialas.pl/info/de/' : 'https://lasbialas.pl/info/'} target="_blank">{t.guideBtn}</a>
     </div>
   )}
 
-  <div style="margin-top:20px;">
-    <h2 class="h2">{t.adultTitle}</h2>
-    <p set:html={t.adultText}></p>
+  <div class="mt-5">
+    <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t.adultTitle}</h2>
+    <p class="text-base leading-[1.6]" set:html={t.adultText}></p>
   </div>
 
-  <div class="booking-badges">
+  <div class="flex justify-center items-center gap-[40px] mt-[30px] mb-2.5 max-[768px]:flex-col max-[768px]:gap-[15px]">
     {t.badges.booking && <img alt="Booking Awards" height="74" src={t.badges.booking} width="220" />}
     <a href="https://search.google.com/local/reviews?placeid=ChIJgWF7dBWpBkcRjvTdTyqqcyg" rel="nofollow noopener noreferrer" target="_blank">
       <img alt="Reviews" height="74" src={t.badges.reviews} width="220" />

@@ -1,60 +1,116 @@
 ---
-import type { Lang } from '../../i18n/home';
-import { jacuzziRental } from '../../i18n/home';
-
 interface Props {
-  lang: Lang;
+  lang: 'pl' | 'en' | 'de';
 }
 
 const { lang } = Astro.props;
-const t = jacuzziRental[lang];
+
+const t = {
+  pl: {
+    title: 'Wynajem jacuzzi ogrodowego',
+    intro: 'Po raz kolejny w sezonie 2025 udostępniamy dla osób z zewnątrz możliwość rezerwacji i skorzystania z <b>jacuzzi ogrodowego</b> na działce LAS BIALA\'S. Oferujemy relaks w wodzie z dodatkiem solanki z Uzdrowiska Inowrocław, która zmiękcza i odżywia skórę, dodatkowo regeneruje i odpręża. Obecnie <b>jest możliwość wynajmu jacuzzi ogrodowego dla osób z zewnątrz</b> (niebędących gośćmi domków). W tym sezonie <b>wstęp dla dzieci poniżej 7 roku życia jest bezpłatny.</b>',
+    colsHeader: ['długość pobytu', 'cena'],
+    colsSub: ['sobota', 'dzień powszedni'],
+    rows: [
+      ['90 min', '120 zł / os.', '100 zł / os.'],
+      ['wstęp dziecka do lat 7', 'bezpłatnie', 'bezpłatnie'],
+    ],
+    feesHeader: ['opłaty dodatkowe', 'kwota'],
+    feesRows: [
+      ['wynajem ręcznika', '10 zł'],
+      ['wynajem szlafroka', '20 zł'],
+      ['wynajem ręcznika i szlafroka', '25 zł'],
+    ],
+    note: 'Minimalny czas rezerwacji jacuzzi: 1h 30min',
+    petTitle: 'Pobyt zwierząt w domkach',
+    petText: 'W domkach mogą przebywać zwierzęta <b>po uzgodnieniu</b> przed rezerwacją. Jest to uzależnione od terminu, w jakim planujecie pobyt. W niektórych terminach nie ma takiej możliwości. Jeśli planujecie przyjechać ze swoim pupilem, prosimy o kontakt w celu weryfikacji dostępności.',
+  },
+  en: {
+    title: 'Outdoor Jacuzzi Rental',
+    intro: 'Once again in the 2025 season, we are offering people from outside the opportunity to book and use the <b>outdoor jacuzzi</b> at the LAS BIALA\'S property. We offer relaxation in water with the addition of brine from the Inowrocław Spa, which softens and nourishes the skin, additionally regenerates and relaxes. Currently, <b>it is possible to rent an outdoor jacuzzi for people from outside</b> (non-cottage guests). In this season, <b>entry for children under 7 years old is free.</b>',
+    colsHeader: ['session length', 'price'],
+    colsSub: ['Saturday', 'weekday'],
+    rows: [
+      ['90 min', '120 zł / person', '100 zł / person'],
+      ['entry for children under 7', 'free', 'free'],
+    ],
+    feesHeader: ['additional fees', 'amount'],
+    feesRows: [
+      ['towel rental', '10 zł'],
+      ['robe rental', '20 zł'],
+      ['towel and robe rental', '25 zł'],
+    ],
+    note: 'Minimum jacuzzi booking time: 1h 30min',
+    petTitle: 'Pets in the Cottages',
+    petText: 'Pets are allowed in the cottages <b>by prior arrangement</b> before booking. This depends on the date you plan to stay. In some periods this is not possible. If you plan to come with your pet, please contact us to check availability.',
+  },
+  de: {
+    title: 'Miete des Außen-Jacuzzis',
+    intro: 'Auch in der Saison 2025 bieten wir Personen von außerhalb wieder die Möglichkeit, das <b>Außen-Jacuzzi</b> auf dem LAS BIALA\'S Grundstück zu buchen und zu nutzen. Wir bieten Entspannung in Wasser mit Zusatz von Sole aus dem Kurort Inowrocław, die die Haut weich macht und pflegt, zusätzlich regeneriert und entspannt. Derzeit <b>besteht die Möglichkeit, das Außen-Jacuzzi für Personen von außerhalb zu mieten</b> (nicht für Gäste der Häuser). In dieser Saison <b>ist der Eintritt für Kinder unter 7 Jahren kostenlos.</b>',
+    colsHeader: ['Aufenthaltsdauer', 'Preis'],
+    colsSub: ['Samstag', 'Werktag'],
+    rows: [
+      ['90 min', '120 zł / Pers.', '100 zł / Pers.'],
+      ['Eintritt Kind bis 7 Jahre', 'kostenlos', 'kostenlos'],
+    ],
+    feesHeader: ['Zusatzgebühren', 'Betrag'],
+    feesRows: [
+      ['Handtuchmiete', '10 zł'],
+      ['Bademantelmiete', '20 zł'],
+      ['Handtuch- und Bademantelmiete', '25 zł'],
+    ],
+    note: 'Mindestbuchungszeit für Jacuzzi: 1h 30min',
+    petTitle: 'Haustiere in den Häusern',
+    petText: 'In den Häusern dürfen Haustiere <b>nach vorheriger Absprache</b> vor der Reservierung übernachten. Dies hängt vom Zeitraum ab, in dem Sie Ihren Aufenthalt planen. In manchen Zeiträumen ist dies nicht möglich. Wenn Sie mit Ihrem Haustier anreisen möchten, kontaktieren Sie uns bitte zur Verfügbarkeitsprüfung.',
+  },
+}[lang];
 ---
 
-<div class="description-box">
-  <h2 class="h2" id="cennik-jacuzzi" style="margin-top:30px;">{t.title}</h2>
-  <p set:html={t.intro}></p>
+<div class="max-w-[73%] border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mx-auto mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:mb-5 max-[768px]:text-[0.6rem]">
+  <h2 class="text-[24px] text-center mt-[30px] mb-5 text-brand-black font-bold overflow-x-auto" id="cennik-jacuzzi">{t.title}</h2>
+  <p class="text-base leading-[1.6]" set:html={t.intro}></p>
 
   {/* Pricing table */}
-  <table class="cennik-tabela">
+  <table class="w-full max-w-[900px] border-collapse overflow-hidden text-base my-[30px] mx-auto bg-[#f4f4f4] border-2 border-white text-center table-fixed">
     <thead>
       <tr>
-        <th rowspan="2" style="color: #fff;">{t.colsHeader[0]}</th>
-        <th colspan="2" style="color: #fff;">{t.colsHeader[1]}</th>
+        <th rowspan="2" class="bg-[#362e27] text-white font-semibold px-[6px] py-[4px] h-[40px] border-2 border-white align-middle w-[40%] max-[768px]:w-[20%]">{t.colsHeader[0]}</th>
+        <th colspan="2" class="bg-[#362e27] text-white font-semibold px-[6px] py-[4px] h-[40px] border-2 border-white align-middle">{t.colsHeader[1]}</th>
       </tr>
       <tr>
-        <th style="color: #fff;">{t.colsSub[0]}</th>
-        <th style="color: #fff;">{t.colsSub[1]}</th>
+        <th class="bg-[#362e27] text-white font-semibold px-[6px] py-[4px] h-[40px] border-2 border-white align-middle w-[30%] max-[768px]:w-[26.66%]">{t.colsSub[0]}</th>
+        <th class="bg-[#362e27] text-white font-semibold px-[6px] py-[4px] h-[40px] border-2 border-white align-middle w-[30%] max-[768px]:w-[26.66%]">{t.colsSub[1]}</th>
       </tr>
     </thead>
     <tbody>
       {t.rows.map((row: string[]) => (
         <tr>
-          {row.map((cell: string) => <td set:html={cell}></td>)}
+          {row.map((cell: string) => <td class="h-[60px] p-[6px] border-2 border-white align-middle max-[768px]:text-[0.95rem]" set:html={cell}></td>)}
         </tr>
       ))}
     </tbody>
   </table>
 
   {/* Fees table */}
-  <table class="cennik-tabela">
+  <table class="w-full max-w-[900px] border-collapse overflow-hidden text-base my-[30px] mx-auto bg-[#f4f4f4] border-2 border-white text-center table-fixed">
     <thead>
       <tr>
-        {t.feesHeader.map((h: string) => <th style="color: #fff;">{h}</th>)}
+        {t.feesHeader.map((h: string) => <th class="bg-[#362e27] text-white font-semibold px-[6px] py-[4px] h-[40px] border-2 border-white align-middle">{h}</th>)}
       </tr>
     </thead>
     <tbody>
       {t.feesRows.map((row: string[]) => (
         <tr>
-          {row.map((cell: string) => <td>{cell}</td>)}
+          {row.map((cell: string) => <td class="h-[60px] p-[6px] border-2 border-white align-middle max-[768px]:text-[0.95rem]">{cell}</td>)}
         </tr>
       ))}
     </tbody>
   </table>
 
-  <div class="description-box-promo">
-    <p style="margin:5px 0;">{t.note}</p>
+  <div class="max-w-[82%] max-[768px]:max-w-[98vw] border border-[#328247] rounded-[5px] p-[5px] my-[5px] mx-auto bg-white text-[1.2rem] text-[#328247] text-center">
+    <p class="my-[5px]">{t.note}</p>
   </div>
 
-  <h3 class="h3" style="margin-top:50px;">{t.petTitle}</h3>
-  <p set:html={t.petText}></p>
+  <h3 class="text-[1.3rem] text-center mt-[50px] mb-[5px] font-semibold text-[#2c2c2c] overflow-x-auto">{t.petTitle}</h3>
+  <p class="text-base leading-[1.6]" set:html={t.petText}></p>
 </div>

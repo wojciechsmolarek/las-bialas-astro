@@ -26,73 +26,77 @@ const pd = promoData['pl'];
 ---
 
 {lang === 'pl' ? (
-  <div class="description-box3">
+  <div class="flex gap-[20px] items-stretch max-w-[73%] mx-auto flex-wrap max-[1367px]:flex-col max-[1367px]:max-w-full max-[1367px]:gap-[1px]">
     {/* Left box - Availability */}
-    <div class="description-box">
-      <h2 class="h2">{t('topboxes.next_dates')}</h2>
-      <img alt="kalendarz" height="55" src="/images/kalendarz.png" width="55" />
+    <div class="flex-[0_0_49%] max-[1367px]:flex-[0_0_100%] max-[1367px]:w-full border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:text-[0.6rem]">
+      <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t('topboxes.next_dates')}</h2>
+      <img alt="kalendarz" height="55" src="/images/kalendarz.png" width="55" class="inline-block" />
 
       <p><b>{pd.month}</b></p>
       <b>{pd.dates}</b><br />
       {t('topboxes.discount_code')}
-      <span class="promo-wrapper">
-        <span class="promo-code" id="code1">{pd.code}</span>
-        <button class="copy-btn" onclick="copyCode('code1', this)" title={t('misc.copy')}>
+      <span class="inline-flex items-center">
+        <span class="inline-block bg-[#d4edda] text-[#155724] px-[6px] py-[2px] mx-[4px] rounded-[4px] font-bold" id="code1">{pd.code}</span>
+        <button class="border-0 bg-transparent cursor-pointer p-[2px] text-black transition-all hover:text-[#2F6940] hover:scale-[1.2]" onclick="copyCode('code1', this)" title={t('misc.copy')}>
           <svg width="26" height="26" viewBox="0 0 24 26" fill="none">
             <rect x="7" y="15" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"></rect>
             <rect x="3" y="11" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"></rect>
           </svg>
         </button>
       </span>
-      <div class="button-p-container">
-        <a aria-label={t('nav.reservation')} class="button-info" href="#" onclick="openReservation(); return false;">{t('button.reserve')}</a>
+      <div class="flex justify-center mt-[30px]">
+        <a aria-label={t('nav.reservation')} class="flex justify-center items-center w-[140px] h-[46px] text-base font-normal text-white bg-[#2F6940] border-none text-center no-underline normal-case cursor-pointer font-montserrat mb-[30px] hover:bg-[#40a95c] transition-colors" href="#" onclick="openReservation(); return false;">{t('button.reserve')}</a>
       </div>
       <p>
         {t('topboxes.or_check')}
-        <a aria-label={t('nav.reservation')} href="#" onclick="openReservation(); return false;" style="color:#328247; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><b>{t('topboxes.available_dates')}</b></a>
+        <a aria-label={t('nav.reservation')} href="#" onclick="openReservation(); return false;" class="text-[#328247] no-underline hover:underline font-bold"><b>{t('topboxes.available_dates')}</b></a>
         {t('topboxes.select_cabin')}
       </p>
     </div>
 
     {/* Right box - Summer */}
-    <div class="description-box">
-      <h2 class="h2">{t('topboxes.summer_2026')}</h2>
+    <div class="flex-[0_0_49%] max-[1367px]:flex-[0_0_100%] max-[1367px]:w-full border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:text-[0.6rem]">
+      <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t('topboxes.summer_2026')}</h2>
       <p><b set:html={t('topboxes.july_dates')}></b></p>
-      <ul class="inline-bullets">
-        {pd.julyDates.map((d: string) => <li>{d}</li>)}
+      <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
+        {pd.julyDates.map((d: string) => (
+          <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
+            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{d}
+          </li>
+        ))}
       </ul>
       <p><b set:html={t('topboxes.august_dates')}></b></p>
-      <ul class="inline-bullets">
-        {pd.augustDates.map((d: string) => <li>{d}</li>)}
+      <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
+        {pd.augustDates.map((d: string) => (
+          <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
+            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{d}
+          </li>
+        ))}
       </ul>
-      <div style="width:80px;height:1px;background:#999;margin:8px auto;"></div>
+      <div class="w-20 h-px bg-[#999] my-2 mx-auto"></div>
       <p>{t('topboxes.on_site')}</p>
-      <ul class="inline-bullets">
-        <li>{t('amenities.private_jacuzzi')}</li>
-        <li>{t('amenities.sauna')}</li>
-        <li>{t('amenities.cooling_tub')}</li>
-        <li>{t('amenities.grill')}</li>
-        <li>{t('amenities.hammocks')}</li>
-        <li>{t('amenities.bikes')}</li>
-        <li>{t('amenities.sup')}</li>
-        <li>{t('amenities.wifi')}</li>
-        <li>{t('amenities.netflix')}</li>
+      <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
+        {[t('amenities.private_jacuzzi'), t('amenities.sauna'), t('amenities.cooling_tub'), t('amenities.grill'), t('amenities.hammocks'), t('amenities.bikes'), t('amenities.sup'), t('amenities.wifi'), t('amenities.netflix')].map((a: string) => (
+          <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
+            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{a}
+          </li>
+        ))}
       </ul>
       <p>{t('topboxes.contact_info')}</p>
-      <ul class="contact-list">
-        <li>
-          <img src="/images/phone-green.png" class="icon-img" alt="Telefon">
-          <a href={`tel:+48${pd.phone1.replace(/\s/g, '')}`}>{pd.phone1}</a>
-          <img src="/images/whatsapp-green.png" class="icon-img" alt="WhatsApp">
-          <a href={`https://wa.me/48${pd.phone2.replace(/\s/g, '')}`}>{pd.phone2}</a>
+      <ul class="list-none p-0 text-[0.95rem]">
+        <li class="my-2">
+          <img src="/images/phone-green.png" class="w-[18px] h-[18px] mr-[3px] ml-2.5 align-[-3px] inline" alt="Telefon">
+          <a href={`tel:+48${pd.phone1.replace(/\s/g, '')}`} class="text-inherit no-underline hover:underline">{pd.phone1}</a>
+          <img src="/images/whatsapp-green.png" class="w-[18px] h-[18px] mr-[3px] ml-2.5 align-[-3px] inline" alt="WhatsApp">
+          <a href={`https://wa.me/48${pd.phone2.replace(/\s/g, '')}`} class="text-inherit no-underline hover:underline">{pd.phone2}</a>
         </li>
       </ul>
     </div>
   </div>
 ) : (
   /* EN/DE variant - single bookings box */
-  <div class="description-box">
-    <h2 class="h2">{t('topboxes.summer_bookings')}</h2>
-    <p set:html={t('section.summer_desc')}></p>
+  <div class="max-w-[73%] border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mx-auto mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:mb-5 max-[768px]:text-[0.6rem]">
+    <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t('topboxes.summer_bookings')}</h2>
+    <p class="text-base leading-[1.6]" set:html={t('section.summer_desc')}></p>
   </div>
 )}

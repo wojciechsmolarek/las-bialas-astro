@@ -26,25 +26,25 @@ const jacuzziHref = {
 }[lang];
 ---
 
-<div class="description-wrapper">
-  <div class="description-box2 gray">
-    <div style="text-align:center; margin-bottom:5px;">
-      <img alt="Sauna" height="60" src={icons.sauna} width="60" />
+<div class="flex justify-center gap-[10px] flex-wrap my-[30px] mx-auto max-w-[73%] max-[768px]:gap-[20px] max-[768px]:max-w-[96%]">
+  <div class="flex-[1_1_48%] border border-[#ccc] rounded-[5px] p-5 text-white text-base text-center leading-[1.6] box-border bg-gradient-to-b from-[#6b6767c6] to-[#3c3939c6] max-[768px]:flex-[1_1_100%] max-[768px]:max-w-[96vw] max-[768px]:mb-5">
+    <div class="text-center mb-[5px]">
+      <img alt="Sauna" height="60" src={icons.sauna} width="60" class="inline-block" />
     </div>
-    <h2 style="text-align:center; margin-top:5px; color:#fff;">{t('section.sauna_title')}</h2>
-    <p>{t('section.sauna_desc')}</p>
-    <div class="button-p-container">
-      <a class="button-dostep" href={guideHref} target="_blank">{t('button.rules')}</a>
+    <h2 class="text-center mt-[5px] mb-5 text-white text-[24px] font-bold">{t('section.sauna_title')}</h2>
+    <p class="text-base leading-[1.6]">{t('section.sauna_desc')}</p>
+    <div class="flex justify-center mt-[30px]">
+      <a class="inline-flex justify-center items-center w-auto h-[46px] text-base font-normal text-white bg-[#e97e2d] border-none text-center no-underline normal-case cursor-pointer mb-[30px] mt-[10px] px-[15px] hover:bg-[#f98847] transition-colors" href={guideHref} target="_blank">{t('button.rules')}</a>
     </div>
   </div>
-  <div class="description-box2 green">
-    <div style="text-align:center; margin-bottom:5px;">
-      <img alt="Jacuzzi" height="60" src={icons.jacuzzi} width="60" />
+  <div class="flex-[1_1_48%] border border-[#ccc] rounded-[5px] p-5 text-white text-base text-center leading-[1.6] box-border bg-gradient-to-b from-[#3c9b55cc] to-[#2F6940] max-[768px]:flex-[1_1_100%] max-[768px]:max-w-[96vw] max-[768px]:mb-5">
+    <div class="text-center mb-[5px]">
+      <img alt="Jacuzzi" height="60" src={icons.jacuzzi} width="60" class="inline-block" />
     </div>
-    <h2 style="text-align:center; margin-top:5px; color:#fff;">{t('section.jacuzzi_title')}</h2>
-    <p>{t('section.jacuzzi_desc')}</p>
-    <div class="button-p-container">
-      <a class="button-dostep" href={jacuzziHref} target="_blank">{t('button.rules')}</a>
+    <h2 class="text-center mt-[5px] mb-5 text-white text-[24px] font-bold">{t('section.jacuzzi_title')}</h2>
+    <p class="text-base leading-[1.6]">{t('section.jacuzzi_desc')}</p>
+    <div class="flex justify-center mt-[30px]">
+      <a class="inline-flex justify-center items-center w-auto h-[46px] text-base font-normal text-white bg-[#e97e2d] border-none text-center no-underline normal-case cursor-pointer mb-[30px] mt-[10px] px-[15px] hover:bg-[#f98847] transition-colors" href={jacuzziHref} target="_blank">{t('button.rules')}</a>
     </div>
   </div>
 </div>

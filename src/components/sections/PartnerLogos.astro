@@ -6,24 +6,24 @@ interface Props {
 const { lang = 'pl' } = Astro.props;
 ---
 
-<section class="amenities-section" style="padding: 20px; background-color: #f2f2f2;">
-  <div class="logo-grid">
-    <a href="#" aria-label="Otwórz panel rezerwacji" onclick="openReservation(); return false;" class="logo-reserve" style="display:inline-block; align-items: center;">
-      <img alt="Las Biala's" src="/images/las-bialas-www.png" style="width:163px; height:30px;" loading="lazy" decoding="async" />
+<section class="w-full bg-[#f2f2f2] p-5 mb-5">
+  <div class="grid grid-cols-[repeat(4,auto)] justify-center justify-items-center items-center gap-[120px] max-w-[1280px] mx-auto max-[1023px]:grid-cols-[repeat(2,auto)] max-[1023px]:gap-x-0 max-[1023px]:gap-y-[15px]">
+    <a href="#" aria-label="Otwórz panel rezerwacji" onclick="openReservation(); return false;" class="inline-block items-center">
+      <img alt="Las Biala's" src="/images/las-bialas-www.png" class="block w-[163px] h-[30px]" loading="lazy" decoding="async" />
     </a>
-    <div style="text-align: center;">
+    <div class="text-center">
       <a href="https://www.booking.com/hotel/pl/las-bialas-kameralne-domki-w-puszczy-noteckiej.pl.html" target="_blank" rel="nofollow noopener noreferrer" aria-label="Booking.com">
-        <img alt="booking.com" src="/images/booking_logo.webp" style="width:172px; height:40px; margin-top: 10px;" loading="lazy" decoding="async" />
+        <img alt="booking.com" src="/images/booking_logo.webp" class="block w-[172px] h-[40px] mt-2.5" loading="lazy" decoding="async" />
       </a>
     </div>
-    <div style="text-align: center;">
+    <div class="text-center">
       <a href="https://www.airbnb.pl/h/lasbialas1" target="_blank" rel="nofollow noopener noreferrer" aria-label="Airbnb">
-        <img alt="airbnb" src="/images/airbnb_logo.webp" style="width: 194px; height: 45px; margin-top: 10px;" loading="lazy" decoding="async" />
+        <img alt="airbnb" src="/images/airbnb_logo.webp" class="block w-[194px] h-[45px] mt-2.5" loading="lazy" decoding="async" />
       </a>
     </div>
-    <div style="text-align: center;">
+    <div class="text-center">
       <a href="https://r.alohacamp.com/c0zx" target="_blank" rel="nofollow noopener noreferrer" aria-label="Alohacamp">
-        <img alt="alohacamp" src="/images/aloha_logo.webp" style="width: 190px; height: 44px; margin-top: 10px;" loading="lazy" decoding="async" />
+        <img alt="alohacamp" src="/images/aloha_logo.webp" class="block w-[190px] h-[44px] mt-2.5" loading="lazy" decoding="async" />
       </a>
     </div>
   </div>

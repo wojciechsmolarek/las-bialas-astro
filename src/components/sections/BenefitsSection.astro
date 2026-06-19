@@ -38,13 +38,18 @@ const benefitKeysByLang = {
 const benefitKeys = benefitKeysByLang[lang];
 ---
 
-<div class="description-wrapper">
-  <div class="description-box2 green">
-    <span style="display:block; text-align:center; margin-bottom:10px; font-size:1.2em; font-weight:bold; color:#ffffff;">
+<div class="flex justify-center gap-[10px] flex-wrap my-[30px] mx-auto max-w-[73%] max-[768px]:gap-[20px] max-[768px]:max-w-[96%]">
+  <div class="flex-[1_1_48%] border border-[#ccc] rounded-[5px] p-5 text-white text-base text-center leading-[1.6] box-border bg-gradient-to-b from-[#3c9b55cc] to-[#2F6940] max-[768px]:flex-[1_1_100%] max-[768px]:max-w-[96vw] max-[768px]:mb-5">
+    <span class="block text-center mb-[10px] text-[1.2em] font-bold text-white">
       {t('benefits.direct_booking_title')}
     </span>
-    <ul class="inline-bullets2">
-      {benefitKeys.map((key: string) => <li>{t(key)}</li>)}
+    <ul class="flex flex-wrap justify-center gap-y-[.4em] gap-x-[1em] my-[.6em] p-0 list-none">
+      {benefitKeys.map((key: string) => (
+        <li class="m-0 leading-[1.2] flex items-center">
+          <span class="inline-block w-[0.45rem] h-[0.45rem] bg-white mr-[.5em] shrink-0"></span>
+          {t(key)}
+        </li>
+      ))}
     </ul>
   </div>
 </div>

@@ -1,87 +1,230 @@
 ---
-import type { Lang } from '../../i18n/home';
-import { interiors } from '../../i18n/home';
-
 interface Props {
-  lang: Lang;
+  lang: 'pl' | 'en' | 'de';
 }
 
 const { lang } = Astro.props;
-const t = interiors[lang];
+
+const t = {
+  pl: {
+    title: 'Komfortowe wnętrza i pełne wyposażenie',
+    intro: 'W domkach zadbaliśmy o szereg udogodnień, pełne wyposażenie i przytulne wnętrza, abyście mogli spędzić ten czas komfortowo, ciesząc się urokiem i niepowtarzalną atmosferą tego miejsca.',
+    bedrooms: {
+      title: 'Sypialnie',
+      intro: 'W każdym domku znajdują się dwie zamykane sypialnie, wyposażone w cztery wygodne łóżka.',
+      items: ['jedno łóżko 180 x 200 cm', 'jedno łóżko 160 x 200 cm', 'dwie szafki nocne', 'dwie szafy, wieszaki, półki', 'kosze na pościel'],
+      images: [
+        { src: '/foto/w1.webp', alt: 'Duża sypialnia w domku Las Biala\'s - łóżko 180x200 cm', tip: 'Duża sypialnia - łóżko 180 x 200 cm' },
+        { src: '/foto/w2.webp', alt: 'Sypialnia w domku Las Biala\'s - łóżko 160x200 cm', tip: 'Druga sypialnia - łóżko 160 x 200 cm' },
+        { src: '/foto/w6.webp', alt: 'Szafa i szafki nocne w sypialni', tip: 'Szafy, wieszaki, półki, kosze na pościel' },
+        { src: '/foto/w4.webp', alt: 'Klimatyczna sypialnia w domku', tip: 'Klimatyczna sypialnia w domku' },
+      ],
+    },
+    living: {
+      title: 'Salon z aneksem kuchennym',
+      intro: 'Salon wyposażony jest w stół z czterema krzesłami, ławkę, stolik kawowy oraz dwie kanapy (jedna dwuosobowa, druga rozkładana) i fotel. W stoliku znajdziecie Państwo karty i gry, a na półce – przewodnik LAS BIALA\'S z informacjami o okolicy, atrakcjach, restauracjach, lokalnym rzemiośle oraz mapą okolicy. W kwestii technologii - Smart TV z Netflix i Spotify, szybkie Wi-Fi (300 Mb/s) oraz głośnik JBL.',
+      items: ['zmywarka i duża lodówka', 'płyta indukcyjna i czajnik', 'ekspres do kawy i zapas kawy', 'garnki, patelnie, naczynia, sztućce'],
+      images: [
+        { src: '/foto/w13.webp', alt: 'Salon z aneksem kuchennym', tip: 'Salon z aneksem kuchennym i jadalnią' },
+        { src: '/foto/w7.webp', alt: 'Kuchnia wyposażona w garnki i naczynia', tip: 'Aneksem kuchennym wyposażony w potrzebne sprzęty' },
+        { src: '/foto/w15.webp', alt: 'Stół i kanapy w salonie', tip: 'Stół z czterema krzesłami, ławką, stolikiem kawowym, dwiema kanapami i fotelem' },
+        { src: '/foto/w3.webp', alt: 'Stół i dwie kanapy w salonie', tip: 'Stół, krzesła, ławka i dwie kanapy (jedna dwuosobowa, druga rozkładana)' },
+      ],
+    },
+    bathroom: {
+      title: 'Łazienka',
+      intro: 'Łazienka wyposażona jest w prysznic, umywalkę z szafką, grzejnik łazienkowy, suszarkę do włosów, suszarkę na pranie oraz podgrzewacz wody o pojemności 80 litrów. Dla Waszego komfortu przygotowaliśmy ręczniki, szampon, mydło, płyn do płukania ust oraz papier toaletowy.',
+      items: ['prysznic, umywalka, wc', 'podgrzewacz wody 80 l', 'grzejnik łazienkowy', 'ręczniki, szampon, mydło'],
+      images: [
+        { src: '/foto/w17.webp', alt: 'Łazienka z prysznicem', tip: 'Łazienka z prysznicem i umywalką' },
+        { src: '/foto/w18.webp', alt: 'Umywalka i grzejnik w łazience', tip: 'Umywalka z szafką i grzejnik łazienkowy' },
+      ],
+    },
+    parking: {
+      title: 'Bezpłatny parking',
+      text: 'Dla Gości zapewniamy bezpłatne miejsca parkingowe przy domkach - możecie wygodnie zaparkować jeden lub dwa samochody tuż obok domku.',
+    },
+    guide: {
+      title: 'Przewodnik LAS BIALA\'S',
+      qrAlt: 'QR kod do przewodnika LAS BIALA\'S',
+    },
+  },
+  en: {
+    title: 'Comfortable Interiors & Full Equipment',
+    intro: 'The cottages are equipped with a range of amenities, full furnishings, and cozy interiors to make your stay comfortable while enjoying the charm and unique atmosphere of this place.',
+    bedrooms: {
+      title: 'Bedrooms',
+      intro: 'Each cottage has two lockable bedrooms equipped with four comfortable beds.',
+      items: ['one bed 180 x 200 cm', 'one bed 160 x 200 cm', 'two nightstands', 'two wardrobes, hangers, shelves', 'bedding baskets'],
+      images: [
+        { src: '/foto/w1.webp', alt: 'Large bedroom in Las Biala\'s cabin - 180x200 cm bed', tip: 'Large bedroom - bed 180 x 200 cm' },
+        { src: '/foto/w2.webp', alt: 'Bedroom in Las Biala\'s cabin - 160x200 cm bed', tip: 'Second bedroom - bed 160 x 200 cm' },
+        { src: '/foto/w6.webp', alt: 'Wardrobe and nightstands', tip: 'Wardrobes, hangers, shelves, bedding baskets' },
+        { src: '/foto/w4.webp', alt: 'Cozy bedroom in cabin', tip: 'Cozy bedroom in the cabin' },
+      ],
+    },
+    living: {
+      title: 'Living Room with Kitchenette',
+      intro: 'The living room is equipped with a dining table with four chairs, a bench, a coffee table, and two sofas (one two-seater, one convertible) plus an armchair. In the coffee table you will find cards and board games, and on the shelf – the LAS BIALA\'S guide with information about the area, attractions, restaurants, local crafts and a map of the surroundings. In terms of technology - Smart TV with Netflix and Spotify, fast Wi-Fi (300 Mb/s) and JBL speaker.',
+      items: ['dishwasher and large fridge', 'induction hob and kettle', 'coffee machine and coffee supply', 'pots, pans, dishes, cutlery'],
+      images: [
+        { src: '/foto/w13.webp', alt: 'Living room with kitchenette', tip: 'Living room with kitchenette and dining area' },
+        { src: '/foto/w7.webp', alt: 'Kitchen with pots and dishes', tip: 'Kitchenette equipped with necessary appliances' },
+        { src: '/foto/w15.webp', alt: 'Table and sofas in living room', tip: 'Table with four chairs, bench, coffee table, two sofas and armchair' },
+        { src: '/foto/w3.webp', alt: 'Table and two sofas', tip: 'Table, chairs, bench and two sofas (one two-seater, one convertible)' },
+      ],
+    },
+    bathroom: {
+      title: 'Bathroom',
+      intro: 'The bathroom is equipped with a shower, sink with cabinet, bathroom heater, hair dryer, clothes drying rack and 80-liter water heater. For your comfort we have prepared towels, shampoo, soap, mouthwash and toilet paper.',
+      items: ['shower, sink, toilet', '80 l water heater', 'bathroom heater', 'towels, shampoo, soap'],
+      images: [
+        { src: '/foto/w17.webp', alt: 'Bathroom with shower', tip: 'Bathroom with shower and sink' },
+        { src: '/foto/w18.webp', alt: 'Sink and heater', tip: 'Sink with cabinet and bathroom heater' },
+      ],
+    },
+    parking: {
+      title: 'Free Parking',
+      text: 'We provide free parking spaces for guests near the cottages - you can conveniently park one or two cars right next to the cottage.',
+    },
+    guide: {
+      title: 'Guidebook LAS BIALA\'S',
+      qrAlt: 'QR code to LAS BIALA\'S guidebook',
+    },
+  },
+  de: {
+    title: 'Komfortable Innenräume und komplette Ausstattung',
+    intro: 'In den Häusern haben wir zahlreiche Annehmlichkeiten, eine vollständige Ausstattung und gemütliche Innenräume vorbereitet, damit Sie Ihren Aufenthalt komfortabel verbringen und die besondere Atmosphäre des Ortes genießen können.',
+    bedrooms: {
+      title: 'Schlafzimmer',
+      intro: 'Jedes Haus verfügt über zwei verschließbare Schlafzimmer mit vier komfortablen Betten.',
+      items: ['ein Bett 180 x 200 cm', 'ein Bett 160 x 200 cm', 'zwei Nachttische', 'zwei Kleiderschränke, Kleiderbügel, Regale', 'Bettwäschekörbe'],
+      images: [
+        { src: '/foto/w1.webp', alt: 'Großes Schlafzimmer - Bett 180x200 cm', tip: 'Großes Schlafzimmer - Bett 180 x 200 cm' },
+        { src: '/foto/w2.webp', alt: 'Schlafzimmer - Bett 160x200 cm', tip: 'Zweites Schlafzimmer - Bett 160 x 200 cm' },
+        { src: '/foto/w6.webp', alt: 'Kleiderschrank und Nachttische', tip: 'Kleiderschränke, Kleiderbügel, Regale, Bettwäschekörbe' },
+        { src: '/foto/w4.webp', alt: 'Gemütliches Schlafzimmer', tip: 'Gemütliches Schlafzimmer im Haus' },
+      ],
+    },
+    living: {
+      title: 'Wohnzimmer mit Küchenzeile',
+      intro: 'Das Wohnzimmer ist mit einem Esstisch mit vier Stühlen, einer Bank, einem Couchtisch sowie zwei Sofas (eines zweisitzig, eines ausklappbar) und einem Sessel ausgestattet. Im Couchtisch finden Sie Karten und Gesellschaftsspiele, und im Regal – den LAS BIALA\'S Reiseführer mit Informationen über die Umgebung, Sehenswürdigkeiten, Restaurants, lokales Handwerk und eine Karte der Umgebung. Technisch ausgestattet mit Smart TV mit Netflix und Spotify, schnellem WLAN (300 Mb/s) und JBL-Lautsprecher.',
+      items: ['Geschirrspüler und großer Kühlschrank', 'Induktionskochfeld und Wasserkocher', 'Kaffeemaschine und Kaffeevorräte', 'Töpfe, Pfannen, Geschirr, Besteck'],
+      images: [
+        { src: '/foto/w13.webp', alt: 'Wohnzimmer mit Küchenzeile', tip: 'Wohnzimmer mit Küchenzeile und Essbereich' },
+        { src: '/foto/w7.webp', alt: 'Küche mit Töpfen und Geschirr', tip: 'Küchenzeile mit notwendigen Geräten ausgestattet' },
+        { src: '/foto/w15.webp', alt: 'Tisch und Sofas im Wohnzimmer', tip: 'Tisch mit vier Stühlen, Bank, Couchtisch, zwei Sofas und Sessel' },
+        { src: '/foto/w3.webp', alt: 'Tisch und zwei Sofas', tip: 'Tisch, Stühle, Bank und zwei Sofas (eines zweisitzig, eines ausklappbar)' },
+      ],
+    },
+    bathroom: {
+      title: 'Badezimmer',
+      intro: 'Das Badezimmer ist mit Dusche, Waschbecken mit Unterschrank, Handtuchheizkörper, Haartrockner, Wäscheständer und 80-Liter-Warmwasserspeicher ausgestattet. Für Ihren Komfort haben wir Handtücher, Shampoo, Seife, Mundspülung und Toilettenpapier bereitgestellt.',
+      items: ['Dusche, Waschbecken, WC', '80 l Warmwasserspeicher', 'Handtuchheizkörper', 'Handtücher, Shampoo, Seife'],
+      images: [
+        { src: '/foto/w17.webp', alt: 'Badezimmer mit Dusche', tip: 'Badezimmer mit Dusche und Waschbecken' },
+        { src: '/foto/w18.webp', alt: 'Waschbecken und Heizkörper', tip: 'Waschbecken mit Unterschrank und Handtuchheizkörper' },
+      ],
+    },
+    parking: {
+      title: 'Kostenloser Parkplatz',
+      text: 'Für Gäste stellen wir kostenlose Parkplätze in der Nähe der Häuser zur Verfügung – Sie können bequem einen oder zwei Autos direkt neben dem Haus parken.',
+    },
+    guide: {
+      title: 'Gästeführer LAS BIALA\'S',
+      qrAlt: 'QR-Code zum LAS BIALA\'S Gästeführer',
+    },
+  },
+}[lang];
 
 const guideHref = {
   pl: 'https://lasbialas.pl/info/#/na-miejscu/505',
   en: 'https://lasbialas.pl/info/en/#/on-site/505',
   de: 'https://lasbialas.pl/info/de/#/vor-ort/505',
 }[lang];
+
+const h3Class = 'text-[1.3rem] text-center mt-[40px] mb-[5px] font-semibold text-[#2c2c2c] overflow-x-auto';
+const sectionTextClass = 'text-base leading-[1.6] text-brand-black';
+const bulletUl = 'flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none';
+const bulletLi = 'm-0 leading-[1.4] text-[0.9rem] flex items-center';
+const bulletMarker = 'inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0';
+const miniGrid = 'grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] justify-center gap-[6px] mt-[40px] mb-[30px] max-[1342px]:grid-cols-2';
+const miniImg = 'max-w-full h-auto object-cover cursor-default transition-transform duration-200';
+const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-center rounded-[5px] p-[5px] absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[65px] transition-opacity duration-300 font-[Arial] text-[14px] font-normal leading-[1.4] z-[1] pointer-events-none group-hover:visible group-hover:opacity-100 max-[768px]:hidden';
 ---
 
-<div class="description-box">
-  <h2 class="h2">{t.title}</h2>
-  <p>{t.intro}</p>
+<div class="max-w-[73%] border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mx-auto mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:mb-5 max-[768px]:text-[0.6rem]">
+  <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t.title}</h2>
+  <p class="text-base leading-[1.6]">{t.intro}</p>
 
   {/* Bedrooms */}
-  <h3 class="h3">{t.bedrooms.title}</h3>
-  <div class="section-text">
+  <h3 class={h3Class}>{t.bedrooms.title}</h3>
+  <div class={sectionTextClass}>
     <p>{t.bedrooms.intro}</p>
-    <ul class="inline-bullets">
-      {t.bedrooms.items.map((item: string) => <li>{item}</li>)}
+    <ul class={bulletUl}>
+      {t.bedrooms.items.map((item: string) => (
+        <li class={bulletLi}><span class={bulletMarker}></span>{item}</li>
+      ))}
     </ul>
   </div>
-  <div class="gallery-mini">
+  <div class={miniGrid}>
     {t.bedrooms.images.map((img: any) => (
-      <div class="tooltip">
-        <img alt={img.alt} height="470" loading="lazy" src={img.src} style="cursor:default;" width="834" />
-        <span class="tooltiptext">{img.tip}</span>
+      <div class="relative inline-block group">
+        <img alt={img.alt} height="470" loading="lazy" src={img.src} class={miniImg} width="834" />
+        <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
   </div>
 
   {/* Living Room */}
-  <h3 class="h3">{t.living.title}</h3>
-  <div class="section-text">
+  <h3 class={h3Class}>{t.living.title}</h3>
+  <div class={sectionTextClass}>
     <p set:html={t.living.intro.replace('{#guide}', guideHref)}></p>
-    <ul class="inline-bullets">
-      {t.living.items.map((item: string) => <li>{item}</li>)}
+    <ul class={bulletUl}>
+      {t.living.items.map((item: string) => (
+        <li class={bulletLi}><span class={bulletMarker}></span>{item}</li>
+      ))}
     </ul>
   </div>
-  <div class="gallery-mini">
+  <div class={miniGrid}>
     {t.living.images.map((img: any) => (
-      <div class="tooltip">
-        <img alt={img.alt} height="470" loading="lazy" src={img.src} style="cursor:default;" width="834" />
-        <span class="tooltiptext">{img.tip}</span>
+      <div class="relative inline-block group">
+        <img alt={img.alt} height="470" loading="lazy" src={img.src} class={miniImg} width="834" />
+        <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
   </div>
 
   {/* Bathroom */}
-  <h3 class="h3">{t.bathroom.title}</h3>
-  <div class="section-text">
+  <h3 class={h3Class}>{t.bathroom.title}</h3>
+  <div class={sectionTextClass}>
     <p set:html={t.bathroom.intro}></p>
-    <ul class="inline-bullets">
-      {t.bathroom.items.map((item: string) => <li>{item}</li>)}
+    <ul class={bulletUl}>
+      {t.bathroom.items.map((item: string) => (
+        <li class={bulletLi}><span class={bulletMarker}></span>{item}</li>
+      ))}
     </ul>
   </div>
-  <div class="gallery-mini">
+  <div class={miniGrid}>
     {t.bathroom.images.map((img: any) => (
-      <div class="tooltip">
-        <img alt={img.alt} height="470" loading="lazy" src={img.src} style="cursor:default;" width="834" />
-        <span class="tooltiptext">{img.tip}</span>
+      <div class="relative inline-block group">
+        <img alt={img.alt} height="470" loading="lazy" src={img.src} class={miniImg} width="834" />
+        <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
   </div>
 
   {/* Parking */}
-  <h3 class="h3">{t.parking.title}</h3>
-  <div class="section-text">
+  <h3 class={h3Class}>{t.parking.title}</h3>
+  <div class={sectionTextClass}>
     <p>{t.parking.text}</p>
   </div>
 
   {/* Guide QR */}
-  <h3 class="h3">{t.guide.title}</h3>
-  <div class="section-text">
+  <h3 class={h3Class}>{t.guide.title}</h3>
+  <div class={sectionTextClass}>
     <a href={lang === 'de' ? 'https://lasbialas.pl/info/de/' : 'https://lasbialas.pl/info/'} target="_blank" rel="noopener noreferrer">
-      <img class="qr" src="/foto/lasbialasqrc.png" alt={t.guide.qrAlt} width="150" height="150" />
+      <img class="max-w-[20%] h-auto transition-transform hover:scale-[1.05] max-[768px]:max-w-[55%] inline-block" src="/foto/lasbialasqrc.png" alt={t.guide.qrAlt} width="150" height="150" />
     </a>
   </div>
 </div>

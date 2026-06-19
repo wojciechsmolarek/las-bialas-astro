@@ -14,41 +14,41 @@ const enUrl = '/en/';
 const deUrl = '/de/';
 ---
 
-<div class="top-bar">
+<div class="sticky top-[35px] z-[1000] w-full h-auto flex justify-between items-center gap-0 px-2.5 py-2.5 text-base text-brand-black bg-white/95 shadow-[0px_4px_8px_rgba(0,0,0,0.1)]">
   <a href={homeUrl}>
-    <img alt="Logo Las Biala's" class="logo" src="/images/lasbialas.png" />
+    <img alt="Logo Las Biala's" class="h-auto max-h-[82px] w-auto max-w-[97px] ml-5 mr-4 object-contain" src="/images/lasbialas.png" />
   </a>
 
-  <div style="text-align: left;">
-    <h1 class="header-h1">
-      <span class="bold-text">{t('header.title.main')}</span>
+  <div class="text-left">
+    <h1 class="font-semibold">
+      {t('header.title.main')}
     </h1>
-    <span class="light-text">{t('header.subtitle')}</span>
+    <span class="font-extralight">{t('header.subtitle')}</span>
   </div>
 
   <div>
-    <div class="contact-info">
-      <a href="tel:+48789773285">
+    <div class="hidden md:flex flex-wrap items-center gap-4">
+      <a href="tel:+48789773285" class="flex items-center gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors">
         <img
           alt="Telefon"
           src="/images/telefon-g.png"
-          style="width: 24px; height: 24px; vertical-align: middle;"
+          class="w-6 h-6 align-middle"
         />+48 789 773 285
       </a>
 
-      <a href="https://wa.me/48660194187">
+      <a href="https://wa.me/48660194187" class="flex items-center gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors">
         <img
           alt="WhatsApp"
           src="/images/whatsapp-green.png"
-          style="width: 24px; height: 24px; vertical-align: middle; margin-right: 10px;"
+          class="w-6 h-6 align-middle"
         />660 194 187
       </a>
 
-      <a href="mailto:domki@lasbialas.pl">
+      <a href="mailto:domki@lasbialas.pl" class="flex items-center gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors">
         <img
           alt="Mail"
           src="/images/mail-g.png"
-          style="width: 24px; height: 24px; vertical-align: middle;"
+          class="w-6 h-6 align-middle"
         />domki@lasbialas.pl
       </a>
 
@@ -56,67 +56,67 @@ const deUrl = '/de/';
         href="https://www.instagram.com/lasbialas"
         rel="nofollow noopener noreferrer"
         target="_blank"
+        class="flex items-center gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors"
       >
         <img
           alt="Instagram Las Biala's"
           src="/images/instagram.png"
-          style="width: 24px; height: 24px; vertical-align: middle;"
+          class="w-6 h-6 align-middle"
         />/lasbialas
       </a>
 
-      <div class="language-links">
-        {lang !== 'pl' && <a href={plUrl} class="lang-link">PL</a>}
-        {lang !== 'en' && <a href={enUrl} class="lang-link">EN</a>}
-        {lang !== 'de' && <a href={deUrl} class="lang-link">DE</a>}
+      <div class="flex items-center gap-2">
+        {lang !== 'pl' && <a href={plUrl} class="px-3 py-2 text-sm font-medium text-brand-black bg-white border border-gray-300 rounded hover:bg-gray-100 transition-all no-underline">PL</a>}
+        {lang !== 'en' && <a href={enUrl} class="px-3 py-2 text-sm font-medium text-brand-black bg-white border border-gray-300 rounded hover:bg-gray-100 transition-all no-underline">EN</a>}
+        {lang !== 'de' && <a href={deUrl} class="px-3 py-2 text-sm font-medium text-brand-black bg-white border border-gray-300 rounded hover:bg-gray-100 transition-all no-underline">DE</a>}
       </div>
 
       <div>
-        <a
+        <button
           aria-label={t('nav.reservation')}
-          class="cart-link"
-          href="#"
-          onclick="openReservation(); return false;"
+          class="inline-block p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
+          onclick="Bookero.API.openCalendar(); return false;"
         >
-          <img alt="Rezerwacja" src="/images/cart.png" />
-        </a>
+          <img alt="Rezerwacja" src="/images/cart.png" class="w-8 h-8" />
+        </button>
       </div>
     </div>
 
-    <div class="hamburger-menu" onclick="toggleMenu()">
-      <img alt="Menu" src="/images/menu-b.png" />
+    <div class="md:hidden cursor-pointer p-2" onclick="toggleMenu()">
+      <img alt="Menu" src="/images/menu-b.png" class="w-8 h-8" />
     </div>
   </div>
 </div>
 
 <!-- Menu mobilne -->
-<div class="mobile-contact-menu" id="mobileContactMenu">
-  <div class="language-links">
-    {lang !== 'pl' && <a href={plUrl} class="lang-link">PL</a>}
-    {lang !== 'en' && <a href={enUrl} class="lang-link">EN</a>}
-    {lang !== 'de' && <a href={deUrl} class="lang-link">DE</a>}
+<div class="fixed top-0 right-0 h-screen w-[280px] bg-white z-[1001] translate-x-full transition-transform duration-300 p-5 shadow-[-4px_0_12px_rgba(0,0,0,0.1)] [&.active]:translate-x-0" id="mobileContactMenu">
+  <div class="flex items-center gap-2">
+    {lang !== 'pl' && <a href={plUrl} class="px-3 py-2 text-sm font-medium text-brand-black bg-white border border-gray-300 rounded hover:bg-gray-100 transition-all no-underline">PL</a>}
+    {lang !== 'en' && <a href={enUrl} class="px-3 py-2 text-sm font-medium text-brand-black bg-white border border-gray-300 rounded hover:bg-gray-100 transition-all no-underline">EN</a>}
+    {lang !== 'de' && <a href={deUrl} class="px-3 py-2 text-sm font-medium text-brand-black bg-white border border-gray-300 rounded hover:bg-gray-100 transition-all no-underline">DE</a>}
   </div>
 
-  <a href="tel:+48789773285">
+  <a href="tel:+48789773285" class="flex items-center gap-3 py-3 text-brand-black no-underline border-b border-gray-200">
     <img
       alt="Telefon"
       src="/images/telefon-g.png"
-      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+      class="w-[30px] h-[30px] align-middle mr-2.5"
     />+48 789 773 285
   </a>
 
-  <a href="https://wa.me/48660194187">
+  <a href="https://wa.me/48660194187" class="flex items-center gap-3 py-3 text-brand-black no-underline border-b border-gray-200">
     <img
       alt="WhatsApp"
       src="/images/whatsapp-green.png"
-      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+      class="w-[30px] h-[30px] align-middle mr-2.5"
     />660 194 187
   </a>
 
-  <a href="mailto:domki@lasbialas.pl">
+  <a href="mailto:domki@lasbialas.pl" class="flex items-center gap-3 py-3 text-brand-black no-underline border-b border-gray-200">
     <img
       alt="Mail"
       src="/images/mail-g.png"
-      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+      class="w-[30px] h-[30px] align-middle mr-2.5"
     />domki@lasbialas.pl
   </a>
 
@@ -124,11 +124,12 @@ const deUrl = '/de/';
     href="https://www.instagram.com/lasbialas"
     rel="nofollow noopener noreferrer"
     target="_blank"
+    class="flex items-center gap-3 py-3 text-brand-black no-underline border-b border-gray-200"
   >
     <img
       alt="Instagram Las Biala's"
       src="/images/instagram.png"
-      style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;"
+      class="w-[30px] h-[30px] align-middle mr-2.5"
     />/lasbialas
   </a>
 </div>

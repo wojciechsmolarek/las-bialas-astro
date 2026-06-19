@@ -18,28 +18,28 @@ const privacyPath = lang === 'pl' ? '/polityka-prywatnosci' : lang === 'en' ? '/
 const gdprPath = lang === 'pl' ? '/rodo' : lang === 'en' ? '/en/rodo' : '/de/rodo';
 ---
 
-<div class="footer">
-  <div class="footer-content">
-    <p class="footer-copy">© <span id="year"></span> Las Biala's</p>
+<div class="bg-[#323131] text-white text-base font-normal [text-shadow:0px_0px_1px_rgba(0,0,0,0.2),0px_-1px_1px_rgba(0,0,0,0.1)] relative bottom-0 left-0 w-full mt-5 py-[18px] px-[19px] max-[1024px]:mb-[80px]">
+  <div class="flex justify-between items-center flex-wrap w-full max-w-[1024px] mx-auto max-[768px]:flex-col max-[768px]:items-center max-[768px]:text-center">
+    <p class="m-0 max-[768px]:mt-2.5 max-[768px]:mb-0">© <span id="year"></span> Las Biala's</p>
 
     <!-- Widoczny tylko na desktopie -->
-    <div class="footer-inline-links">
-      <a href={blogUrl} target="_blank" rel="noopener noreferrer">{t('nav.blog')}</a>
-      <a href={guideUrl} target="_blank" rel="noopener noreferrer">{t('nav.guide')}</a>
-      <a href={termsPath}>{t('nav.terms')}</a>
-      <a href={privacyPath}>{t('nav.privacy')}</a>
-      <a href={gdprPath}>{t('nav.gdpr')}</a>
+    <div class="flex gap-5 max-[768px]:hidden">
+      <a href={blogUrl} target="_blank" rel="noopener noreferrer" class="text-white no-underline hover:underline">{t('nav.blog')}</a>
+      <a href={guideUrl} target="_blank" rel="noopener noreferrer" class="text-white no-underline hover:underline">{t('nav.guide')}</a>
+      <a href={termsPath} class="text-white no-underline hover:underline">{t('nav.terms')}</a>
+      <a href={privacyPath} class="text-white no-underline hover:underline">{t('nav.privacy')}</a>
+      <a href={gdprPath} class="text-white no-underline hover:underline">{t('nav.gdpr')}</a>
     </div>
 
     <!-- Widoczny tylko na mobile -->
-    <div class="footer-links-mobile">
+    <div class="hidden max-[768px]:block max-[768px]:mt-2.5">
       <details>
-        <summary>{lang === 'pl' ? 'Informacje' : lang === 'en' ? 'Information' : 'Informationen'}</summary>
-        <a href={blogUrl} target="_blank" rel="noopener noreferrer">{t('nav.blog')}</a>
-        <a href={guideUrl} target="_blank" rel="noopener noreferrer">{t('nav.guide')}</a>
-        <a href={termsPath}>{t('nav.terms')}</a>
-        <a href={privacyPath}>{t('nav.privacy')}</a>
-        <a href={gdprPath}>{t('nav.gdpr')}</a>
+        <summary class="cursor-pointer font-bold text-white mb-[5px]">{lang === 'pl' ? 'Informacje' : lang === 'en' ? 'Information' : 'Informationen'}</summary>
+        <a href={blogUrl} target="_blank" rel="noopener noreferrer" class="block text-white no-underline my-1 hover:underline">{t('nav.blog')}</a>
+        <a href={guideUrl} target="_blank" rel="noopener noreferrer" class="block text-white no-underline my-1 hover:underline">{t('nav.guide')}</a>
+        <a href={termsPath} class="block text-white no-underline my-1 hover:underline">{t('nav.terms')}</a>
+        <a href={privacyPath} class="block text-white no-underline my-1 hover:underline">{t('nav.privacy')}</a>
+        <a href={gdprPath} class="block text-white no-underline my-1 hover:underline">{t('nav.gdpr')}</a>
       </details>
     </div>
   </div>

@@ -30,15 +30,15 @@ const lang = 'pl';
   <SaunaJacuzziSection lang={lang} />
 
   <!-- Sauna & jacuzzi gallery -->
-  <div class="gallery">
+  <div class="grid grid-cols-4 gap-[7px] mt-2.5 mb-2.5 max-[1024px]:grid-cols-2">
     {[8,9,10,11,12,13,14,15].map((i, idx) => {
       const alt = ['Jacuzzi w lesie przy domku','Sauna przy domkach Las Bialas','Jacuzzi przy tarasie domku D2','Kolorowe oświetlenie w saunie','Sauna w lesie','Jacuzzi z LED','Podświetlenie LED w saunie','Jacuzzi w ogrodzie przy domku'][idx];
       const tip = ['Jacuzzi przy domku D1','Sauna Las Bialas w Puszczy Noteckiej','Jacuzzi przy tarasie domku D2','Podświetlenie LED w saunie','Sauna w lesie','Jacuzzi z funkcją automatycznego podgrzewania wody, aeromasażem i wielokolorowym podświetleniem LED','Podświetlenie LED w saunie','Jacuzzi w ogrodzie przy domku'][idx];
       const src = ['/foto/lasbialas-jacuzzi1.webp','/foto/sauna1.webp','/foto/lasbialas1.webp','/foto/sauna4.webp','/foto/sauna5.webp','/foto/lasbialas-jacuzzi2.webp','/foto/sauna7.webp','/foto/lasbialas-jacuzzi3.webp'][idx];
       return (
-        <div class="tooltip">
-          <img alt={alt} height="470" loading="lazy" onclick={`openImage(${i})`} src={src} width="834" />
-          <span class="tooltiptext">{tip}</span>
+        <div class="relative inline-block group">
+          <img alt={alt} height="470" loading="lazy" onclick={`openImage(${i})`} src={src} width="834" class="block w-full h-auto object-cover cursor-pointer transition-transform duration-200" />
+          <span class="invisible opacity-0 w-[320px] bg-black/70 text-white text-center rounded-[5px] p-[5px] absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[65px] transition-opacity duration-300 font-[Arial] text-[14px] font-normal leading-[1.4] z-[1] pointer-events-none group-hover:visible group-hover:opacity-100 max-[768px]:hidden">{tip}</span>
         </div>
       );
     })}

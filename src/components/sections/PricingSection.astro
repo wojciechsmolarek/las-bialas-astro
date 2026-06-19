@@ -1,30 +1,110 @@
 ---
-import type { Lang } from '../../i18n/home';
-import { pricing } from '../../i18n/home';
-
 interface Props {
-  lang: Lang;
+  lang: 'pl' | 'en' | 'de';
 }
 
 const { lang } = Astro.props;
-const t = pricing[lang];
+
+const t = {
+  pl: {
+    title: 'Cennik 2026',
+    cols: ['cena za dobę*', 'długość pobytu', '3-4 osoby'],
+    rows: [
+      ['<strong>475 zł *</strong>', 'od 4 dób', '+120 zł / os.'],
+      ['495 zł *', '3 doby', '+120 zł / os.'],
+      ['525 zł', '2 doby', '+120 zł / os.'],
+    ],
+    notes: [
+      '<b>* Minimalny okres pobytu: 2 doby</b>',
+      '<b>*</b> rabat naliczany automatycznie w systemie rezerwacji',
+    ],
+    amenitiesCols: ['cena za dobę', 'liczba osób'],
+    amenitiesRows: [
+      ['550 zł', '1-2 osoby'],
+      ['625 zł', '3 osoby'],
+      ['745 zł', '4 osoby'],
+    ],
+    reserve: 'Rezerwuj',
+    freeTitle: 'Bezpłatnie dla Gości',
+    freeItems: ['sauna fińska', 'balia do schładzania i morsowania', 'szlafroki i ręczniki do sauny', '4 rowery', 'grill, węgiel do grilla i rozpałka', '4 deski SUP'],
+    dayInfo: '<b>Doba hotelowa</b> rozpoczyna się o godz. 15:00, a kończy o godz. 11:00.',
+    footerText: 'Szczegółowy cennik oraz zasady korzystania z domków znajdziecie Państwo w <b><a href="{#guide}" target="_blank" style="color:#328247;">przewodniku dla Gości</a></b>.',
+    guideBtn: 'Przewodnik',
+  },
+  en: {
+    title: 'Pricing 2026',
+    cols: ['length', 'price per night', '3-4 guests'],
+    rows: [
+      ['2 nights', '550 zł', '+120 zł / guest'],
+      ['3 nights', '520 zł*', '+120 zł / guest'],
+      ['4+ nights', '495 zł*', '+120 zł / guest'],
+    ],
+    notes: [
+      '<b>* Minimum stay: 2 nights</b>',
+      '<b>*</b> Discount is applied automatically in the booking system',
+    ],
+    amenitiesCols: ['price per night', 'number of guests'],
+    amenitiesRows: [
+      ['550 zł', '1-2 guests'],
+      ['625 zł', '3 guests'],
+      ['745 zł', '4 guests'],
+    ],
+    reserve: 'Book Now',
+    freeTitle: 'Free for Guests',
+    freeItems: ['Finnish sauna', 'cooling tub', 'sauna robes and towels', '4 bikes', 'grill and charcoal', '4 SUP boards'],
+    dayInfo: '<b>Check-in</b> starts at 15:00, <b>check-out</b> ends at 11:00.',
+    footerText: 'Detailed pricing and cottage rules can be found in the <b><a href="{#guide}" target="_blank" style="color:#328247;">Guest Guidebook</a></b>.',
+    guideBtn: 'Guide',
+  },
+  de: {
+    title: 'Preise 2026',
+    cols: ['Aufenthaltsdauer', 'Preis pro Nacht', '3-4 Pers.'],
+    rows: [
+      ['2 Nächte', '550 zł', '+120 zł / Pers.'],
+      ['3 Nächte', '520 zł*', '+120 zł / Pers.'],
+      ['ab 4 Nächten', '495 zł*', '+120 zł / Pers.'],
+    ],
+    notes: [
+      '<b>* Mindestaufenthalt: 2 Nächte</b>',
+      '<b>*</b> Der Rabatt wird automatisch im Buchungssystem angewendet',
+    ],
+    amenitiesCols: ['Preis pro Nacht', 'Anzahl der Personen'],
+    amenitiesRows: [
+      ['550 zł', '1-2 Pers.'],
+      ['625 zł', '3 Pers.'],
+      ['745 zł', '4 Pers.'],
+    ],
+    reserve: 'Reservierung',
+    freeTitle: 'Kostenlos für Gäste',
+    freeItems: ['Finnische Sauna', 'Abkühlbottich', 'Bademäntel und Saunatücher', '4 Fahrräder', 'Grill und Holzkohle', '4 SUP-Boards'],
+    dayInfo: '<b>Check-in</b> ab 15:00 Uhr, <b>Check-out</b> bis 11:00 Uhr.',
+    footerText: 'Detaillierte Preise und Hausregeln finden Sie im <b><a href="{#guide}" target="_blank" style="color:#328247;">Gästeführer</a></b>.',
+    guideBtn: 'Reiseführer',
+  },
+}[lang];
 
 const guideHref = {
   pl: 'https://lasbialas.pl/info/',
   en: '/przewodnik/',
   de: 'https://info.lasbialas.pl/de/',
 }[lang];
+
+const colW = ['w-[40%] max-[768px]:w-[20%]', 'w-[30%] max-[768px]:w-[26.66%]', 'w-[30%] max-[768px]:w-[26.66%]'];
+
+const tableClass = 'w-full max-w-[900px] border-collapse overflow-hidden text-base my-[30px] mx-auto bg-[#f4f4f4] border-2 border-white text-center table-fixed';
+const thClass = 'bg-[#362e27] text-white font-semibold px-[6px] py-[4px] h-[40px] border-2 border-white align-middle';
+const tdClass = 'h-[60px] p-[6px] border-2 border-white align-middle max-[768px]:text-[0.95rem]';
 ---
 
-<div class="description-box">
-  <h2 class="h2">{t.title}</h2>
+<div class="max-w-[73%] border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mx-auto mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:mb-5 max-[768px]:text-[0.6rem]">
+  <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t.title}</h2>
 
   {/* Main pricing table */}
-  <table class="cennik-tabela">
+  <table class={tableClass}>
     <thead>
       <tr>
-        {t.cols.map((col: string) => (
-          <th style="color: #fff;" set:html={col}></th>
+        {t.cols.map((col: string, i: number) => (
+          <th class={`${thClass} ${colW[i] || ''}`} set:html={col}></th>
         ))}
       </tr>
     </thead>
@@ -32,7 +112,7 @@ const guideHref = {
       {t.rows.map((row: string[]) => (
         <tr>
           {row.map((cell: string) => (
-            <td set:html={cell}></td>
+            <td class={tdClass} set:html={cell}></td>
           ))}
         </tr>
       ))}
@@ -40,18 +120,18 @@ const guideHref = {
   </table>
 
   {/* Notes */}
-  <div class="description-box-promo">
+  <div class="max-w-[82%] max-[768px]:max-w-[98vw] border border-[#328247] rounded-[5px] p-[5px] my-[5px] mx-auto bg-white text-[1.2rem] text-[#328247] text-center">
     {t.notes.map((note: string) => (
-      <p style="margin:5px 0;" set:html={note}></p>
+      <p class="my-[5px]" set:html={note}></p>
     ))}
   </div>
 
   {/* Amenities table */}
-  <table class="cennik-tabela">
+  <table class={tableClass}>
     <thead>
       <tr>
-        {t.amenitiesCols.map((col: string) => (
-          <th style="color: #fff;">{col}</th>
+        {t.amenitiesCols.map((col: string, i: number) => (
+          <th class={`${thClass} ${colW[i] || ''}`}>{col}</th>
         ))}
       </tr>
     </thead>
@@ -59,7 +139,7 @@ const guideHref = {
       {t.amenitiesRows.map((row: string[]) => (
         <tr>
           {row.map((cell: string) => (
-            <td set:html={cell}></td>
+            <td class={tdClass} set:html={cell}></td>
           ))}
         </tr>
       ))}
@@ -67,21 +147,25 @@ const guideHref = {
   </table>
 
   {/* Reserve button */}
-  <div class="button-p-container">
-    <a aria-label="Otwórz panel rezerwacji" class="button-info" href="#" onclick="openReservation(); return false;">{t.reserve}</a>
+  <div class="flex justify-center mt-[30px]">
+    <a aria-label="Otwórz panel rezerwacji" class="flex justify-center items-center w-[140px] h-[46px] text-base font-normal text-white bg-[#2F6940] border-none text-center no-underline normal-case cursor-pointer font-montserrat mb-[30px] hover:bg-[#40a95c] transition-colors" href="#" onclick="openReservation(); return false;">{t.reserve}</a>
   </div>
 
   {/* Free items */}
-  <h3 class="h3">{t.freeTitle}</h3>
-  <div class="section-text">
-    <ul class="inline-bullets">
-      {t.freeItems.map((item: string) => <li>{item}</li>)}
+  <h3 class="text-[1.3rem] text-center mt-[40px] mb-[5px] font-semibold text-[#2c2c2c] overflow-x-auto">{t.freeTitle}</h3>
+  <div class="text-base leading-[1.6] text-brand-black">
+    <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
+      {t.freeItems.map((item: string) => (
+        <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
+          <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{item}
+        </li>
+      ))}
     </ul>
   </div>
 
   {/* Day info & footer */}
-  <p set:html={`${t.dayInfo}<br>${t.footerText.replace('{#guide}', guideHref)}`}></p>
-  <div class="button-p-container">
-    <a class="button-dostep" href={guideHref} target="_blank">{t.guideBtn}</a>
+  <p class="text-base leading-[1.6]" set:html={`${t.dayInfo}<br>${t.footerText.replace('{#guide}', guideHref)}`}></p>
+  <div class="flex justify-center mt-[30px]">
+    <a class="inline-flex justify-center items-center w-auto h-[46px] text-base font-normal text-white bg-[#e97e2d] border-none text-center no-underline normal-case cursor-pointer mb-[30px] mt-[10px] px-[15px] hover:bg-[#f98847] transition-colors" href={guideHref} target="_blank">{t.guideBtn}</a>
   </div>
 </div>

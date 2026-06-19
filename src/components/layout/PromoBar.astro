@@ -14,7 +14,7 @@ const { promoBar } = siteConfig.data;
 
 {
   promoBar.enabled && (
-    <div class="promo-bar">
+    <div class="w-full bg-brand-orange py-[10px] px-[15px] text-white text-center text-[15px] fixed top-0 left-0 z-[3000]">
       <Fragment set:html={promoBar.messages[lang]} />
     </div>
   )
