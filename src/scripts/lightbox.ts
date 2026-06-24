@@ -55,19 +55,21 @@ export function nextImage() {
 }
 
 // Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  const overlay = document.getElementById('lightbox-overlay');
-  if (overlay && overlay.classList.contains('active')) {
-    if (e.key === 'Escape') closeImage();
-    if (e.key === 'ArrowLeft') prevImage();
-    if (e.key === 'ArrowRight') nextImage();
-  }
-});
+if (typeof document !== 'undefined') {
+  document.addEventListener('keydown', (e) => {
+    const overlay = document.getElementById('lightbox-overlay');
+    if (overlay && overlay.classList.contains('active')) {
+      if (e.key === 'Escape') closeImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    }
+  });
 
-// Make functions globally available
-if (typeof window !== 'undefined') {
-  (window as any).openImage = openImage;
-  (window as any).closeImage = closeImage;
-  (window as any).prevImage = prevImage;
-  (window as any).nextImage = nextImage;
+  // Make functions globally available
+  if (typeof window !== 'undefined') {
+    (window as any).openImage = openImage;
+    (window as any).closeImage = closeImage;
+    (window as any).prevImage = prevImage;
+    (window as any).nextImage = nextImage;
+  }
 }

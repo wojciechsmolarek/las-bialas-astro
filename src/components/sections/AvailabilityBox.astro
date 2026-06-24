@@ -3,8 +3,8 @@ import { getEntry } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 import type { languages } from '../../i18n/ui';
 import DescriptionBox from '../ui/DescriptionBox.astro';
-import PromoCode from '../ui/PromoCode.astro';
 import Button from '../ui/Button.astro';
+import { Picture } from 'astro:assets';
 
 interface Props {
   lang: keyof typeof languages;
@@ -13,9 +13,9 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-// Fetch data from Content Collections
 const siteConfig = await getEntry('site', 'config');
-const { availability } = siteConfig.data;
+const availability: any = siteConfig?.data.availability ?? {};
+const availabilityBlock = availability.block?.[lang] ?? '';
 ---
 
 <div class="mx-auto max-w-screen-xl px-4 py-8">
@@ -24,20 +24,16 @@ const { availability } = siteConfig.data;
       {t('section.available_dates')}
     </h2>
 
-    <img
+    <Picture
       alt="kalendarz"
       src="/images/kalendarz.png"
-      width="55"
-      height="55"
+      width={55}
+      height={55}
+      formats={['avif', 'webp']}
       class="mx-auto mb-4"
     />
 
-    <p class="mb-4">
-      <b>{t('availability.june')}</b><br />
-      <b>{availability.nextAvailable.dates}</b> | {availability.nextAvailable.cabin[lang]}<br />
-      -10% z kodem
-      <PromoCode code={availability.nextAvailable.discountCode || 'LB22CZE'} id="code1" />
-    </p>
+    <Fragment set:html={availabilityBlock} />
 
     <div class="my-6 flex justify-center">
       <Button

@@ -11,8 +11,7 @@ export default defineConfig({
     defaultLocale: 'pl',
     locales: ['pl', 'en', 'de'],
     routing: {
-      prefixDefaultLocale: false,
-      strategy: 'pathname'
+      prefixDefaultLocale: false
     }
   },
 
@@ -26,9 +25,7 @@ export default defineConfig({
           en: 'en',
           de: 'de'
         }
-      },
-      changefreq: 'weekly',
-      lastmod: new Date()
+      }
     })
   ]
 });

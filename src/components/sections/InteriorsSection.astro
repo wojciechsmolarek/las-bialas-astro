@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+
 interface Props {
   lang: 'pl' | 'en' | 'de';
 }
@@ -170,7 +172,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <div class={miniGrid}>
     {t.bedrooms.images.map((img: any) => (
       <div class="relative inline-block group">
-        <img alt={img.alt} height="470" loading="lazy" src={img.src} class={miniImg} width="834" />
+        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} class={miniImg} />
         <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
@@ -189,7 +191,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <div class={miniGrid}>
     {t.living.images.map((img: any) => (
       <div class="relative inline-block group">
-        <img alt={img.alt} height="470" loading="lazy" src={img.src} class={miniImg} width="834" />
+        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} class={miniImg} />
         <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
@@ -208,7 +210,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <div class={miniGrid}>
     {t.bathroom.images.map((img: any) => (
       <div class="relative inline-block group">
-        <img alt={img.alt} height="470" loading="lazy" src={img.src} class={miniImg} width="834" />
+        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} class={miniImg} />
         <span class={tipClass}>{img.tip}</span>
       </div>
     ))}

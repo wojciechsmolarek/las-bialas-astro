@@ -1,5 +1,6 @@
 ---
 import { useTranslations } from '../../i18n/utils';
+import { Picture } from 'astro:assets';
 
 interface Props {
   lang: 'pl' | 'en' | 'de';
@@ -14,9 +15,9 @@ const enUrl = '/en/';
 const deUrl = '/de/';
 ---
 
-<div class="sticky top-[35px] z-[1000] w-full h-auto flex justify-between items-center gap-0 px-2.5 py-2.5 text-base text-brand-black bg-white/95 shadow-[0px_4px_8px_rgba(0,0,0,0.1)]">
+<div class="sticky top-[45px] z-[1000] w-full h-auto flex justify-between items-center gap-0 px-2.5 py-2.5 text-base text-brand-black bg-white/95 shadow-[0px_4px_8px_rgba(0,0,0,0.1)]">
   <a href={homeUrl}>
-    <img alt="Logo Las Biala's" class="h-auto max-h-[82px] w-auto max-w-[97px] ml-5 mr-4 object-contain" src="/images/lasbialas.png" />
+    <Picture alt="Logo Las Biala's" src="/images/lasbialas.png" width={97} height={82} formats={['avif', 'webp']} class="h-auto max-h-[82px] w-auto max-w-[97px] ml-5 mr-4 object-contain" />
   </a>
 
   <div class="text-left flex-1 min-w-0">
@@ -29,25 +30,34 @@ const deUrl = '/de/';
   <div>
     <div class="hidden flex-wrap items-center gap-2 lg:gap-3 xl:gap-4 min-[1070px]:flex">
       <a href="tel:+48789773285" class="flex items-center gap-1 lg:gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors text-sm lg:text-base">
-        <img
+        <Picture
           alt="Telefon"
           src="/images/telefon-g.png"
+          width={24}
+          height={24}
+          formats={['avif', 'webp']}
           class="w-5 h-5 lg:w-6 lg:h-6 align-middle"
         />+48 789 773 285
       </a>
 
       <a href="https://wa.me/48660194187" class="flex items-center gap-1 lg:gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors text-sm lg:text-base">
-        <img
+        <Picture
           alt="WhatsApp"
           src="/images/whatsapp-green.png"
+          width={24}
+          height={24}
+          formats={['avif', 'webp']}
           class="w-5 h-5 lg:w-6 lg:h-6 align-middle"
         />660 194 187
       </a>
 
       <a href="mailto:domki@lasbialas.pl" class="flex items-center gap-1 lg:gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors text-sm lg:text-base hidden lg:flex">
-        <img
+        <Picture
           alt="Mail"
           src="/images/mail-g.png"
+          width={24}
+          height={24}
+          formats={['avif', 'webp']}
           class="w-5 h-5 lg:w-6 lg:h-6 align-middle"
         />domki@lasbialas.pl
       </a>
@@ -58,9 +68,12 @@ const deUrl = '/de/';
         target="_blank"
         class="flex items-center gap-1 lg:gap-2 text-brand-black no-underline hover:underline hover:text-brand-green transition-colors text-sm lg:text-base hidden lg:flex"
       >
-        <img
+        <Picture
           alt="Instagram Las Biala's"
           src="/images/instagram.png"
+          width={24}
+          height={24}
+          formats={['avif', 'webp']}
           class="w-5 h-5 lg:w-6 lg:h-6 align-middle"
         />/lasbialas
       </a>
@@ -77,16 +90,17 @@ const deUrl = '/de/';
           class="inline-block p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
           onclick="openReservation(); return false;"
         >
-          <img alt="Rezerwacja" src="/images/cart.png" class="w-8 h-8" />
+          <Picture alt="Rezerwacja" src="/images/cart.png" width={32} height={32} formats={['avif', 'webp']} class="w-8 h-8" />
         </button>
       </div>
     </div>
 
     <!-- Hamburger menu - CSS icon instead of image -->
     <button 
-      class="max-[1069px]:flex min-[1070px]:hidden hamburger-menu cursor-pointer p-2 border-0 bg-transparent hover:bg-gray-100 rounded-md transition-colors"
+      class="max-[1069px]:flex min-[1070px]:hidden cursor-pointer p-2 border-0 bg-transparent hover:bg-gray-100 rounded-md transition-colors"
       onclick="toggleMenu()"
       aria-label="Menu"
+      data-hamburger
     >
       <div class="w-6 h-5 relative flex flex-col justify-center">
         <span class="hamburger-line block w-full h-0.5 bg-brand-black rounded-sm transition-all duration-300 transform origin-center"></span>
@@ -191,7 +205,7 @@ const deUrl = '/de/';
 <script is:inline>
   function toggleMenu() {
     const menu = document.getElementById('mobileContactMenu');
-    const hamburger = document.querySelector('.hamburger-menu');
+    const hamburger = document.querySelector('[data-hamburger]');
     const hamburgerLines = hamburger?.querySelectorAll('.hamburger-line');
     
     if (menu && hamburgerLines) {
@@ -213,7 +227,7 @@ const deUrl = '/de/';
   // Close mobile menu when clicking outside
   document.addEventListener('click', function (event) {
     const menu = document.getElementById('mobileContactMenu');
-    const hamburger = document.querySelector('.hamburger-menu');
+    const hamburger = document.querySelector('[data-hamburger]');
     const closeMenu = document.querySelector('.close-menu');
     
     if (menu && hamburger && !menu.contains(event.target) && !hamburger.contains(event.target) && !closeMenu?.contains(event.target)) {

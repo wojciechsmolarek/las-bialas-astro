@@ -1,26 +1,19 @@
 ---
+import { getEntry } from 'astro:content';
+
 interface Props {
   lang: 'pl' | 'en' | 'de';
 }
 
 const { lang } = Astro.props;
-
-// Prosty przełącznik do edycji dla inwestora
-const showPromoBar = true;
-
-// Dane do edycji w jednym miejscu - wszystkie języki
-const data = {
-  pl: '<b>Rezerwacje </b><span class="promo-code">LIPIEC</span><span class="promo-code">SIERPIEŃ</span> <b> tylko na telefon</b>',
-  en: '<b>Bookings </b><span class="promo-code">JULY</span><span class="promo-code">AUGUST</span> <b> by phone only</b>',
-  de: '<b>Buchungen </b><span class="promo-code">JULI</span><span class="promo-code">AUGUST</span> <b> nur telefonisch</b>'
-};
-
-const currentMessage = data[lang];
+const siteConfig = await getEntry('site', 'config');
+const promoBar: any = siteConfig?.data.promoBar ?? { enabled: false, messages: {} };
+const currentMessage = promoBar.messages[lang] ?? '';
 ---
 
 {
-  showPromoBar && (
-    <div class="w-full bg-brand-orange py-[10px] px-[15px] text-white text-center text-[15px] fixed top-0 left-0 z-[3000]">
+  promoBar.enabled && currentMessage && (
+    <div class="w-full bg-brand-orange py-[10px] px-[15px] text-brand-black text-center text-[15px] fixed top-0 left-0 z-[3000]">
       <Fragment set:html={currentMessage} />
     </div>
   )

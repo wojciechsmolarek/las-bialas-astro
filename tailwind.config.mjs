@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,json}'],
   theme: {
     extend: {
       colors: {
@@ -9,10 +9,15 @@ export default {
           red: '#e51e50',
           pink: '#F16174',
           green: '#2F6940',
+          'green-light': '#40a95c',
           'dark-green': '#328247',
           orange: '#e97e2d',
+          'orange-light': '#f98847',
+          brown: '#362e27',
           gray: '#999999',
           'light-gray': '#f2f2f2',
+          'gray-light': '#cccccc',
+          'table-bg': '#f4f4f4',
           white: '#ffffff',
           black: '#131212',
           'dark-gray': '#2c2c2c',

@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import { Picture } from 'astro:assets';
 import Gallery from '../../components/sections/Gallery.astro';
 import AmenitiesSection from '../../components/sections/AmenitiesSection.astro';
 import TopBoxes from '../../components/sections/TopBoxes.astro';
@@ -38,7 +39,7 @@ const lang = 'de';
       const src = ['/foto/lasbialas-jacuzzi1.webp','/foto/sauna1.webp','/foto/lasbialas1.webp','/foto/sauna4.webp','/foto/sauna5.webp','/foto/lasbialas-jacuzzi2.webp','/foto/sauna7.webp','/foto/lasbialas-jacuzzi3.webp'][idx];
       return (
         <div class="relative inline-block group">
-          <img alt={alt} height="470" loading="lazy" onclick={`openImage(${i})`} src={src} width="834" class="block w-full h-auto object-cover cursor-pointer transition-transform duration-200" />
+          <Picture alt={alt} width={834} height={470} loading="lazy" src={src} formats={['avif', 'webp']} onclick={`openImage(${i})`} class="block w-full h-auto object-cover cursor-pointer transition-transform duration-200" />
           <span class="invisible opacity-0 w-[320px] bg-black/70 text-white text-center rounded-[5px] p-[5px] absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[65px] transition-opacity duration-300 font-[Arial] text-[14px] font-normal leading-[1.4] z-[1] pointer-events-none group-hover:visible group-hover:opacity-100 max-[768px]:hidden">{tip}</span>
         </div>
       );

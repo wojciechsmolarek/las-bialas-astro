@@ -1,217 +1,25 @@
 ---
+import { getEntry } from 'astro:content';
+
 interface Props {
   lang: 'pl' | 'en' | 'de';
 }
 
 const { lang } = Astro.props;
 
-// Proste przełączniki do edycji
-const showReservationButton = true;
-const useListsInsteadOfParagraphs = true;
-
-// Dane do edycji w jednym miejscu - wszystkie języki
-const data = {
-  pl: {
-    availabilityTitle: 'Najbliższe wolne terminy',
-    month: 'Czerwiec 2026',
-    dates: '22-25 cze | domek D2',
-    discountText: '-10% z kodem',
-    discountCode: 'LB22CZE',
-    checkText: 'lub sprawdź inne',
-    availableDatesText: 'dostępne terminy',
-    selectCabinText: '(wybierając domek D1 lub D2).',
-    reservationText: 'Rezerwuj',
-    summerTitle: 'Urlopy lato 2026',
-    julyTitle: 'Wolne terminy <span class="promo-code">lipiec</span>',
-    augustTitle: 'Wolne terminy <span class="promo-code">sierpień</span>',
-    onSiteTitle: 'Na miejscu',
-    contactTitle: 'Aby zarezerwować pobyt prosimy o kontakt telefoniczny albo WhatsApp.',
-    julyDates: ['3 - 9 lip | (D1)', '26 lip - 1 sie | (D1)'],
-    augustDates: ['3 - 9 sie (D2)', '17 - 23 sie (D2)', '15 - 31 sie (D1)'],
-    amenities: [
-      'prywatne jacuzzi',
-      'sauna',
-      'basa chłodzące',
-      'grill',
-      'hamaki',
-      'rowery',
-      'deski sup',
-      'wifi',
-      'netflix'
-    ],
-    phone: '789 773 285',
-    whatsapp: '660 194 187'
-  },
-  en: {
-    availabilityTitle: 'Next Available Dates',
-    month: 'June 2026',
-    dates: '22-25 Jun | cabin D2',
-    discountText: 'with 10% discount code',
-    discountCode: 'LB22JUN',
-    checkText: 'or check other',
-    availableDatesText: 'available dates',
-    selectCabinText: '(selecting cabin D1 or D2).',
-    reservationText: 'Reserve',
-    summerTitle: 'Summer 2026 Holidays',
-    julyTitle: 'Available dates <span class="promo-code">July</span>',
-    augustTitle: 'Available dates <span class="promo-code">August</span>',
-    onSiteTitle: 'On site',
-    contactTitle: 'To make a reservation, please contact us by phone or WhatsApp.',
-    julyDates: ['3 - 9 Jul | (D1)', '26 Jul - 1 Aug | (D1)'],
-    augustDates: ['3 - 9 Aug (D2)', '17 - 23 Aug (D2)', '15 - 31 Aug (D1)'],
-    amenities: [
-      'private jacuzzi',
-      'sauna',
-      'cooling tubs',
-      'grill',
-      'hammocks',
-      'bicycles',
-      'sup boards',
-      'wifi',
-      'netflix'
-    ],
-    phone: '789 773 285',
-    whatsapp: '660 194 187'
-  },
-  de: {
-    availabilityTitle: 'Nächste verfügbare Termine',
-    month: 'Juni 2026',
-    dates: '22-25 Jun | Haus D2',
-    discountText: 'mit 10% Rabattcode',
-    discountCode: 'LB22JUN',
-    checkText: 'oder prüfen Sie andere',
-    availableDatesText: 'verfügbare Termine',
-    selectCabinText: '(Auswahl des Hauses D1 oder D2).',
-    reservationText: 'Reservieren',
-    summerTitle: 'Sommerurlaub 2026',
-    julyTitle: 'Verfügbare Termine <span class="promo-code">Juli</span>',
-    augustTitle: 'Verfügbare Termine <span class="promo-code">August</span>',
-    onSiteTitle: 'Vor Ort',
-    contactTitle: 'Um eine Reservierung vorzunehmen, kontaktieren Sie uns bitte telefonisch oder über WhatsApp.',
-    julyDates: ['3 - 9 Jul | (D1)', '26 Jul - 1 Aug | (D1)'],
-    augustDates: ['3 - 9 Aug (D2)', '17 - 23 Aug (D2)', '15 - 31 Aug (D1)'],
-    amenities: [
-      'privates Jacuzzi',
-      'Sauna',
-      'Kühltonnen',
-      'Grill',
-      'Hängematten',
-      'Fahrräder',
-      'SUP-Boards',
-      'WLAN',
-      'Netflix'
-    ],
-    phone: '789 773 285',
-    whatsapp: '660 194 187'
-  }
-};
-
-const currentData = data[lang];
+const siteConfig = await getEntry('site', 'config');
+const topBoxes: any = siteConfig?.data.topBoxes ?? {};
+const currentData = topBoxes[lang] ?? {};
 ---
 
 <div class="flex gap-[20px] items-stretch max-w-[73%] mx-auto flex-wrap max-[1367px]:flex-col max-[1367px]:max-w-full max-[1367px]:gap-[1px]">
-  {/* Lewy bok - Dostępność */}
   <div class="flex-[0_0_49%] max-[1367px]:flex-[0_0_100%] max-[1367px]:w-full border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:text-[0.6rem]">
-    <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{currentData.availabilityTitle}</h2>
-    <img alt="kalendarz" height="55" src="/images/kalendarz.png" width="55" class="inline-block" />
-
-    <p><b>{currentData.month}</b></p>
-    <b>{currentData.dates}</b><br />
-    {currentData.discountText}
-    <span class="inline-flex items-center">
-      <span class="inline-block bg-[#d4edda] text-[#155724] px-[6px] py-[2px] mx-[4px] rounded-[4px] font-bold" id="code1">{currentData.discountCode}</span>
-      <button class="border-0 bg-transparent cursor-pointer p-[2px] text-black transition-all hover:text-[#2F6940] hover:scale-[1.2]" onclick="copyCode('code1', this)" title="Kopiuj kod">
-        <svg width="26" height="26" viewBox="0 0 24 26" fill="none">
-          <rect x="7" y="15" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"></rect>
-          <rect x="3" y="11" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"></rect>
-        </svg>
-      </button>
-    </span>
-    
-    {showReservationButton && (
-      <div class="flex justify-center mt-[30px]">
-        <a aria-label="Rezerwacja" class="flex justify-center items-center w-[140px] h-[46px] text-base font-normal text-white bg-[#2F6940] border-none text-center no-underline normal-case cursor-pointer font-montserrat mb-[30px] hover:bg-[#40a95c] transition-colors" href="#" onclick="openReservation(); return false;">{currentData.reservationText}</a>
-      </div>
-    )}
-    
-    <p>
-      {currentData.checkText}
-      <a aria-label="Rezerwacja" href="#" onclick="openReservation(); return false;" class="text-[#328247] no-underline hover:underline font-bold"><b>{currentData.availableDatesText}</b></a>
-      {currentData.selectCabinText}
-    </p>
+    <Fragment set:html={currentData.availabilityBlock} />
   </div>
 
-  {/* Prawy bok - Lato */}
   <div class="flex-[0_0_49%] max-[1367px]:flex-[0_0_100%] max-[1367px]:w-full border border-[#ccc] rounded-[5px] py-[10px] px-[80px] mb-5 bg-white text-base text-center max-[768px]:max-w-[96vw] max-[768px]:p-5 max-[768px]:my-[1px] max-[768px]:text-[0.6rem]">
-    <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{currentData.summerTitle}</h2>
-    
-    <p><b set:html={currentData.julyTitle}></b></p>
-    {useListsInsteadOfParagraphs ? (
-      <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
-        {currentData.julyDates.map((d: string) => (
-          <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
-            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{d}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <div class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0">
-        {currentData.julyDates.map((d: string) => (
-          <p class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
-            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{d}
-          </p>
-        ))}
-      </div>
-    )}
-    
-    <p><b set:html={currentData.augustTitle}></b></p>
-    {useListsInsteadOfParagraphs ? (
-      <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
-        {currentData.augustDates.map((d: string) => (
-          <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
-            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{d}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <div class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0">
-        {currentData.augustDates.map((d: string) => (
-          <p class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
-            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{d}
-          </p>
-        ))}
-      </div>
-    )}
-    
-    <div class="w-20 h-px bg-[#999] my-2 mx-auto"></div>
-    <p>{currentData.onSiteTitle}</p>
-    
-    {useListsInsteadOfParagraphs ? (
-      <ul class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0 list-none">
-        {currentData.amenities.map((a: string) => (
-          <li class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
-            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{a}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <div class="flex flex-wrap justify-center gap-y-[6px] gap-x-[16px] my-2.5 p-0">
-        {currentData.amenities.map((a: string) => (
-          <p class="m-0 leading-[1.4] text-[0.9rem] flex items-center">
-            <span class="inline-block w-[0.45rem] h-[0.45rem] bg-[#2F6940] mr-[.5em] shrink-0"></span>{a}
-          </p>
-        ))}
-      </div>
-    )}
-    
-    <p>{currentData.contactTitle}</p>
-    <ul class="list-none p-0 text-[0.95rem]">
-      <li class="my-2">
-        <img src="/images/phone-green.png" class="w-[18px] h-[18px] mr-[3px] ml-2.5 align-[-3px] inline" alt="Telefon">
-        <a href={`tel:+48${currentData.phone.replace(/\s/g, '')}`} class="text-inherit no-underline hover:underline">{currentData.phone}</a>
-        <img src="/images/whatsapp-green.png" class="w-[18px] h-[18px] mr-[3px] ml-2.5 align-[-3px] inline" alt="WhatsApp">
-        <a href={`https://wa.me/48${currentData.whatsapp.replace(/\s/g, '')}`} class="text-inherit no-underline hover:underline">{currentData.whatsapp}</a>
-      </li>
-    </ul>
+    <Fragment set:html={currentData.summerBlock} />
+    <hr class="w-20 h-px bg-[#999] my-2 mx-auto border-0" />
+    <Fragment set:html={currentData.amenitiesBlock} />
   </div>
 </div>

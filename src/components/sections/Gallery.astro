@@ -1,5 +1,6 @@
 ---
 import { useTranslations } from '../../i18n/utils';
+import { Picture } from 'astro:assets';
 
 interface Props {
   lang: 'pl' | 'en' | 'de';
@@ -71,16 +72,16 @@ const galleryImages = [
 <div class="grid grid-cols-4 gap-[7px] mt-2.5 mb-2.5 max-[1024px]:grid-cols-2">
   {
     galleryImages.map((image) => (
-      <div class="relative inline-block group">
-        <img
-          alt={image.alt}
-          height="470"
-          loading={image.loading || undefined}
-          fetchpriority={image.fetchpriority || undefined}
-          onclick={`openImage(${image.index})`}
+      <div class="relative inline-block group cursor-pointer" onclick={`openImage(${image.index})`}>
+        <Picture
           src={image.src}
-          width="834"
-          class="block w-full h-auto object-cover cursor-pointer transition-transform duration-200"
+          alt={image.alt}
+          width={834}
+          height={470}
+          formats={['avif', 'webp']}
+          loading={image.loading || undefined}
+          fetchpriority={image.fetchpriority as 'high' | 'low' | 'auto' | undefined}
+          class="block w-full h-auto object-cover transition-transform duration-200"
         />
         <span class="invisible opacity-0 w-[320px] bg-black/70 text-white text-center rounded-[5px] p-[5px] absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[65px] transition-opacity duration-300 font-[Arial] text-[14px] font-normal leading-[1.4] z-[1] pointer-events-none group-hover:visible group-hover:opacity-100 max-[768px]:hidden">{image.tooltip}</span>
       </div>
@@ -88,76 +89,6 @@ const galleryImages = [
   }
 </div>
 
-<!-- Overlay dla powiększonego zdjęcia -->
-<div class="invisible fixed top-0 left-0 w-full h-full bg-black/[0.86] flex justify-center items-center z-[1000]" id="overlay">
-  <span class="absolute top-[50px] right-5 text-white text-[70px] cursor-pointer" onclick="closeImage()">×</span>
-  <span class="text-white text-[30px] cursor-pointer self-center px-2.5" onclick="prevImage()">❮</span>
-  <img alt="Powiększone zdjęcie" id="overlay-image" src="" class="w-[1280px] h-[720px] max-w-[82vw] max-h-[90vh] object-contain mx-[5px]" />
-  <span class="text-white text-[30px] cursor-pointer self-center px-2.5" onclick="nextImage()">❯</span>
-</div>
-
-<script is:inline>
-  const images = [
-    '/foto/lasbialas1.webp',
-    '/foto/lasbialas2.webp',
-    '/foto/lasbialas3.webp',
-    '/foto/lasbialas4.webp',
-    '/foto/lasbialas5.webp',
-    '/foto/lasbialas6.webp',
-    '/foto/lasbialas7.webp',
-    '/foto/lasbialas8.webp',
-    '/foto/lasbialas-jacuzzi1.webp',
-    '/foto/sauna1.webp',
-    '/foto/lasbialas1.webp',
-    '/foto/sauna4.webp',
-    '/foto/sauna5.webp',
-    '/foto/lasbialas-jacuzzi2.webp',
-    '/foto/sauna7.webp',
-    '/foto/lasbialas-jacuzzi3.webp'
-  ];
-
-  let currentImageIndex = 0;
-
-  function openImage(index) {
-    currentImageIndex = index;
-    const overlay = document.getElementById('overlay');
-    const overlayImage = document.getElementById('overlay-image');
-    overlayImage.src = images[currentImageIndex];
-    overlay.style.visibility = 'visible';
-  }
-
-  function closeImage() {
-    const overlay = document.getElementById('overlay');
-    overlay.style.visibility = 'hidden';
-  }
-
-  function prevImage() {
-    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-    const overlayImage = document.getElementById('overlay-image');
-    overlayImage.src = images[currentImageIndex];
-  }
-
-  function nextImage() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    const overlayImage = document.getElementById('overlay-image');
-    overlayImage.src = images[currentImageIndex];
-  }
-
-  document.addEventListener('keydown', function (e) {
-    const overlay = document.getElementById('overlay');
-    if (overlay.style.visibility === 'visible') {
-      if (e.key === 'Escape') {
-        closeImage();
-      } else if (e.key === 'ArrowLeft') {
-        prevImage();
-      } else if (e.key === 'ArrowRight') {
-        nextImage();
-      }
-    }
-  });
-
-  window.openImage = openImage;
-  window.closeImage = closeImage;
-  window.prevImage = prevImage;
-  window.nextImage = nextImage;
+<script>
+  import '../../scripts/lightbox';
 </script>

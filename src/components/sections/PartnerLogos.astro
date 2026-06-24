@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+
 interface Props {
   lang?: string;
 }
@@ -9,21 +11,21 @@ const { lang = 'pl' } = Astro.props;
 <section class="w-full bg-[#f2f2f2] p-5 mb-5">
   <div class="grid grid-cols-[repeat(4,auto)] justify-center justify-items-center items-center gap-[120px] max-w-[1280px] mx-auto max-[1023px]:grid-cols-[repeat(2,auto)] max-[1023px]:gap-x-0 max-[1023px]:gap-y-[15px]">
     <a href="#" aria-label="Otwórz panel rezerwacji" onclick="openReservation(); return false;" class="inline-block items-center">
-      <img alt="Las Biala's" src="/images/las-bialas-www.png" class="block w-[163px] h-[30px]" loading="lazy" decoding="async" />
+      <Picture alt="Las Biala's" src="/images/las-bialas-www.png" width={163} height={30} formats={['avif', 'webp']} loading="lazy" decoding="async" class="block w-[163px] h-[30px]" />
     </a>
     <div class="text-center">
       <a href="https://www.booking.com/hotel/pl/las-bialas-kameralne-domki-w-puszczy-noteckiej.pl.html" target="_blank" rel="nofollow noopener noreferrer" aria-label="Booking.com">
-        <img alt="booking.com" src="/images/booking_logo.webp" class="block w-[172px] h-[40px] mt-2.5" loading="lazy" decoding="async" />
+        <Picture alt="booking.com" src="/images/booking_logo.webp" width={172} height={40} formats={['avif', 'webp']} loading="lazy" decoding="async" class="block w-[172px] h-[40px] mt-2.5" />
       </a>
     </div>
     <div class="text-center">
       <a href="https://www.airbnb.pl/h/lasbialas1" target="_blank" rel="nofollow noopener noreferrer" aria-label="Airbnb">
-        <img alt="airbnb" src="/images/airbnb_logo.webp" class="block w-[194px] h-[45px] mt-2.5" loading="lazy" decoding="async" />
+        <Picture alt="airbnb" src="/images/airbnb_logo.webp" width={194} height={45} formats={['avif', 'webp']} loading="lazy" decoding="async" class="block w-[194px] h-[45px] mt-2.5" />
       </a>
     </div>
     <div class="text-center">
       <a href="https://r.alohacamp.com/c0zx" target="_blank" rel="nofollow noopener noreferrer" aria-label="Alohacamp">
-        <img alt="alohacamp" src="/images/aloha_logo.webp" class="block w-[190px] h-[44px] mt-2.5" loading="lazy" decoding="async" />
+        <Picture alt="alohacamp" src="/images/aloha_logo.webp" width={190} height={44} formats={['avif', 'webp']} loading="lazy" decoding="async" class="block w-[190px] h-[44px] mt-2.5" />
       </a>
     </div>
   </div>

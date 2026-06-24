@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+
 interface Props {
   lang: 'pl' | 'en' | 'de';
 }
@@ -53,7 +55,7 @@ const trainHref = 'https://www.google.pl/maps/place/Mia%C5%82y/@52.8296365,16.24
   <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t.carTitle}</h2>
   <div class="text-center mt-2.5 mb-5">
     <a href={carHref} rel="nofollow noopener noreferrer" class="inline-flex items-center text-[18px] text-[#328247] no-underline" target="_blank">
-      <img alt="Car" height="45" src="/images/car.png" class="mr-[5px] align-middle" width="45" />
+      <Picture alt="Car" height={45} width={45} src="/images/car.png" formats={['avif', 'webp']} class="mr-[5px] align-middle" />
       <span class="leading-none">{t.carBtn}</span>
     </a>
     <p class="text-base leading-[1.6]" set:html={t.carText}></p>
@@ -65,7 +67,7 @@ const trainHref = 'https://www.google.pl/maps/place/Mia%C5%82y/@52.8296365,16.24
   <h2 class="text-[24px] text-center mt-5 mb-5 text-brand-black font-bold overflow-x-auto">{t.trainTitle}</h2>
   <div class="text-center mt-2.5 mb-5">
     <a href={trainHref} rel="nofollow noopener noreferrer" class="inline-flex items-center text-[18px] text-[#328247] no-underline" target="_blank">
-      <img alt="Train" height="45" src="/images/train.png" class="mr-[5px] align-middle" width="45" />
+      <Picture alt="Train" height={45} width={45} src="/images/train.png" formats={['avif', 'webp']} class="mr-[5px] align-middle" />
       <span class="leading-none">{t.trainBtn}</span>
     </a>
     <p class="text-base leading-[1.6]" set:html={t.trainText}></p>
@@ -78,7 +80,7 @@ const trainHref = 'https://www.google.pl/maps/place/Mia%C5%82y/@52.8296365,16.24
   <p class="text-base leading-[1.6]">{t.locationText}</p>
   <div class="text-center mt-2.5">
     <a href={t.mapHref} class="inline-flex items-center text-[18px] text-[#328247] no-underline" target="_blank">
-      <img alt="Map" height="42" src="/foto/dojazd-lokalny.png" class="mr-[5px] align-middle" width="42" />
+      <Picture alt="Map" height={42} width={42} src="/foto/dojazd-lokalny.png" formats={['avif', 'webp']} class="mr-[5px] align-middle" />
       <span class="leading-none">{t.mapBtn}</span>
     </a>
   </div>

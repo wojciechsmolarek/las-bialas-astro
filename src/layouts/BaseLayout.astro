@@ -37,6 +37,14 @@ const hreflangs = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="robots" content="noindex, nofollow" />
 
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.bookero.pl" />
+    <link rel="dns-prefetch" href="https://cdn.bookero.pl" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://collect.yabrix.com" />
+    <link rel="dns-prefetch" href="https://collect.yabrix.com" />
+
     <SEO
       title={title}
       description={description}
@@ -138,46 +146,63 @@ const hreflangs = [
 
       // Load Bookero script
       (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://cdn.bookero.pl/plugin/v2/js/bookero-compiled.js';
-        d.body.appendChild(s);
+        function loadBookero() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://cdn.bookero.pl/plugin/v2/js/bookero-compiled.js';
+          d.body.appendChild(s);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', loadBookero);
+        } else {
+          loadBookero();
+        }
       })();
     </script>
 
     <!-- Bookero Validation (Minimum 2 nights) -->
     <script is:inline>
-      function enforceMinimumDays() {
-        var daysInput = document.getElementById('bookero-plugin-days-number');
-        if (daysInput) {
-          var days = parseInt(daysInput.value) || 10;
-          if (days < 2) {
-            setTimeout(function () {
-              daysInput.value = 2;
+      (function() {
+        function enforceMinimumDays() {
+          var daysInput = document.getElementById('bookero-plugin-days-number');
+          if (daysInput) {
+            var days = parseInt(daysInput.value) || 10;
+            if (days < 2) {
               setTimeout(function () {
-                var event = new Event('input');
-                daysInput.dispatchEvent(event);
+                daysInput.value = 2;
+                setTimeout(function () {
+                  var event = new Event('input');
+                  daysInput.dispatchEvent(event);
+                }, 100);
               }, 100);
-            }, 100);
+            }
           }
         }
-      }
 
-      document.body.addEventListener('bookero-plugin:days-changed', function (e) {
-        enforceMinimumDays();
-      });
+        function initValidation() {
+          document.body.addEventListener('bookero-plugin:days-changed', function (e) {
+            enforceMinimumDays();
+          });
 
-      document.body.addEventListener('bookero-plugin:service-updated', function (e) {
-        enforceMinimumDays();
-      });
+          document.body.addEventListener('bookero-plugin:service-updated', function (e) {
+            enforceMinimumDays();
+          });
 
-      document.body.addEventListener('bookero-plugin:loaded', function (e) {
-        enforceMinimumDays();
-      });
+          document.body.addEventListener('bookero-plugin:loaded', function (e) {
+            enforceMinimumDays();
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initValidation);
+        } else {
+          initValidation();
+        }
+      })();
     </script>
 
     <slot name="head" />
   </head>
-  <body>
+  <body class="font-sans font-light">
     <div id="bookero"></div>
     <slot />
   </body>
