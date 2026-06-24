@@ -36,10 +36,10 @@ const lang = 'en';
     {[8,9,10,11,12,13,14,15].map((i, idx) => {
       const alt = ['Jacuzzi in the forest by the cabin','Sauna by the cabins','Jacuzzi by terrace of cabin D2','Colorful lighting in sauna','Sauna in the forest','Jacuzzi with LED','LED lighting in sauna','Jacuzzi in garden by cabin'][idx];
       const tip = ['Jacuzzi by cabin D1','Sauna Las Bialas in Noteć Forest','Jacuzzi by terrace of cabin D2','LED lighting in sauna','Sauna in the forest','Jacuzzi with automatic heating, air massage and LED','LED lighting in sauna','Jacuzzi in garden by cabin'][idx];
-      const src = ['/foto/lasbialas-jacuzzi1.webp','/foto/sauna1.webp','/foto/lasbialas1.webp','/foto/sauna4.webp','/foto/sauna5.webp','/foto/lasbialas-jacuzzi2.webp','/foto/sauna7.webp','/foto/lasbialas-jacuzzi3.webp'][idx];
+      const src = ['/foto/webp-1280/lasbialas-jacuzzi1.webp','/foto/webp-1280/sauna1.webp','/foto/webp-1280/lasbialas1.webp','/foto/webp-1280/sauna4.webp','/foto/webp-1280/sauna5.webp','/foto/webp-1280/lasbialas-jacuzzi2.webp','/foto/webp-1280/sauna7.webp','/foto/webp-1280/lasbialas-jacuzzi3.webp'][idx];
       return (
         <div class="relative inline-block group">
-          <Picture alt={alt} width={834} height={470} loading="lazy" src={src} formats={['avif', 'webp']} onclick={`openImage(${i})`} class="block w-full h-auto object-cover cursor-pointer transition-transform duration-200" />
+          <Picture alt={alt} width={834} height={470} loading="lazy" src={src} formats={['avif', 'webp']} sizes="(max-width: 1024px) 50vw, 25vw" onclick={`openImage(${i})`} class="block w-full h-auto object-cover cursor-pointer transition-transform duration-200" />
           <span class="invisible opacity-0 w-[320px] bg-black/70 text-white text-center rounded-[5px] p-[5px] absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[65px] transition-opacity duration-300 font-[Arial] text-[14px] font-normal leading-[1.4] z-[1] pointer-events-none group-hover:visible group-hover:opacity-100 max-[768px]:hidden">{tip}</span>
         </div>
       );

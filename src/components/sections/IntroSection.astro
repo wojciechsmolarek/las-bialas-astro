@@ -52,7 +52,7 @@ const t = {
   <p class="text-base leading-[1.6]" set:html={t.p1}></p>
   <p class="text-base leading-[1.6]" set:html={t.p2}></p>
 
-  <Picture alt={t.title} src="/images/background-image.webp" width={1200} height={300} loading="lazy" formats={['avif', 'webp']} class="max-w-full h-auto mt-[50px]" />
+  <Picture alt={t.title} src="/images/background-image.webp" width={1200} height={300} loading="eager" fetchpriority="high" formats={['avif', 'webp']} sizes="(max-width: 768px) 96vw, 73vw" class="max-w-full h-auto mt-[50px]" />
 
   {t.guideBtn && (
     <div class="flex justify-center mt-[30px]">
@@ -66,9 +66,9 @@ const t = {
   </div>
 
   <div class="flex justify-center items-center gap-[40px] mt-[30px] mb-2.5 max-[768px]:flex-col max-[768px]:gap-[15px]">
-    {t.badges.booking && <Picture alt="Booking Awards" height={74} width={220} loading="lazy" src={t.badges.booking} formats={['avif', 'webp']} />}
+    {t.badges.booking && <Picture alt="Booking Awards" height={74} width={220} loading="lazy" src={t.badges.booking} formats={['avif', 'webp']} sizes="220px" />}
     <a href="https://search.google.com/local/reviews?placeid=ChIJgWF7dBWpBkcRjvTdTyqqcyg" rel="nofollow noopener noreferrer" target="_blank">
-      <Picture alt="Reviews" height={74} width={220} loading="lazy" src={t.badges.reviews} formats={['avif', 'webp']} />
+      <Picture alt="Reviews" height={74} width={220} loading="lazy" src={t.badges.reviews} formats={['avif', 'webp']} sizes="220px" />
     </a>
   </div>
 </div>

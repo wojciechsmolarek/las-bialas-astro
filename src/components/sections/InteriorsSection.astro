@@ -172,7 +172,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <div class={miniGrid}>
     {t.bedrooms.images.map((img: any) => (
       <div class="relative inline-block group">
-        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} class={miniImg} />
+        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} sizes="(max-width: 1342px) 50vw, 25vw" class={miniImg} />
         <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
@@ -191,7 +191,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <div class={miniGrid}>
     {t.living.images.map((img: any) => (
       <div class="relative inline-block group">
-        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} class={miniImg} />
+        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} sizes="(max-width: 1342px) 50vw, 25vw" class={miniImg} />
         <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
@@ -210,7 +210,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <div class={miniGrid}>
     {t.bathroom.images.map((img: any) => (
       <div class="relative inline-block group">
-        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} class={miniImg} />
+        <Picture alt={img.alt} width={834} height={470} loading="lazy" src={img.src} formats={['avif', 'webp']} sizes="(max-width: 1342px) 50vw, 25vw" class={miniImg} />
         <span class={tipClass}>{img.tip}</span>
       </div>
     ))}
@@ -226,7 +226,7 @@ const tipClass = 'invisible opacity-0 w-[320px] bg-black/70 text-white text-cent
   <h3 class={h3Class}>{t.guide.title}</h3>
   <div class={sectionTextClass}>
     <a href={lang === 'de' ? 'https://lasbialas.pl/info/de/' : 'https://lasbialas.pl/info/'} target="_blank" rel="noopener noreferrer">
-      <img class="max-w-[20%] h-auto transition-transform hover:scale-[1.05] max-[768px]:max-w-[55%] inline-block" src="/foto/lasbialasqrc.png" alt={t.guide.qrAlt} width="150" height="150" />
+      <Picture class="max-w-[20%] h-auto transition-transform hover:scale-[1.05] max-[768px]:max-w-[55%] inline-block" src="/foto/lasbialasqrc.png" alt={t.guide.qrAlt} width={150} height={150} formats={['avif', 'webp']} sizes="150px" />
     </a>
   </div>
 </div>

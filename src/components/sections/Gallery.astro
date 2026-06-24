@@ -11,56 +11,56 @@ const t = useTranslations(lang);
 
 const galleryImages = [
   {
-    src: '/foto/lasbialas1.webp',
+    src: '/foto/webp-1280/lasbialas1.webp',
     alt: lang === 'pl' ? 'Widok na domek Las Biala\'s' : lang === 'en' ? 'View of Las Biala\'s cottage' : 'Ansicht des Ferienhauses Las Biala\'s',
     tooltip: t('gallery.cabin_with_jacuzzi'),
     index: 0,
     loading: 'lazy' as const
   },
   {
-    src: '/foto/lasbialas2.webp',
+    src: '/foto/webp-1280/lasbialas2.webp',
     alt: lang === 'pl' ? 'Dwa domki w Puszczy Noteckiej' : lang === 'en' ? 'Two cottages in Noteć Forest' : 'Zwei Ferienhäuser in der Puszcza Notecka',
     tooltip: t('gallery.two_cabins'),
     index: 1,
     loading: 'lazy' as const
   },
   {
-    src: '/foto/lasbialas7.webp',
+    src: '/foto/webp-1280/lasbialas7.webp',
     alt: lang === 'pl' ? 'Sauna Las Biala\'s w lesie' : lang === 'en' ? 'Las Biala\'s sauna in the forest' : 'Las Biala\'s Sauna im Wald',
     tooltip: t('gallery.sauna'),
     index: 6,
     fetchpriority: 'high'
   },
   {
-    src: '/foto/lasbialas5.webp',
+    src: '/foto/webp-1280/lasbialas5.webp',
     alt: lang === 'pl' ? 'Duża sypialnia dla 2 osób' : lang === 'en' ? 'Large bedroom for 2 people' : 'Großes Schlafzimmer für 2 Personen',
     tooltip: t('gallery.bedrooms'),
     index: 4,
     loading: 'lazy' as const
   },
   {
-    src: '/foto/lasbialas4.webp',
+    src: '/foto/webp-1280/lasbialas4.webp',
     alt: lang === 'pl' ? 'Widok salonu w domku' : lang === 'en' ? 'View of the living room' : 'Ansicht des Wohnzimmers',
     tooltip: t('gallery.living_room_amenities'),
     index: 3,
     loading: 'lazy' as const
   },
   {
-    src: '/foto/lasbialas6.webp',
+    src: '/foto/webp-1280/lasbialas6.webp',
     alt: lang === 'pl' ? 'Mała sypialnia dla 2 osób z telewizorem oraz łazienka i prysznicem' : lang === 'en' ? 'Small bedroom for 2 with TV and bathroom' : 'Kleines Schlafzimmer für 2 mit TV und Bad',
     tooltip: t('gallery.sauna_cooling'),
     index: 5,
     loading: 'lazy' as const
   },
   {
-    src: '/foto/lasbialas3.webp',
+    src: '/foto/webp-1280/lasbialas3.webp',
     alt: lang === 'pl' ? 'Widok salonu w domku' : lang === 'en' ? 'Living room view' : 'Wohnzimmer Ansicht',
     tooltip: t('gallery.living_room'),
     index: 2,
     loading: 'lazy' as const
   },
   {
-    src: '/foto/lasbialas8.webp',
+    src: '/foto/webp-1280/lasbialas8.webp',
     alt: lang === 'pl' ? 'Domki na wynajem w Białej' : lang === 'en' ? 'Cottages for rent in Biała' : 'Ferienhäuser zur Miete in Biała',
     tooltip: t('gallery.guest_cottages'),
     index: 7,
@@ -79,6 +79,7 @@ const galleryImages = [
           width={834}
           height={470}
           formats={['avif', 'webp']}
+          sizes="(max-width: 1024px) 50vw, 25vw"
           loading={image.loading || undefined}
           fetchpriority={image.fetchpriority as 'high' | 'low' | 'auto' | undefined}
           class="block w-full h-auto object-cover transition-transform duration-200"
